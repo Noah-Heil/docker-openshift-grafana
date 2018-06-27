@@ -1,5 +1,5 @@
 # setup Json file config names
-for i in {0..5}; do if (($i == 0))  || (($i % 2 == 0)); then curl -s https://grafana.net/api/dashboards?orderBy=name | jq -r --arg bash_i "$i" '"https://grafana.com/api/dashboards/\([..|.id?,.revision?|select(. != null)]|.[$bash_i|tonumber])/revisions/\([..|.id?,.revision?|select(. != null)]|.[(($bash_i|tonumber)+1)])/download"' >> "$PWD/dashboard-manifest.txt"; fi done
+for i in {0..1988}; do if (($i == 0)) || (($i % 2 == 0)); then curl -s https://grafana.net/api/dashboards?orderBy=name | jq -r --arg bash_i "$i" '"https://grafana.com/api/dashboards/\([..|.id?,.revision?|select(. != null)]|.[$bash_i|tonumber])/revisions/\([..|.id?,.revision?|select(. != null)]|.[(($bash_i|tonumber)+1)])/download"' >> "$PWD/dashboard-manifest.txt"; fi done
 
 
 # https://grafana.com/api/dashboards/\(.)/revisions/:revision/download
