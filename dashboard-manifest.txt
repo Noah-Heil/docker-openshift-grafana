@@ -1,3 +1,0 @@
-https://grafana.com/api/dashboards/1013/revisions/2/download
-https://grafana.com/api/dashboards/6007/revisions/1/download
-https://grafana.com/api/dashboards/6458/revisions/1/download
