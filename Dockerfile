@@ -12,17 +12,21 @@ LABEL name="Grafana" \
       release="1"
 
 # User grafana gets added by RPM
-ENV USERNAME=grafana
+ENV \
+    GF_PLUGIN_DIR=/var/lib/grafana \
+    USERNAME=grafana
+
 
 RUN yum -y update && yum -y upgrade && \
     yum -y install epel-release && \
     yum -y install git jq unzip nss_wrapper && \
     curl -L -o /tmp/grafana.rpm https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-$GRAFANA_VERSION-1.x86_64.rpm && \
     yum -y localinstall /tmp/grafana.rpm && \
-    for plugin in $(curl -s https://grafana.net/api/plugins?orderBy=name | jq '.items[] | select(.internal=='false') | .slug' | tr -d '"'); do grafana-cli --pluginsDir "${GF_PLUGIN_DIR}" plugins install $plugin; done && \
     yum -y clean all && \
     rm -rf /var/cache/yum \
     rm /tmp/grafana.rpm
+
+RUN for plugin in $(curl -s https://grafana.net/api/plugins?orderBy=name | jq '.items[] | select(.internal=='false') | .slug' | tr -d '"'); do grafana-cli --pluginsDir "${GF_PLUGIN_DIR}" plugins install $plugin; done
 
 COPY ./root /
 RUN /usr/bin/fix-permissions /var/log/grafana && \
