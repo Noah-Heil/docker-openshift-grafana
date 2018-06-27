@@ -6,4 +6,7 @@ for i in {0..1988}; do if (($i == 0)) || (($i % 2 == 0)); then curl -s https://g
 
 
 # Download all dashboard json files.
-file="$PWD/dashboard-manifest.txt" ; counter=0 ; while IFS= read -r line ; do curl -v "$line" > "$PWD/dashboards/${line}-${counter}.txt" &&  counter=$((counter+1)) ; done < "$file"
+file="$PWD/dashboard-manifest.txt" ; counter=0 ; while IFS= read -r line ; do curl -v "$line" > "./dashboards/${counter}.txt" && counter=$((counter+1)) ; done < "$file"
+
+
+file="$PWD/dashboard-manifest.txt" ; counter=0 ; while IFS= read -r line ; do echo "${counter}" && counter=$((counter+1)) ; done < "$file"
