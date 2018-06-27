@@ -1,0 +1,1670 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_WEBOPS",
+      "label": "WebOps",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.1.5"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 2418,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": 92,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(195, 25, 25, 0.89)",
+            "rgba(200, 35, 21, 0.97)"
+          ],
+          "datasource": "${DS_WEBOPS}",
+          "decimals": null,
+          "description": "",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": null,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "",
+          "hideTimeOverride": true,
+          "id": 1,
+          "interval": "",
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 4,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "job_posting",
+              "policy": "autogen",
+              "query": "select count(jobID) from job",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "jobID"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "count"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "companyName",
+                  "operator": "=~",
+                  "value": "/^$companyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "depotName",
+                  "operator": "=~",
+                  "value": "/^$depotName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "operativeName",
+                  "operator": "=~",
+                  "value": "/^$operativeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "businessAreaName",
+                  "operator": "=~",
+                  "value": "/^$businessAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobAreaName",
+                  "operator": "=~",
+                  "value": "/^$jobAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "familyName",
+                  "operator": "=~",
+                  "value": "/^$familyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "subFamilyName",
+                  "operator": "=~",
+                  "value": "/^$subFamilyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "fatherContractName",
+                  "operator": "=~",
+                  "value": "/^$fatherContractName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "bookingReference",
+                  "operator": "=~",
+                  "value": "/^$bookingReference$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "advertiser",
+                  "operator": "=~",
+                  "value": "/^$advertiser$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "brand",
+                  "operator": "=~",
+                  "value": "/^$brand$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "design",
+                  "operator": "=~",
+                  "value": "/^$design$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobTypeName",
+                  "operator": "=~",
+                  "value": "/^$jobTypeName$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "timeShift": "1h",
+          "title": "Requested Jobs",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(10, 152, 40, 0.9)",
+            "rgba(18, 159, 48, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_WEBOPS}",
+          "decimals": null,
+          "description": "",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": null,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "",
+          "hideTimeOverride": true,
+          "id": 10,
+          "interval": "",
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 4,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "job_posting",
+              "policy": "default",
+              "query": "SELECT count(\"jobID\") FROM \"autogen\".\"job\" WHERE $timeFilter GROUP BY time($interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "jobID"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "count"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "companyName",
+                  "operator": "=~",
+                  "value": "/^$companyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "depotName",
+                  "operator": "=~",
+                  "value": "/^$depotName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "operativeName",
+                  "operator": "=~",
+                  "value": "/^$operativeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "businessAreaName",
+                  "operator": "=~",
+                  "value": "/^$businessAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobAreaName",
+                  "operator": "=~",
+                  "value": "/^$jobAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobTypeName",
+                  "operator": "=~",
+                  "value": "/^$jobTypeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "familyName",
+                  "operator": "=~",
+                  "value": "/^$familyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "subFamilyName",
+                  "operator": "=~",
+                  "value": "/^$subFamilyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "fatherContractName",
+                  "operator": "=~",
+                  "value": "/^$fatherContractName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "bookingReference",
+                  "operator": "=~",
+                  "value": "/^$bookingReference$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "Available"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "In Progress"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "Revisit"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "Problem"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "Alert"
+                },
+                {
+                  "condition": "AND",
+                  "key": "advertiser",
+                  "operator": "=~",
+                  "value": "/^$advertiser$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "brand",
+                  "operator": "=~",
+                  "value": "/^$brand$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "design",
+                  "operator": "=~",
+                  "value": "/^$design$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "timeShift": "1h",
+          "title": "Closed Jobs",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(216, 209, 38, 0.9)",
+            "rgba(227, 193, 26, 0.85)",
+            "rgba(228, 221, 52, 0.97)"
+          ],
+          "datasource": "${DS_WEBOPS}",
+          "decimals": null,
+          "description": "",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": null,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "",
+          "hideTimeOverride": true,
+          "id": 11,
+          "interval": "",
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 4,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "job_posting",
+              "policy": "autogen",
+              "query": "select count(jobID) from job",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "jobID"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "count"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "companyName",
+                  "operator": "=~",
+                  "value": "/^$companyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "depotName",
+                  "operator": "=~",
+                  "value": "/^$depotName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "operativeName",
+                  "operator": "=~",
+                  "value": "/^$operativeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "businessAreaName",
+                  "operator": "=~",
+                  "value": "/^$businessAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobAreaName",
+                  "operator": "=~",
+                  "value": "/^$jobAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobTypeName",
+                  "operator": "=~",
+                  "value": "/^$jobTypeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "familyName",
+                  "operator": "=~",
+                  "value": "/^$familyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "subFamilyName",
+                  "operator": "=~",
+                  "value": "/^$subFamilyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "fatherContractName",
+                  "operator": "=~",
+                  "value": "/^$fatherContractName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "bookingReference",
+                  "operator": "=~",
+                  "value": "/^$bookingReference$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "Confirmed"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "Cancelled"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "Follow Up"
+                },
+                {
+                  "condition": "AND",
+                  "key": "advertiser",
+                  "operator": "=~",
+                  "value": "/^$advertiser$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "brand",
+                  "operator": "=~",
+                  "value": "/^$brand$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "design",
+                  "operator": "=~",
+                  "value": "/^$design$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "timeShift": "1h",
+          "title": "Outstanding Jobs",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "New row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": null,
+      "panels": [
+        {
+          "aliasColors": {
+            "Cancelled": "#E24D42",
+            "Confirmed": "#9AC48A",
+            "Follow Up": "#F2C96D",
+            "In Progress": "#1F78C1",
+            "Revisit": "#806EB7"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_WEBOPS}",
+          "editable": true,
+          "error": false,
+          "fontSize": "100%",
+          "format": "none",
+          "height": "250px",
+          "hideTimeOverride": true,
+          "id": 6,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "sortDesc": true,
+            "values": true
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "repeat": null,
+          "span": 6,
+          "strokeWidth": "1",
+          "targets": [
+            {
+              "alias": "$tag_depotName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "depotName"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "job_posting",
+              "policy": "autogen",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "jobID"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "count"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "companyName",
+                  "operator": "=~",
+                  "value": "/^$companyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "depotName",
+                  "operator": "=~",
+                  "value": "/^$depotName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "operativeName",
+                  "operator": "=~",
+                  "value": "/^$operativeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "businessAreaName",
+                  "operator": "=~",
+                  "value": "/^$businessAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobAreaName",
+                  "operator": "=~",
+                  "value": "/^$jobAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobTypeName",
+                  "operator": "=~",
+                  "value": "/^$jobTypeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "familyName",
+                  "operator": "=~",
+                  "value": "/^$familyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "subFamilyName",
+                  "operator": "=~",
+                  "value": "/^$subFamilyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "fatherContractName",
+                  "operator": "=~",
+                  "value": "/^$fatherContractName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "bookingReference",
+                  "operator": "=~",
+                  "value": "/^$bookingReference$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "advertiser",
+                  "operator": "=~",
+                  "value": "/^$advertiser$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "brand",
+                  "operator": "=~",
+                  "value": "/^$brand$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "design",
+                  "operator": "=~",
+                  "value": "/^$design$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "=",
+                  "value": "Confirmed"
+                },
+                {
+                  "condition": "OR",
+                  "key": "statusCategoryName",
+                  "operator": "=",
+                  "value": "Follow Up"
+                }
+              ]
+            }
+          ],
+          "timeShift": "1h",
+          "title": "Jobs Confirmed",
+          "transparent": false,
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "Cancelled": "#E24D42",
+            "Confirmed": "#9AC48A",
+            "Follow Up": "#F2C96D",
+            "In Progress": "#1F78C1",
+            "Mall Sites": "#0A50A1",
+            "Rail Sites": "#65C5DB",
+            "Revisit": "#806EB7",
+            "RoadSide Street Furniture": "#F9934E",
+            "Roadside Large Format": "#BF1B00",
+            "TESCO Stores": "#962D82",
+            "WAITROSE Stores": "#D683CE"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_WEBOPS}",
+          "description": "",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "format": "none",
+          "height": "250px",
+          "hideTimeOverride": true,
+          "id": 8,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "sortDesc": true,
+            "values": true
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 6,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "alias": "$tag_depotName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "depotName"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "job_posting",
+              "policy": "autogen",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "jobID"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "count"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "companyName",
+                  "operator": "=~",
+                  "value": "/^$companyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "depotName",
+                  "operator": "=~",
+                  "value": "/^$depotName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "operativeName",
+                  "operator": "=~",
+                  "value": "/^$operativeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "businessAreaName",
+                  "operator": "=~",
+                  "value": "/^$businessAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobAreaName",
+                  "operator": "=~",
+                  "value": "/^$jobAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobTypeName",
+                  "operator": "=~",
+                  "value": "/^$jobTypeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "familyName",
+                  "operator": "=~",
+                  "value": "/^$familyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "subFamilyName",
+                  "operator": "=~",
+                  "value": "/^$subFamilyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "fatherContractName",
+                  "operator": "=~",
+                  "value": "/^$fatherContractName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "bookingReference",
+                  "operator": "=~",
+                  "value": "/^$bookingReference$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "advertiser",
+                  "operator": "=~",
+                  "value": "/^$advertiser$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "brand",
+                  "operator": "=~",
+                  "value": "/^$brand$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "design",
+                  "operator": "=~",
+                  "value": "/^$design$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "=",
+                  "value": "Cancelled"
+                },
+                {
+                  "condition": "OR",
+                  "key": "statusCategoryName",
+                  "operator": "=",
+                  "value": "On Hold"
+                }
+              ]
+            }
+          ],
+          "timeShift": "1h",
+          "title": "Jobs Cancelled",
+          "transparent": false,
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "New row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": -87,
+      "panels": [
+        {
+          "aliasColors": {
+            "Cancelled": "#E24D42",
+            "Confirmed": "#9AC48A",
+            "Follow Up": "#F2C96D",
+            "In Progress": "#1F78C1",
+            "New Job": "#B7DBAB",
+            "Revisit": "#806EB7"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_WEBOPS}",
+          "editable": true,
+          "error": false,
+          "fontSize": "100%",
+          "format": "none",
+          "height": "250px",
+          "hideTimeOverride": true,
+          "id": 12,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "sortDesc": false,
+            "values": true
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 6,
+          "strokeWidth": "1",
+          "targets": [
+            {
+              "alias": "$tag_depotName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "depotName"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "hide": false,
+              "measurement": "job_posting",
+              "policy": "autogen",
+              "query": "SELECT count(\"jobID\") FROM \"autogen\".\"job\" WHERE \"companyName\" =~ /^$companyName$/ AND \"depotName\" =~ /^$depotName$/ AND \"operativeName\" =~ /^$operativeName$/ AND \"businessAreaName\" =~ /^$businessAreaName$/ AND \"jobAreaName\" =~ /^$jobAreaName$/ AND \"jobActionTypeName\" =~ /^$jobActionTypeName$/ AND \"familyName\" =~ /^$familyName$/ AND \"subFamilyName\" =~ /^$subFamilyName$/ AND \"fatherContractName\" =~ /^$fatherContractName$/ AND \"bookingReference\" =~ /^$bookingReference$/ AND \"statusCategoryName\" != 'Confirmed' AND \"statusCategoryName\" != 'Cancelled' AND \"statusCategoryName\" != 'Follow Up' AND \"statusCategoryName\" != 'On Hold' AND $timeFilter GROUP BY \"jobStatusName\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "jobID"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "count"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "companyName",
+                  "operator": "=~",
+                  "value": "/^$companyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "depotName",
+                  "operator": "=~",
+                  "value": "/^$depotName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "operativeName",
+                  "operator": "=~",
+                  "value": "/^$operativeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "businessAreaName",
+                  "operator": "=~",
+                  "value": "/^$businessAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobAreaName",
+                  "operator": "=~",
+                  "value": "/^$jobAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobTypeName",
+                  "operator": "=~",
+                  "value": "/^$jobTypeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "familyName",
+                  "operator": "=~",
+                  "value": "/^$familyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "subFamilyName",
+                  "operator": "=~",
+                  "value": "/^$subFamilyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "fatherContractName",
+                  "operator": "=~",
+                  "value": "/^$fatherContractName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "bookingReference",
+                  "operator": "=~",
+                  "value": "/^$bookingReference$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "Confirmed"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "Cancelled"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "Follow Up"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "!=",
+                  "value": "On Hold"
+                },
+                {
+                  "condition": "AND",
+                  "key": "advertiser",
+                  "operator": "=~",
+                  "value": "/^$advertiser$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "brand",
+                  "operator": "=~",
+                  "value": "/^$brand$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "design",
+                  "operator": "=~",
+                  "value": "/^$design$/"
+                }
+              ]
+            }
+          ],
+          "timeShift": "1h",
+          "title": "Jobs In Progress",
+          "transparent": false,
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "Cancelled": "#E24D42",
+            "Confirmed": "#9AC48A",
+            "Follow Up": "#F2C96D",
+            "In Progress": "#1F78C1",
+            "Revisit": "#806EB7"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_WEBOPS}",
+          "editable": true,
+          "error": false,
+          "fontSize": "100%",
+          "format": "none",
+          "height": "250px",
+          "hideTimeOverride": true,
+          "id": 9,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "sortDesc": true,
+            "values": true
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 6,
+          "strokeWidth": "1",
+          "targets": [
+            {
+              "alias": "$tag_jobStatusName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "jobStatusName"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "hide": false,
+              "measurement": "job_posting",
+              "policy": "autogen",
+              "query": "SELECT count(\"jobID\") FROM \"autogen\".\"job\" WHERE \"companyName\" =~ /^$companyName$/ AND \"depotName\" =~ /^$depotName$/ AND \"operativeName\" =~ /^$operativeName$/ AND \"jobAreaName\" =~ /^$jobAreaName$/ AND \"statusCategoryName\" = 'Cancelled' AND \"bookingReference\" =~ /^$bookingReference$/ AND $timeFilter GROUP BY \"jobStatusName\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "jobID"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "count"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "companyName",
+                  "operator": "=~",
+                  "value": "/^$companyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "depotName",
+                  "operator": "=~",
+                  "value": "/^$depotName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "operativeName",
+                  "operator": "=~",
+                  "value": "/^$operativeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "businessAreaName",
+                  "operator": "=~",
+                  "value": "/^$businessAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobAreaName",
+                  "operator": "=~",
+                  "value": "/^$jobAreaName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "jobTypeName",
+                  "operator": "=~",
+                  "value": "/^$jobTypeName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "familyName",
+                  "operator": "=~",
+                  "value": "/^$familyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "subFamilyName",
+                  "operator": "=~",
+                  "value": "/^$subFamilyName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "fatherContractName",
+                  "operator": "=~",
+                  "value": "/^$fatherContractName$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "bookingReference",
+                  "operator": "=~",
+                  "value": "/^$bookingReference$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "statusCategoryName",
+                  "operator": "=",
+                  "value": "Cancelled"
+                },
+                {
+                  "condition": "AND",
+                  "key": "advertiser",
+                  "operator": "=~",
+                  "value": "/^$advertiser$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "brand",
+                  "operator": "=~",
+                  "value": "/^$brand$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "design",
+                  "operator": "=~",
+                  "value": "/^$design$/"
+                }
+              ]
+            }
+          ],
+          "timeShift": "1h",
+          "title": "Cancelled Reasons",
+          "transparent": false,
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Job Type",
+        "multi": true,
+        "name": "jobTypeName",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"jobTypeName\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Booking Reference",
+        "multi": true,
+        "name": "bookingReference",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"bookingReference\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Company",
+        "multi": true,
+        "name": "companyName",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"companyName\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Depot",
+        "multi": true,
+        "name": "depotName",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"depotName\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "job.depotID",
+        "tags": [],
+        "tagsQuery": "select depotID from job",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Operative",
+        "multi": true,
+        "name": "operativeName",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"operativeName\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "Posting",
+          "value": "Posting"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Job Area",
+        "multi": true,
+        "name": "jobAreaName",
+        "options": [
+          {
+            "selected": true,
+            "text": "Posting",
+            "value": "Posting"
+          }
+        ],
+        "query": "Posting",
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Family",
+        "multi": true,
+        "name": "familyName",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"familyName\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Sub Family",
+        "multi": true,
+        "name": "subFamilyName",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"subFamilyName\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Advertiser",
+        "multi": true,
+        "name": "advertiser",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"advertiser\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Brand",
+        "multi": true,
+        "name": "brand",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"brand\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Design",
+        "multi": true,
+        "name": "design",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"design\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Business Area",
+        "multi": true,
+        "name": "businessAreaName",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"businessAreaName\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Contract Name",
+        "multi": true,
+        "name": "fatherContractName",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"fatherContractName\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_WEBOPS}",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Job Status Name(Table display only)",
+        "multi": true,
+        "name": "jobStatusName",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"job_posting\" WITH KEY = \"jobStatusName\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now/d",
+    "to": "now/d"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "WebOps_Posting",
+  "version": 61,
+  "description": "WebOps Posting jobs dashboard"
+}

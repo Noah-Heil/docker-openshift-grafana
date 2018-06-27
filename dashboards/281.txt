@@ -1,0 +1,1318 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_GRAPHITE",
+      "label": "graphite",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "graphite",
+      "pluginName": "Graphite"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.6.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "graphite",
+      "name": "Graphite",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Collectd/Graphite Server Info Mysql",
+  "editable": true,
+  "gnetId": 3940,
+  "graphTooltip": 1,
+  "hideControls": true,
+  "id": null,
+  "links": [],
+  "refresh": "5m",
+  "rows": [
+    {
+      "collapse": false,
+      "height": "300px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 8,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(collectd.$Server.mysql.mysql.cache_result.qcache-hits, 'cache_hits')"
+            },
+            {
+              "refId": "B",
+              "target": "alias(collectd.$Server.mysql.mysql.cache_result.qcache-inserts, 'cache_insert')"
+            },
+            {
+              "refId": "C",
+              "target": "alias(collectd.$Server.mysql.mysql.cache_result.qcache-not_cached, 'cache_not_cached')"
+            },
+            {
+              "refId": "D",
+              "target": "alias(collectd.$Server.mysql.mysql.cache_result.qcache-prunes, 'prunes')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Cache Result",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 9,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(collectd.$Server.mysql.mysql.cache_size.qcache, 'cache_size')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Cache Size",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 11,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_handler.read_first, 'read_first')"
+            },
+            {
+              "refId": "B",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_handler.read_rnd_next, 'read_rnd_next')"
+            },
+            {
+              "refId": "C",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_handler.tmp_write, 'tmp_write')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql Handler",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_commands.admin_commands, 'admin_commands')"
+            },
+            {
+              "refId": "B",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_commands.select, 'select')"
+            },
+            {
+              "refId": "C",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_commands.show_databases, 'show_databases')"
+            },
+            {
+              "refId": "D",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_commands.show_fields, 'show_fields')"
+            },
+            {
+              "refId": "E",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_commands.show_status, 'show_status')"
+            },
+            {
+              "refId": "F",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_commands.show_tables, 'show_tables')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql Commands",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 12,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "F",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_locks.immediate, 'inmediate')"
+            },
+            {
+              "refId": "A",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_locks.waited, 'waited')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql Locks",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 13,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "F",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_octets.rx, 'rx')"
+            },
+            {
+              "refId": "A",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_octets.tx, 'tx')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql octets",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 14,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "F",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_select.full_join, 'full_join')"
+            },
+            {
+              "refId": "A",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_select.full_range_join, 'full_range_join')"
+            },
+            {
+              "refId": "B",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_select.range, 'range')"
+            },
+            {
+              "refId": "C",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_select.range_check, 'range_check')"
+            },
+            {
+              "refId": "D",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_select.scan, 'scan')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql Select",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 15,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "D",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_sort.range, 'range')"
+            },
+            {
+              "refId": "A",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_sort.scan, 'scan')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql Sort",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 16,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "D",
+              "target": "alias(collectd.$Server.mysql.mysql.threads.cached, 'cached')"
+            },
+            {
+              "refId": "A",
+              "target": "alias(collectd.$Server.mysql.mysql.threads.connected, 'connected')"
+            },
+            {
+              "refId": "B",
+              "target": "alias(collectd.$Server.mysql.mysql.threads.running, 'running')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql Threads",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 17,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "B",
+              "target": "alias(collectd.$Server.mysql.mysql.total_threads.created, 'created')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql Total Threads",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "description": "",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 18,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "B",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_slow_queries, 'slow_queries')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql Slow Queries",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "description": "",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 19,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "B",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_sort_merge_passes, 'sort_merge_passes')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql Sort Merge Passes",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "description": "",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 20,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total",
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "B",
+              "target": "alias(collectd.$Server.mysql.mysql.mysql_sort_rows, 'sort_rows')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mysql Sort Rows",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Queries/s",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "New row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allFormat": "glob",
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_GRAPHITE}",
+        "hide": 0,
+        "hideLabel": false,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "multiFormat": "glob",
+        "name": "Server",
+        "options": [],
+        "query": "collectd.*",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allFormat": "glob",
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_GRAPHITE}",
+        "hide": 0,
+        "hideLabel": false,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "multiFormat": "glob",
+        "name": "database",
+        "options": [],
+        "query": "collectd.$Server.mysql.*",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "collapse": false,
+    "enable": true,
+    "notice": false,
+    "now": true,
+    "nowDelay": "",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "status": "Stable",
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d",
+      "90d"
+    ],
+    "type": "timepicker"
+  },
+  "timezone": "browser",
+  "title": "Full Info Mysql(Collectd)",
+  "version": 7
+}

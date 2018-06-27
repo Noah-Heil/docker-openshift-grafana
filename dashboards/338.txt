@@ -1,0 +1,1160 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_GRAPHITE",
+      "label": "graphite",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "graphite",
+      "pluginName": "Graphite"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.5.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "graphite",
+      "name": "Graphite",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "description": "Key usage and performance statistics of a Grafana Cloud Hosted Metrics service.",
+  "editable": true,
+  "gnetId": 6054,
+  "graphTooltip": 2,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": "30s",
+  "rows": [
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {
+            "out-of-order": "#E0752D",
+            "rejected": "#BF1B00",
+            "too-old": "#C15C17"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "fill": 8,
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(averageSeries(perSecond(tsdb-gw.aggstats.$cluster.metrics.published.counter32)), 'incoming')"
+            },
+            {
+              "refId": "B",
+              "target": "alias(averageSeries(perSecond(metrictank.aggstats.$cluster.tank.metrics_too_old.counter32)), 'out-of-order')",
+              "textEditor": false
+            },
+            {
+              "refId": "C",
+              "target": "alias(averageSeries(groupByNode(perSecond(metrictank.aggstats.$cluster.input.{metric_invalid,metrics_decode_err}.counter32), 2, 'sum')), 'mt-invalid')",
+              "textEditor": false
+            },
+            {
+              "refId": "D",
+              "target": "alias(averageSeries(groupByNode(perSecond(tsdb-gw.aggstats.$cluster.metrics.*.rejected.counter32), 2, 'sum')), 'rejected')",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Metrics Rate",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_GRAPHITE}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 5,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(averageSeries(metrictank.aggstats.$cluster.tank.metrics_active.gauge32), 'active_series')",
+              "textEditor": false
+            }
+          ],
+          "thresholds": "",
+          "title": "Active Series",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_GRAPHITE}",
+          "description": "The total MetricTons based on the higher of datapoints per month or unique series.",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 15,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(234, 133, 255, 0.18)",
+            "full": false,
+            "lineColor": "rgb(194, 79, 239)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "hide": true,
+              "refId": "A",
+              "target": "alias(scale(scale(averageSeries(perSecond(tsdb-gw.aggstats.$cluster.metrics.published.counter32)), 60), 0.00005555555556), 'incoming')",
+              "textEditor": false
+            },
+            {
+              "hide": true,
+              "refId": "B",
+              "target": "alias(scale(averageSeries(metrictank.aggstats.$cluster.tank.metrics_active.gauge32), 0.0003333333333), 'active_series')",
+              "textEditor": false
+            },
+            {
+              "refId": "C",
+              "target": "maxSeries(#A, #B)",
+              "targetFull": "maxSeries(alias(scale(scale(averageSeries(perSecond(tsdb-gw.aggstats.$cluster.metrics.published.counter32)), 60), 0.00005555555556), 'incoming'), alias(scale(averageSeries(metrictank.aggstats.$cluster.tank.metrics_active.gauge32), 0.0003333333333), 'active_series'))",
+              "textEditor": true
+            }
+          ],
+          "thresholds": "",
+          "title": "MetricTons",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {
+            "200": "#508642",
+            "5xx": "#890F02",
+            "average": "#3F6833",
+            "max": "#CFFAFF",
+            "mean": "#052B51",
+            "p90": "#5195CE",
+            "upper_90": "#D683CE"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "fill": 0,
+          "id": 10,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 2,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/^\\d+/",
+              "bars": true,
+              "lines": false,
+              "points": false,
+              "stack": "A",
+              "yaxis": 2,
+              "zindex": -3
+            },
+            {
+              "alias": "/^200/",
+              "color": "#629E51"
+            },
+            {
+              "alias": "max",
+              "pointradius": 2
+            },
+            {
+              "alias": "p90",
+              "pointradius": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "D",
+              "target": "groupByNode(consolidateBy(tsdb-gw.aggstats.$cluster.api.request.metrics.latency.{p90,max}.gauge32, 'max'), 7, 'maxSeries')"
+            },
+            {
+              "refId": "B",
+              "target": "groupByNode(tsdb-gw.aggstats.$cluster.api.request.metrics.latency.mean.gauge32, 7, 'avg')"
+            },
+            {
+              "refId": "A",
+              "target": "groupByNode(perSecond(tsdb-gw.aggstats.$cluster.api.request.metrics.status.*.counter32), 7, 'sum')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "metrics ingest requests",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 10,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "200": "#508642",
+            "5xx": "#890F02",
+            "average": "#3F6833",
+            "max": "#CFFAFF",
+            "mean": "#052B51",
+            "p90": "#5195CE",
+            "upper_90": "#D683CE"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "fill": 0,
+          "id": 13,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 2,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/^\\d+/",
+              "bars": true,
+              "lines": false,
+              "points": false,
+              "stack": "A",
+              "yaxis": 2,
+              "zindex": -3
+            },
+            {
+              "alias": "/^200/",
+              "color": "#629E51"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "D",
+              "target": "groupByNode(consolidateBy(tsdb-gw.aggstats.$cluster.api.request.render.latency.{p90,max}.gauge32, 'max'), 7, 'maxSeries')"
+            },
+            {
+              "refId": "B",
+              "target": "groupByNode(tsdb-gw.aggstats.$cluster.api.request.render.latency.mean.gauge32, 7, 'avg')"
+            },
+            {
+              "refId": "A",
+              "target": "groupByNode(perSecond(tsdb-gw.aggstats.$cluster.api.request.render.status.*.counter32), 7, 'sum')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "render requests",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 10,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "200": "#508642",
+            "5xx": "#890F02",
+            "average": "#3F6833",
+            "max": "#CFFAFF",
+            "mean": "#052B51",
+            "p90": "#5195CE",
+            "upper_90": "#D683CE"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "fill": 0,
+          "id": 14,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 2,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/^\\d+/",
+              "bars": true,
+              "lines": false,
+              "points": false,
+              "stack": "A",
+              "yaxis": 2,
+              "zindex": -3
+            },
+            {
+              "alias": "/^200/",
+              "color": "#629E51"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "D",
+              "target": "groupByNode(consolidateBy(tsdb-gw.aggstats.$cluster.api.request.metrics_find.latency.{p90,max}.gauge32, 'max'), 7, 'maxSeries')"
+            },
+            {
+              "refId": "B",
+              "target": "groupByNode(tsdb-gw.aggstats.$cluster.api.request.metrics_find.latency.mean.gauge32, 7, 'avg')"
+            },
+            {
+              "refId": "A",
+              "target": "groupByNode(perSecond(tsdb-gw.aggstats.$cluster.api.request.metrics_find.status.*.counter32), 7, 'sum')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "find requests (autocompletion/search)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 10,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "api endpoint",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {
+            "max": "#890F02",
+            "median": "#3F6833",
+            "p90": "#C15C17"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "fill": 1,
+          "id": 11,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 2,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "groupByNode(consolidateBy(metrictank.aggstats.$cluster.api.request.render.points_fetched.max.gauge32, 'max'), 7, 'maxSeries')",
+              "textEditor": false
+            },
+            {
+              "refId": "B",
+              "target": "groupByNode(consolidateBy(metrictank.aggstats.$cluster.api.request.render.points_fetched.median.gauge32, 'average'), 7, 'avg')",
+              "textEditor": false
+            },
+            {
+              "refId": "C",
+              "target": "groupByNode(consolidateBy(metrictank.aggstats.$cluster.api.request.render.points_fetched.p90.gauge32, 'max'), 7, 'maxSeries')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "DataPoints fetched per request",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "max": "#890F02",
+            "median": "#3F6833",
+            "p90": "#C15C17"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "fill": 1,
+          "id": 12,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 2,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "groupByNode(consolidateBy(metrictank.aggstats.$cluster.api.request.render.series.max.gauge32, 'max'), 7, 'maxSeries')"
+            },
+            {
+              "refId": "B",
+              "target": "groupByNode(consolidateBy(metrictank.aggstats.$cluster.api.request.render.series.median.gauge32, 'average'), 7, 'avg')"
+            },
+            {
+              "refId": "C",
+              "target": "groupByNode(consolidateBy(metrictank.aggstats.$cluster.api.request.render.series.p90.gauge32, 'max'), 7, 'maxSeries')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Series returned per request",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {
+            "hit-full": "#508642",
+            "hit-partial": "#E0752D",
+            "miss": "#BF1B00"
+          },
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "fill": 1,
+          "id": 8,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": true,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(averageSeries(perSecond(summarize(metrictank.aggstats.$cluster.cache.ops.metric.hit-full.counter32, '5m', 'last', false))), 'hit-full')",
+              "textEditor": false
+            },
+            {
+              "refId": "B",
+              "target": "alias(averageSeries(perSecond(summarize(metrictank.aggstats.$cluster.cache.ops.metric.hit-partial.counter32, '5m', 'last', false))), 'hit-partial')",
+              "textEditor": false
+            },
+            {
+              "refId": "C",
+              "target": "alias(averageSeries(perSecond(summarize(metrictank.aggstats.$cluster.cache.ops.metric.miss.counter32, '5m', 'last', false))), 'miss')",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Query Cache Hit Ratio",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "total"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": false
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "size": "#EA6460"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_GRAPHITE}",
+          "fill": 0,
+          "id": 7,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/used/",
+              "bars": true,
+              "lines": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "aliasByNode(metrictank.aggstats.$cluster.cache.size.max.gauge64, 2, 5)",
+              "textEditor": false
+            },
+            {
+              "refId": "B",
+              "target": "aliasByNode(metrictank.aggstats.$cluster.cache.size.used.gauge64, 2, 5)",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Query Cache",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_GRAPHITE}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 9,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "hide": true,
+              "refId": "A",
+              "target": "alias(averageSeries(metrictank.aggstats.$cluster.cache.size.max.gauge64), 'max')",
+              "textEditor": false
+            },
+            {
+              "hide": true,
+              "refId": "B",
+              "target": "alias(averageSeries(metrictank.aggstats.$cluster.cache.size.used.gauge64), 'used')",
+              "textEditor": false
+            },
+            {
+              "refId": "C",
+              "target": "asPercent(#B, #A)",
+              "targetFull": "asPercent(alias(averageSeries(metrictank.aggstats.$cluster.cache.size.used.gauge64), 'used'), alias(averageSeries(metrictank.aggstats.$cluster.cache.size.max.gauge64), 'max'))"
+            }
+          ],
+          "thresholds": "70,90",
+          "title": "Percent Cache Used",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "ops",
+    "system"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_GRAPHITE}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Cluster",
+        "multi": false,
+        "name": "cluster",
+        "options": [],
+        "query": "tsdb-gw.aggstats.*",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Hosted Metrics Usage Summary",
+  "version": 4
+}

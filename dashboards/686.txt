@@ -1,0 +1,1598 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_OPENNMS_PERFORMANCE",
+      "label": "OpenNMS Performance",
+      "description": "Use OpenNMS Performance data source from OpenNMS Helm 1.1.0",
+      "type": "datasource",
+      "pluginId": "opennms-helm-performance-datasource",
+      "pluginName": "OpenNMS Performance"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.6.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "opennms-helm-performance-datasource",
+      "name": "OpenNMS Performance",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": 5754,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": "5m",
+  "rows": [
+    {
+      "collapse": false,
+      "height": 252,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 4,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "CurThreadCpuTime",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Minion CPU time ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "µs",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "CpuRawIdle": "#7eb26d",
+            "CpuRawInterrupt": "#bf1b00",
+            "CpuRawKernel": "#ef843c",
+            "CpuRawNice": "#0a437c",
+            "CpuRawSoftIRQ": "#f4d598",
+            "CpuRawSystem": "#70dbed",
+            "CpuRawUser": "#5195ce",
+            "CpuRawWait": "#f2c96d"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "decimals": 2,
+          "fill": 1,
+          "id": 8,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "CpuRawIdle",
+              "zindex": 3
+            },
+            {
+              "alias": "CpuRawWait",
+              "zindex": 2
+            },
+            {
+              "alias": "CpuRawUser",
+              "zindex": 1
+            },
+            {
+              "alias": "CpuRawNice",
+              "zindex": 0
+            },
+            {
+              "alias": "CpuRawSoftIRQ",
+              "zindex": -1
+            },
+            {
+              "alias": "CpuRawKernel",
+              "zindex": -2
+            },
+            {
+              "alias": "CpuRawInterrupt",
+              "zindex": -3
+            }
+          ],
+          "spaceLength": 10,
+          "span": 8,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "CpuRawInterrupt",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawKernel",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawNice",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawSoftIRQ",
+              "nodeId": "$node",
+              "refId": "E",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawSystem",
+              "nodeId": "$node",
+              "refId": "F",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawUser",
+              "nodeId": "$node",
+              "refId": "G",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawWait",
+              "nodeId": "$node",
+              "refId": "H",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawIdle",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU usage ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Minion CPU time",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 3,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/^Exchanges.*/",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "SlogListComplete",
+              "label": "Exchanges completed",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SlogListFailed",
+              "label": "Exchanges failed",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SlogListLastProc",
+              "label": "Last processing time",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SlogListMaxProc",
+              "label": "Max processing time",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SlogListMeanProc",
+              "label": "Mean processing time",
+              "nodeId": "$node",
+              "refId": "E",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SlogListMinProc",
+              "label": "Min processing time",
+              "nodeId": "$node",
+              "refId": "F",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SlogListTotProc",
+              "label": "Total processing time",
+              "nodeId": "$node",
+              "refId": "G",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SlogListTotal",
+              "label": "Exchanges total",
+              "nodeId": "$node",
+              "refId": "H",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Syslog Listener statistics ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "µs",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Syslog listener statistics",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 376,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "ifHCOutOctets",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "ifOutOctets",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "$resource",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifInOctets",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "$resource",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Interface ($node /  $resource)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 11,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*Out.*/",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "ifHCOutUcastPkts",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "$resource",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCOutMulticastPkt",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "$resource",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCOutBroadcastPkt",
+              "nodeId": "$node",
+              "refId": "G",
+              "resourceId": "$resource",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCInBroadcastPkts",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "$resource",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCInMulticastPkts",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "$resource",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCInUcastPkts",
+              "nodeId": "$node",
+              "refId": "E",
+              "resourceId": "$resource",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Packets ($node / $resource)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 13,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*Out.*/",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "ifInDiscards",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "$resource",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifInErrors",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "$resource",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifOutDiscards",
+              "nodeId": "$node",
+              "refId": "G",
+              "resourceId": "$resource",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifOutErrors",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "$resource",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Errors and Discards ($node / $resource)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "resource",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Interface ($resource)",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 387,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 2,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "resource",
+          "seriesOverrides": [
+            {
+              "alias": "FreeMemory",
+              "stack": "A"
+            },
+            {
+              "alias": "FreeSwapSpace",
+              "stack": "A"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "FreeMemory",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "TotalMemory",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "FreeSwapSpace",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "TotalSwapSpace",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "JVM Memory statistics ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 9,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "memTotalReal",
+              "stack": "B"
+            },
+            {
+              "alias": "memTotalSwap",
+              "stack": "B"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "memAvailReal",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "memAvailSwap",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "memBuffer",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "memCached",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "memShared",
+              "nodeId": "$node",
+              "refId": "E",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "memTotalFree",
+              "nodeId": "$node",
+              "refId": "F",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "memTotalReal",
+              "nodeId": "$node",
+              "refId": "G",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "memTotalSwap",
+              "nodeId": "$node",
+              "refId": "H",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "System Memory ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "deckbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Memory statistics",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 260,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 6,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Last GC end time",
+              "lines": false,
+              "yaxis": 2
+            },
+            {
+              "alias": "Last GC duration",
+              "yaxis": 2
+            },
+            {
+              "alias": "Collection time",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "PSMSCollCnt",
+              "label": "Collection count",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "PSMSCollTime",
+              "label": "Collection time",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "PSMSDuration",
+              "label": "Last GC duration",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "PSMSEndTime",
+              "label": "Last GC end time",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "PSMSGcThreadCnt",
+              "label": "Last GC thread count",
+              "nodeId": "$node",
+              "refId": "E",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Garbage Collection PS Mark Sweep ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "µs",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 12,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Last GC end time",
+              "lines": false,
+              "yaxis": 2
+            },
+            {
+              "alias": "Last GC duration",
+              "yaxis": 2
+            },
+            {
+              "alias": "Collection time",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "PSSCollCnt",
+              "label": "Collection count",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "PSSCollTime",
+              "label": "Collection time",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "PSSDuration",
+              "label": "Last GC duration",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "PSSEndTime",
+              "label": "Last GC end time",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "PSSGcThreadCnt",
+              "label": "Last GC thread count",
+              "nodeId": "$node",
+              "refId": "E",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Garbage Collection PS Scavenge ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "µs",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "JVM Garbage Collection",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "resource",
+          "seriesOverrides": [
+            {
+              "alias": "ThreadCount",
+              "stack": "A"
+            },
+            {
+              "alias": "DaemonThreadCount",
+              "stack": "A"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "PeakThreadCount",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ThreadCount",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "DaemonThreadCount",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Thread statistics ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "JVM Thread statistics",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 248,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 5,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "resource",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "TotLoadedClasses",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "UnloadedClass",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "LoadedClasses",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "interfaceSnmp[jmx-minion]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Classloader ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "JVM Classloader",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "opennms",
+    "minion",
+    "jmx"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_OPENNMS_PERFORMANCE}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "node",
+        "options": [],
+        "query": "nodeFilter(serviceName like 'JMX-Minion')",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_OPENNMS_PERFORMANCE}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": true,
+        "name": "resource",
+        "options": [],
+        "query": "nodeResources($node)",
+        "refresh": 1,
+        "regex": "/^interfaceSnmp.*-[0-9a-f]{12}.$/",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now-6m"
+  },
+  "timepicker": {
+    "nowDelay": "6m",
+    "refresh_intervals": [
+      "5m",
+      "10m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "OpenNMS Minion",
+  "version": 32,
+  "description": "Combines OpenNMS Minion statistics from JMX-Minion and SNMP data collectio

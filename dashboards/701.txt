@@ -1,0 +1,1919 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_OPSMIND",
+      "label": "OpsMind",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": false,
+  "gnetId": 2571,
+  "graphTooltip": 0,
+  "hideControls": true,
+  "id": null,
+  "links": [],
+  "rows": [
+    {
+      "collapse": true,
+      "height": "300",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 8,
+          "id": 5,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "A"
+            }
+          ],
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_count_grp{{grps=-\"/$group|$cluster|$app/\",ato=-\"/$api/\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"s\",sfrom=\"__nil__\",stage=\"tot\",sto=\"$service\",code=~\".*\",tsc=-\"$tsc\"}}) by (code,host)--aggr-->$aggr-code",
+              "intervalFactor": 5,
+              "legendFormat": "{{code}}/{{host}}",
+              "refId": "A",
+              "step": 75
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "IOPS of $api  ($service)(集群:$cluster 业务:$app TSC:$tsc)  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "iops",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 9,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_dur_grp{{grps=-\"/$group|$cluster|$app/\",ato=-\"/$api/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"s\",sfrom=\"__nil__\",stage=\"tot\",sto=\"$service\",tsc=-\"$tsc\"}}) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 75
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "95值、50值 of $api  ($service)(集群:$cluster 业务:$app TSC:$tsc)  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 16,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "sort": "current",
+            "sortDesc": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_dur_grp{{grps=-\"/$group|$cluster|$app/\",ato=-\"/$api/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"s\",sfrom=\"__nil__\",stage=\"req\",sto=\"$service\",tsc=-\"$tsc\"}}) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "详细--请求收取时间  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 17,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_dur_grp{{grps=-\"/$group|$cluster|$app/\",ato=-\"/$api/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"s\",sfrom=\"__nil__\",stage=\"art\",sto=\"$service\",tsc=-\"$tsc\"}}) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "详细--服务处理时间  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 18,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_dur_grp{{grps=-\"/$group|$cluster|$app/\",ato=-\"/$api/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"s\",sfrom=\"__nil__\",stage=\"resp\",sto=\"$service\",tsc=-\"$tsc\"}}) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "详细--回应发送时间  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "height": "200",
+          "id": 34,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_size_grp{{grps=-\"/$group|$cluster|$app/\",ato=-\"/$api/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"s\",sfrom=\"__nil__\",stage=\"req\",sto=\"$service\",tsc=-\"$tsc\"}}/10) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 150
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "详细--请求包大小  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "kbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "height": "200",
+          "id": 35,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_size_grp{{grps=-\"/$group|$cluster|$app/\",ato=-\"/$api/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"s\",sfrom=\"__nil__\",stage=\"resp\",sto=\"$service\",tsc=-\"$tsc\"}}/10) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 150
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "详细--回应包大小  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "kbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": "api",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "服务端：All -> $service--$api",
+      "titleSize": "h1"
+    },
+    {
+      "collapse": true,
+      "height": "300",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 8,
+          "id": 36,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_count_grp{{grps=-\"/$group|$cluster|$app/\",sa=-\"/$sa|$deps|to/\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"c\",sfrom=\"$service\",stage=\"tot\",code=~\".*\",tsc=-\"$tsc\"}}) by (code,host)--aggr-->$aggr-code",
+              "intervalFactor": 5,
+              "legendFormat": "{{code}}/{{host}}",
+              "refId": "A",
+              "step": 75
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "IOPS of $service -> [$deps] (集群:$cluster 业务:$app TSC:$tsc)  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "iops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 49,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_dur_grp{{grps=-\"/$group|$cluster|$app/\",sa=-\"/$sa|$deps|to/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"c\",sfrom=\"$service\",stage=\"tot\",tsc=-\"$tsc\"}}) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 75
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "95值、50值 of $service -> [$deps] (集群:$cluster 业务:$app TSC:$tsc)  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 50,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_dur_grp{{grps=-\"/$group|$cluster|$app/\",sa=-\"/$sa|$deps|to/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"c\",sfrom=\"$service\",stage=\"req\",tsc=-\"$tsc\"}}) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "详细--请求收取时间  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 51,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_dur_grp{{grps=-\"/$group|$cluster|$app/\",sa=-\"/$sa|$deps|to/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"c\",sfrom=\"$service\",stage=\"art\",tsc=-\"$tsc\"}}) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "详细--服务处理时间  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 52,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_dur_grp{{grps=-\"/$group|$cluster|$app/\",sa=-\"/$sa|$deps|to/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"c\",sfrom=\"$service\",stage=\"resp\",tsc=-\"$tsc\"}}) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "详细--回应发送时间  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "height": "200",
+          "id": 58,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_size_grp{{grps=-\"/$group|$cluster|$app/\",sa=-\"/$sa|$deps|to/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"c\",sfrom=\"$service\",stage=\"req\",tsc=-\"$tsc\"}}/10) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 150
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "详细--请求包大小  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "kbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "height": "200",
+          "id": 59,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/p50.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/p95.*/",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(dog_http_size_grp{{grps=-\"/$group|$cluster|$app/\",sa=-\"/$sa|$deps|to/\",dt=-\"p50,p95\",host=-\"/$host/\",all_host=-\"/$all_host/\",role=\"c\",sfrom=\"$service\",stage=\"resp\",tsc=-\"$tsc\"}}/10) by (dt,host)--aggr-->$aggr-dt",
+              "intervalFactor": 5,
+              "legendFormat": "{{dt}}/{{host}}",
+              "refId": "A",
+              "step": 150
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "详细--回应包大小  聚合:$aggr",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "kbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": "deps",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "依赖：$service -> $deps",
+      "titleSize": "h3"
+    },
+    {
+      "collapse": true,
+      "height": "300",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 5,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sort": "min",
+            "sortDesc": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "1/(1+sum(irate(dog_cpu_time_grp{{ host=-\"/$host/\", all_host=-\"/$all_host/\", mode=\"idle\", cpu=~\".*\"}}[3m])) by (host)/sum(dog_service_cpu_grp{{service=\"$service\", host=-\"/$host/\", all_host=-\"/$all_host/\",mode=-\"sys,user\"}}) by  (host))--aggr-->$aggr",
+              "hide": false,
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}",
+              "refId": "A",
+              "step": 75
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU 使用率 = 当前占用 /（当前占用+机器剩余）",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "资源：$service CPU使用率",
+      "titleSize": "h1"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 36,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(dog_service_mem_grp{{service=\"$service\", host=-\"/$host/\", all_host=-\"/$all_host/\", type=\"rss\"}}) by (host) / on (host) sum(dog_mem_main_size_grp{{host=-\"/$host/\", all_host=-\"/$all_host/\", mode=-\"used,free,buffer,cache\"}}) by (host)--aggr-->$aggr",
+              "hide": false,
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}",
+              "refId": "A",
+              "step": 75
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "物理内存使用率 = 当前占用 RSS / 总物理内存",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "资源：$service 内存使用率",
+      "titleSize": "h1"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 37,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 0,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*读/",
+              "color": "#508642"
+            },
+            {
+              "alias": "/.*写/",
+              "color": "#64B0C8",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "dog_service_disk_io_grp{{service=\"$service\", host=\"$host\", all_host=-\"/$all_host/\", mode=\"r\", type=\"bw\"}}--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}读",
+              "metric": "dog_service_disk_io",
+              "refId": "A",
+              "step": 75
+            },
+            {
+              "expr": "dog_service_disk_io_grp{{service=\"$service\", host=\"$host\", all_host=-\"/$all_host/\", mode=\"w\", type=\"bw\"}}--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}写",
+              "refId": "B",
+              "step": 75
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "服务磁盘读写吞吐速率",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "min"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": "<--写--读-->",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 38,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*读/",
+              "color": "#508642"
+            },
+            {
+              "alias": "/.*写/",
+              "color": "#64B0C8",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "dog_service_disk_io_grp{{service=\"$service\", host=\"$host\", all_host=-\"/$all_host/\", mode=\"r\", type=\"rate\"}}--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}读",
+              "metric": "dog_service_disk_io",
+              "refId": "A",
+              "step": 75
+            },
+            {
+              "expr": "dog_service_disk_io_grp{{service=\"$service\", host=\"$host\", all_host=-\"/$all_host/\", mode=\"w\", type=\"rate\"}}--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}写",
+              "refId": "B",
+              "step": 75
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "服务磁盘读写 IOPS",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "min"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "<--写--读-->",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "资源：$service 磁盘读写 吞吐 / IOPS",
+      "titleSize": "h1"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 39,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 0,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "dog_service_fd_grp{{service=\"$service\", host=-\"/$host/\", all_host=-\"/$all_host/\"}}--aggr-->$aggr",
+              "intervalFactor": 2,
+              "legendFormat": "{{host}}",
+              "refId": "A",
+              "step": 30
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "服务句柄数",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "资源：$service 句柄占用数量",
+      "titleSize": "h1"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "OpsMind"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "服务",
+        "multi": false,
+        "name": "service",
+        "options": [],
+        "query": "label_values(xhost{cluster=-\"*\",app=-\"*\",service=-\"*\",host=-\"*\",ret=\"name\"},service)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "集群",
+        "multi": false,
+        "name": "cluster",
+        "options": [],
+        "query": "label_values(xhost{cluster=-\"*\",app=-\"*\",service=-\"$service\",host=-\"*\",ret=\"name\"},cluster)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "业务",
+        "multi": false,
+        "name": "app",
+        "options": [],
+        "query": "label_values(xhost{cluster=-\"$cluster\",app=-\"*\",service=-\"$service\",host=-\"*\",ret=\"name\"},app)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "$empty",
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": "会话分类",
+        "multi": false,
+        "name": "tsc",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "success",
+            "value": "success"
+          },
+          {
+            "selected": false,
+            "text": "cli_fail",
+            "value": "cli_fail"
+          },
+          {
+            "selected": false,
+            "text": "svr_fail",
+            "value": "svr_fail"
+          },
+          {
+            "selected": false,
+            "text": "control",
+            "value": "control"
+          },
+          {
+            "selected": false,
+            "text": "other",
+            "value": "other"
+          }
+        ],
+        "query": "success,cli_fail,svr_fail,control,other",
+        "type": "custom"
+      },
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "[高级查询] 机器",
+        "multi": true,
+        "name": "host",
+        "options": [],
+        "query": "label_values(xhost{cluster=-\"/$cluster/\",app=-\"/$app/\",service=-\"/$service/\",host=-\"*\",ret=\"name\"},host)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "auto",
+          "value": "auto"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "[高级查询] 聚合",
+        "multi": false,
+        "name": "aggr",
+        "options": [
+          {
+            "selected": true,
+            "text": "auto",
+            "value": "auto"
+          },
+          {
+            "selected": false,
+            "text": "none",
+            "value": "none"
+          },
+          {
+            "selected": false,
+            "text": "sum",
+            "value": "sum"
+          },
+          {
+            "selected": false,
+            "text": "avg",
+            "value": "avg"
+          },
+          {
+            "selected": false,
+            "text": "top10",
+            "value": "top10"
+          },
+          {
+            "selected": false,
+            "text": "bottom10",
+            "value": "bottom10"
+          },
+          {
+            "selected": false,
+            "text": "max",
+            "value": "max"
+          },
+          {
+            "selected": false,
+            "text": "min",
+            "value": "min"
+          }
+        ],
+        "query": "auto,none,sum,avg,top10, bottom10,max,min",
+        "type": "custom"
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 2,
+        "includeAll": true,
+        "label": "",
+        "multi": true,
+        "name": "api",
+        "options": [],
+        "query": "label_values(list_api{service=-\"$service\"},api)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 2,
+        "includeAll": true,
+        "label": "",
+        "multi": true,
+        "name": "deps",
+        "options": [],
+        "query": "label_values(list_deps{cluster=-\"/$cluster/\",app=-\"/$app/\",service=-\"$service\"},dep)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 2,
+        "includeAll": true,
+        "label": "[高级查询] 机器",
+        "multi": true,
+        "name": "all_host",
+        "options": [],
+        "query": "label_values(xhost{cluster=-\"/$cluster/\",app=-\"/$app/\",service=-\"/$service/\",host=-\"*\",ret=\"name\"},host)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+ 

@@ -1,0 +1,986 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_NMON2INFLUXDBHMC",
+      "label": "nmon2influxdbHMC",
+      "description": "data source created by nmon2influxdb",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.1.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "enable": false,
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 1465,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": "5m",
+  "rows": [
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "content": "",
+          "datasource": "${DS_NMON2INFLUXDBHMC}",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 19,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "mode": "",
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "style": {},
+          "targets": [
+            {
+              "alias": "$tag_pool $tag_name",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "name"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "pool"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "SystemSharedProcessorPool",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "system",
+                  "operator": "=~",
+                  "value": "/^$ManagedSystem$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "name",
+                  "operator": "!=",
+                  "value": "availableProcUnits"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$ManagedSystem Shared Processor Pools",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "cores",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "content": "",
+          "datasource": "${DS_NMON2INFLUXDBHMC}",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 2,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "mode": "",
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "style": {},
+          "targets": [
+            {
+              "alias": "$tag_name",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "name"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "SystemProcessor",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "condition": "",
+                  "key": "name",
+                  "operator": "=~",
+                  "value": "/Units/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "system",
+                  "operator": "=~",
+                  "value": "/^$ManagedSystem$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$ManagedSystem Processors",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "cores",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "ManagedSystem",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "$ManagedSystem Processors",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "content": "",
+          "datasource": "${DS_NMON2INFLUXDBHMC}",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {},
+          "id": 12,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "sort": "avg",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "mode": "",
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "style": {},
+          "targets": [
+            {
+              "alias": "$tag_partition",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "name"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "partition"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "PartitionProcessor",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "condition": "",
+                  "key": "name",
+                  "operator": "=",
+                  "value": "UtilizedProcUnits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "system",
+                  "operator": "=~",
+                  "value": "/^$ManagedSystem$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "partition",
+                  "operator": "=~",
+                  "value": "/^$Partition$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$ManagedSystem Processor Usage by Partition",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "cores",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "content": "",
+          "datasource": "${DS_NMON2INFLUXDBHMC}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 3,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "mode": "",
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "style": {},
+          "targets": [
+            {
+              "alias": "$tag_name",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "name"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "SystemMemory",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "condition": "",
+                  "key": "system",
+                  "operator": "=~",
+                  "value": "/^$ManagedSystem$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$ManagedSystem Memory",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decmbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "ManagedSystem",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 299,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "content": "",
+          "datasource": "${DS_NMON2INFLUXDBHMC}",
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {},
+          "id": 16,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "mode": "",
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "style": {},
+          "targets": [
+            {
+              "alias": "$tag_partition dev: $tag_device",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "partition"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "device"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "partition"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "SystemFiberChannelAdapters",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "condition": "",
+                  "key": "system",
+                  "operator": "=~",
+                  "value": "/^$ManagedSystem$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "name",
+                  "operator": "=~",
+                  "value": "/writeByt/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$ManagedSystem VIOS Physical Fiber Channel Adapters write",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "content": "",
+          "datasource": "${DS_NMON2INFLUXDBHMC}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 11,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "mode": "",
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "style": {},
+          "targets": [
+            {
+              "alias": "$tag_partition $tag_name",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "device"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "partition"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "name"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "SystemSharedAdapters",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "condition": "",
+                  "key": "system",
+                  "operator": "=~",
+                  "value": "/^$ManagedSystem$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "name",
+                  "operator": "=",
+                  "value": "transferredBytes"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$ManagedSystem SEA transfered bytes",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "ManagedSystem",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "$ManagedSystem Network",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "AIX"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allFormat": "regex values",
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_NMON2INFLUXDBHMC}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": true,
+        "multiFormat": "regex values",
+        "name": "ManagedSystem",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"SystemProcessor\" WITH KEY = \"system\"",
+        "refresh": 1,
+        "refresh_on_load": false,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": null,
+        "tags": [],
+        "tagsQuery": null,
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allFormat": "regex values",
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_NMON2INFLUXDBHMC}",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "multiFormat": "regex values",
+        "name": "Partition",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"PartitionProcessor\" WITH KEY = \"partition\" where system =~ /$ManagedSystem/",
+        "refresh": 1,
+        "refresh_on_load": false,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": null,
+        "tags": [],
+        "tagsQuery": null,
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now/d",
+    "now": false,
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Power Systems HMC system view",
+  "version": 10,
+  "description": "nmon2influxdb HMC system view"
+}

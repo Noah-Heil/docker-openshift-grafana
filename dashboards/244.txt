@@ -1,0 +1,859 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_51-NGINXACCESSLOG",
+      "label": "nginxAccessLog",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "elasticsearch",
+      "pluginName": "Elasticsearch"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.1.4"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "3.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "version": "3.0.0"
+    }
+  ],
+  "id": null,
+  "title": "elasticsearch-logstash",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": 275,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_51-NGINXACCESSLOG}",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 1,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "80%",
+          "prefix": "visits:",
+          "prefixFontSize": "80%",
+          "span": 3.874367088607595,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": true,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$inter",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "count",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "host:$host",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": "",
+          "title": "",
+          "type": "singlestat",
+          "valueFontSize": "100%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "total",
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "rangeMaps": [
+            {
+              "from": "null",
+              "to": "null",
+              "text": "N/A"
+            }
+          ],
+          "mappingType": 1
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_51-NGINXACCESSLOG}",
+          "decimals": 0,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "isNew": true,
+          "legend": {
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 8.125632911392405,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$inter",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "host:$host",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$host visits",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "value_type": "cumulative",
+            "sort": 0
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "Row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": 322.25,
+      "panels": [
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "datasource": "${DS_51-NGINXACCESSLOG}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "format": "short",
+          "id": 3,
+          "interval": null,
+          "isNew": true,
+          "legend": {
+            "show": true,
+            "values": true
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 5.729666164158278,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "status",
+                  "id": "3",
+                  "settings": {
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "host:$host",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "status codes",
+          "type": "grafana-piechart-panel",
+          "valueName": "total",
+          "combine": {
+            "threshold": 0,
+            "label": "Others"
+          }
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "datasource": "${DS_51-NGINXACCESSLOG}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "format": "short",
+          "id": 5,
+          "interval": null,
+          "isNew": true,
+          "legend": {
+            "show": true,
+            "values": true
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 6.270333835841722,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "clientip",
+                  "id": "3",
+                  "settings": {
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "host:$host",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "client ip",
+          "type": "grafana-piechart-panel",
+          "valueName": "total",
+          "combine": {
+            "threshold": 0,
+            "label": "Others"
+          }
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_51-NGINXACCESSLOG}",
+          "decimals": 0,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 6,
+          "isNew": true,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "status",
+                  "id": "3",
+                  "settings": {
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$inter",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "host:$host",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "status_codes line chart",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "value_type": "cumulative",
+            "sort": 0
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "状态码数量",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "datasource": "${DS_51-NGINXACCESSLOG}",
+          "decimals": 0,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 7,
+          "isNew": true,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "status",
+                  "id": "3",
+                  "settings": {
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$inter",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "host:$host",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "status_codes bar chart",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "value_type": "cumulative",
+            "sort": 0
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "状态码数量",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "columns": [
+            {
+              "text": "@timestamp",
+              "value": "@timestamp"
+            },
+            {
+              "text": "server_name",
+              "value": "server_name"
+            },
+            {
+              "text": "host",
+              "value": "host"
+            },
+            {
+              "text": "status",
+              "value": "status"
+            },
+            {
+              "text": "request",
+              "value": "request"
+            },
+            {
+              "text": "referrer",
+              "value": "referrer"
+            }
+          ],
+          "datasource": "${DS_51-NGINXACCESSLOG}",
+          "editable": true,
+          "error": false,
+          "fontSize": "100%",
+          "id": 8,
+          "isNew": true,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "span": 12,
+          "styles": [
+            {
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "/@time*/",
+              "type": "date"
+            }
+          ],
+          "targets": [
+            {
+              "bucketAggs": [],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "raw_document"
+                }
+              ],
+              "query": "host:$host AND status:[500 TO 599]",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "status_codes_5xx",
+          "transform": "json",
+          "type": "table"
+        }
+      ],
+      "title": "New row"
+    }
+  ],
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": "${DS_51-NGINXACCESSLOG}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "hostname",
+        "multi": true,
+        "name": "host",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"host\"}",
+        "refresh": 1,
+        "type": "query"
+      },
+      {
+        "auto": true,
+        "auto_count": 100,
+        "auto_min": "10s",
+        "current": {
+          "text": "5s",
+          "value": "5s"
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "interval",
+        "multi": false,
+        "name": "inter",
+        "options": [
+          {
+            "selected": false,
+            "text": "auto",
+            "value": "$__auto_interval"
+          },
+          {
+            "selected": false,
+            "text": "1s",
+            "value": "1s"
+          },
+          {
+            "selected": true,
+            "text": "5s",
+            "value": "5s"
+          },
+          {
+            "selected": false,
+            "text": "10s",
+            "value": "10s"
+          },
+          {
+            "selected": false,
+            "text": "30s",
+            "value": "30s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "1s,5s,10s,30s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "refresh": 0,
+        "type": "interval"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "schemaVersion": 12,
+  "version": 2,
+  "links": [],
+  "gnetId": 1004,
+  "description": "Browse, analyze logs in Elasticsearch\r\nstatus_codes, pie-chart, top 10 clientip, line

@@ -1,0 +1,6256 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_TELEGRAF",
+      "label": "telegraf",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.3.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 2430,
+  "graphTooltip": 1,
+  "hideControls": false,
+  "id": null,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "keepTime": true,
+      "tags": [],
+      "title": "Quick Switch",
+      "type": "dashboards"
+    }
+  ],
+  "refresh": "1m",
+  "rows": [
+    {
+      "collapse": true,
+      "height": 52,
+      "panels": [
+        {
+          "content": "# See [Mesos Observability Metrics](http://mesos.apache.org/documentation/latest/monitoring/) for more details about metrics.\n\nThis dashboard is created based on the data in http://mesos.apache.org/documentation/latest/monitoring/ page and descriptions are just copy&pasted from there.\n\nThis document describes the observability metrics provided by Mesos master and agent nodes. This document also provides some initial guidance on which metrics you should monitor to detect abnormal situations in your cluster.\n\nMesos master and agent nodes report a set of statistics and metrics that enable cluster operators to monitor resource usage and detect abnormal situations early. The information reported by Mesos includes details about available resources, used resources, registered frameworks, active agents, and task state. You can use this information to create automated alerts and to plot different metrics over time inside a monitoring dashboard.\n\nMetric information is not persisted to disk at either master or agent nodes, which means that metrics will be reset when masters and agents are restarted. Similarly, if the current leading master fails and a new leading master is elected, metrics at the new master will be reset.",
+          "id": 13,
+          "links": [],
+          "mode": "markdown",
+          "span": 12,
+          "title": "",
+          "transparent": false,
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Mesos Observability Metrics",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 23,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/cpus_total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "total"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/cpus_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "used"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/cpus_revocable_total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "revocable_used"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/cpus_revocable_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "revocable_used"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/cpus_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 24,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/mem_total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "total"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/mem_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "used"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/mem_revocable_total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "revocable_total"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/mem_revocable_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "revocable_used"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/mem_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decmbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Resources\nThe following metrics provide information about the total resources available in the cluster and their current usage. High resource usage for sustained periods of time may indicate that you need to add capacity to your cluster or that a framework is misbehaving.",
+          "id": 26,
+          "links": [],
+          "mode": "markdown",
+          "span": 4,
+          "title": "",
+          "type": "text"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 25,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/disk_total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "total"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/disk_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "used"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/disk_revocable_total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "revocable_total"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/disk_revocable_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "revocable_used"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/disk_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decmbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 27,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/gpus_total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "total"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/gpus_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "used"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/gpus_revocable_total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "revocable_total"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/gpus_revocable_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "revocable_used"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/gpus_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decmbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Resources",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 16,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_server $tag_state",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "server"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "state"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/elected"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/elected",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 17,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_server $tag_state",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "server"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "state"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/uptime_secs"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/uptime_secs",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Master\nThe following metrics provide information about whether a master is currently elected and how long it has been running. A cluster with no elected master for sustained periods of time indicates a malfunctioning cluster. This points to either leadership election issues (so check the connection to ZooKeeper) or a flapping Master process. A low uptime value indicates that the master has restarted recently.",
+          "id": 21,
+          "links": [],
+          "mode": "markdown",
+          "span": 4,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Master",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 14,
+          "interval": "$interval",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_server $tag_state",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "state"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "server"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "system/load_1min"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=",
+                  "value": "master"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "system/load_1min",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 15,
+          "interval": "$interval",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_server $tag_state $col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "server"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "state"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "system/mem_total_bytes"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "total"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "system/mem_free_bytes"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "min"
+                  },
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=",
+                  "value": "master"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "system/mem_{free,total}_bytes",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# System\nThe following metrics provide information about the resources available on this master node and their current usage. High resource usage in a master node for sustained periods of time may degrade the performance of the cluster.",
+          "id": 22,
+          "links": [],
+          "mode": "markdown",
+          "span": 4,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "System (masters)",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 18,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/slave_registrations"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "registrations"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/slave_removals"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "removals"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/slave_reregistrations"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "reregistrations"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/slave_unreachable_scheduled"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "unreachable_scheduled"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/slave_unreachable_canceled"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "unreachable_canceled"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/slave_unreachable_completed"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "unreachable_completed"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/slave_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 19,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/slaves_active"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "active"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/slaves_connected"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "connected"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/slaves_disconnected"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "disconnected"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/slaves_inactive"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "inactive"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/slaves_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Agents\nThe following metrics provide information about agent events, agent counts, and agent states. A low number of active agents may indicate that agents are unhealthy or that they are not able to connect to the elected master.\n\n",
+          "id": 20,
+          "links": [],
+          "mode": "markdown",
+          "span": 4,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Agents",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 28,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/frameworks_active"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "active"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/frameworks_connected"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "connected"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/frameworks_disconnected"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "disconnected"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/frameworks_inactive"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "inactive"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/frameworks_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 29,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/outstanding_offers"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "outstanding_offers"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/outstanding_offers",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Frameworks\nThe following metrics provide information about the registered frameworks in the cluster. No active or connected frameworks may indicate that a scheduler is not registered or that it is misbehaving.",
+          "id": 33,
+          "links": [],
+          "mode": "markdown",
+          "span": 4,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Frameworks",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 30,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/tasks_error"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "errors"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/tasks_failed"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "failed"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/tasks_finished"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "finished"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/tasks_killed"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "killed"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/tasks_lost"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "lost"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/tasks_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 31,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "mesos.running",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/tasks_killing"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "killing"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/tasks_running"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "running"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/tasks_staging"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "staging"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/tasks_starting"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "starting"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/tasks_unreachable"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "unreachable"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/tasks_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Tasks\nThe following metrics provide information about active and terminated tasks. A high rate of lost tasks may indicate that there is a problem with the cluster. The task states listed here match those of the task state machine.\n\n",
+          "id": 32,
+          "links": [],
+          "mode": "markdown",
+          "span": 4,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Tasks",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "If you see negative values, that means some data points are lost for the counters.\n\nTry changing the interval to longer one.",
+          "fill": 1,
+          "id": 62,
+          "interval": "$interval",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/decline_offers/",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/invalid_executor_to_framework_messages"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "invalid_executor_to_framework_messages"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/invalid_framework_to_executor_messages"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "invalid_framework_to_executor_messages"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/valid_executor_to_framework_messages"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "valid_executor_to_framework_messages"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/valid_framework_to_executor_messages"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "valid_framework_to_executor_messages"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_authenticate"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_authenticate"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/dropped_messages"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "dropped_messages"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "messages_exited_executor"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_exited_executor"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_framework_to_executor"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_framework_to_executor"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_executor_to_framework"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_executor_to_framework"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_resource_request"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_resource_request"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "messages (master/*)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "If you see negative values, that means some data points are lost for the counters.\n\nTry changing the interval to longer one.",
+          "fill": 1,
+          "id": 63,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/task_error/source_master/reason_task_invalid"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "task_error/source_master/reason_task_invalid"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/task_failed/source_slave/reason_container_launch_failed"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "task_failed/source_slave/reason_container_launch_failed"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/task_killed/source_master/reason_framework_removed"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "task_killed/source_master/reason_framework_removed"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/task_killed/source_slave/reason_executor_unregistered"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "task_killed/source_slave/reason_executor_unregistered"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/task_lost/source_master/reason_slave_removed"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "task_lost/source_master/reason_slave_removed"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/task_unreachable/source_master/reason_slave_removed"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "task_unreachable/source_master/reason_slave_removed"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/task_killed/source_master/reason_framework_removed"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "task_killed/source_master/reason_framework_removed"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "reason messages (master/task_*)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Messages\n\nThe following metrics provide information about messages between the master and the agents and between the framework and the executors. A high rate of dropped messages may indicate that there is a problem with the network.",
+          "id": 64,
+          "links": [],
+          "mode": "markdown",
+          "span": 4,
+          "title": "",
+          "type": "text"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "If you see negative values, that means some data points are lost for the counters.\n\nTry changing the interval to longer one.",
+          "fill": 1,
+          "id": 75,
+          "interval": "$interval",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/invalid/",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/invalid_status_update_acknowledgements"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "invalid_status_update_acknowledgements"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/invalid_status_updates"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "invalid_status_updates"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/valid_status_update_acknowledgements"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "valid_status_update_acknowledgements"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/valid_status_updates"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "valid_status_updates"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_status_update"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_status_update"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_status_update_acknowledgement"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_status_update_acknowledgement"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "messages (master/* - status_updates)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "If you see negative values, that means some data points are lost for the counters.\n\nTry changing the interval to longer one.",
+          "fill": 1,
+          "id": 79,
+          "interval": "$interval",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/decline_offers/",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/messages_authenticate"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_authenticate"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_register_slave"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_register_slave"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_reregister_slave"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_reregister_slave"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_update_slave"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_update_slave"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/recovery_slave_removals"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "recovery_slave_removals"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "messages (master/* - slave)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "If you see negative values, that means some data points are lost for the counters.\n\nTry changing the interval to longer one.",
+          "fill": 1,
+          "id": 80,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/decline_offers/",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/slave_removals/reason_registered"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "reason_registered"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/slave_removals/reason_unhealthy"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "reason_unhealthy"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/slave_removals/reason_unregistered"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "reason_unregistered"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "reason messages (master/slave_removals)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "If you see negative values, that means some data points are lost for the counters.\n\nTry changing the interval to longer one.",
+          "fill": 1,
+          "id": 78,
+          "interval": "$interval",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/messages_deactivate_framework"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_deactivate_framework"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_register_framework"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_register_framework"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_reregister_framework"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_reregister_framework"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_unregister_framework"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_unregister_framework"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "messages (master/* - framework registrations)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "If you see negative values, that means some data points are lost for the counters.\n\nTry changing the interval to longer one.",
+          "fill": 1,
+          "id": 76,
+          "interval": "$interval",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/decline/",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/messages_decline_offers"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_decline_offers"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_revive_offers"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_revive_offers"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "messages (master/* - fw decline/revive)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "If you see negative values, that means some data points are lost for the counters.\n\nTry changing the interval to longer one.",
+          "fill": 1,
+          "id": 77,
+          "interval": "$interval",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/launch/",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/messages_kill_task"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_kill_task"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_launch_tasks"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_launch_tasks"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/messages_reconcile_tasks"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "messages_reconcile_tasks"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "messages (master/* - tasks)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Messages",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 34,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 8,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "master/event_queue_dispatches"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "dispatches"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/event_queue_http_requests"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "http_requests"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "master/event_queue_messages"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "messages"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "master/event_queue_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Event queue\n\nThe following metrics provide information about different types of events in the event queue.",
+          "id": 35,
+          "links": [],
+          "mode": "markdown",
+          "span": 4,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Event Queue",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "state_fetch_ms: Registry read latency in ms \n\nstate_store_ms: Registry write latency in ms",
+          "fill": 1,
+          "id": 36,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/store/",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col $tag_server",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "server"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "registrar/state_fetch_ms"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "fetch_ms"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "registrar/state_store_ms"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "store_ms"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "registrar/state_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 37,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "registrar/state_store_ms/max"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "max"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "registrar/state_store_ms/p999"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "p999"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "registrar/state_store_ms/p99"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "p99"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "registrar/state_store_ms/p95"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "p95"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "registrar/state_store_ms/p90"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "p90"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "registrar/state_store_ms/p50"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "p50"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "registrar/state_store_ms/min"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "min"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "registrar/state_*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Registrar\n\nThe following metrics provide information about read and write latency to the agent registrar.",
+          "id": 38,
+          "links": [],
+          "mode": "markdown",
+          "span": 4,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Registrar",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 39,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 8,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_server $tag_state",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "server"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "state"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "registrar/log/recovered"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "registrar/log/recovered",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Replicated log\n\nThe following metrics provide information about the replicated log underneath the registrar, which is the persistent store for masters.\n\nWhether the replicated log for the registrar has caught up with the other masters in the cluster. A cluster is operational as long as a quorum of \"recovered\" masters is available in the cluster.",
+          "id": 40,
+          "links": [],
+          "mode": "markdown",
+          "span": 4,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Replicated log",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 41,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/_ms$/",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/allocation_run_ms"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "allocation_run_ms"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/allocation_run_ms/count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "allocation_run_ms/count"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/allocation_runs"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "10s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "allocation_runs"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "allocator/mesos/allocation_run*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "percentile allocation algorithm latency in ms",
+          "fill": 1,
+          "id": 6,
+          "interval": "$interval",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/allocation_run_ms/max"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "max"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/allocation_run_ms/p999"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "p999"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/allocation_run_ms/p99"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "p99"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/allocation_run_ms/p95"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "p95"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/allocation_run_ms/p50"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "p50"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/allocation_run_ms/min"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "min"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "allocator/mesos/allocation_run_ms/*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "description": "Number of times the allocation algorithm has run",
+          "fill": 1,
+          "id": 8,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col $tag_server $tag_state",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "server"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "state"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/allocation_runs"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [],
+                    "type": "difference"
+                  },
+                  {
+                    "params": [
+                      "allocation_runs"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "allocator/mesos/allocation_runs",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "# Allocator\n\nThe following metrics provide information about performance and resource allocations in the allocator.",
+          "id": 42,
+          "links": [],
+          "mode": "markdown",
+          "span": 3,
+          "title": "",
+          "type": "text"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 43,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/event_queue_dispatches"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "event_queue_dispatches"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "allocator/mesos/event_queue_dispatches",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Allocator",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 9,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/resources/cpus/offered_or_allocated"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "offered_or_allocated"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/resources/cpus/total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "total"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "allocator/mesos/resources/cpus/*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 10,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/resources/mem/offered_or_allocated"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "offered_or_allocated"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/resources/mem/total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "total"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "allocator/mesos/resources/mem/*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 11,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/resources/disk/offered_or_allocated"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "offered_or_allocated"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/resources/disk/total"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "total"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "allocator/mesos/resources/disk/*",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decmbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Allocator Resources",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 50,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 2,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "role",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 2,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/offer_filters/roles/$role/active"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "$role"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$role (allocator/mesos/offer_filters/roles/$role/active)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Allocator offer_filters Active (per role)",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "fill": 1,
+          "id": 44,
+          "interval": "$interval",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 2,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "role",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 2,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mesos",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "allocator/mesos/roles/$role/shares/dominant"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "$role"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$role (allocator/mesos/roles/$role/shares/dominant)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Allocator Shares Dominant (per role)",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "mesos"
+  ],
+  "templating": {
+    "list": [
+      {
+        "auto": false,
+        "auto_count": 30,
+        "auto_min": "10s",
+        "current": {
+          "text": "1m",
+          "value": "1m"
+        },
+        "hide": 0,
+        "label": "Interval",
+        "name": "interval",
+        "options": [
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "refresh": 2,
+        "type": "interval"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_TELEGRAF}",
+        "hide": 2,
+        "includeAll": true,
+        "label": null,
+        "multi": false,
+        "name": "role",
+        "options": [],
+        "query": "SHOW FIELD KEYS FROM mesos",
+        "refresh": 1,
+        "regex": "/allocator\\/mesos\\/roles\\/(.*)\\/shares\\/dominant/",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "1s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "Mesos Observability Metrics",
+  "version": 29,
+  "description": "Based on http://mesos.apache.org/documentation/latest/monitoring/"
+}

@@ -1,0 +1,968 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_INFLUXDB_- LIBRENMS",
+      "label": "InfluxDB - LibreNMS",
+      "description": "Simple dashboard to show ports (interfaces) from LibreNMS data in InfuxDB",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 2556,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": 307,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_INFLUXDB_- LIBRENMS}",
+          "decimals": 2,
+          "fill": 1,
+          "id": 3,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/Output.*/",
+              "stack": "B",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Input - $tag_ifName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifName"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ports",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "INOCTETS"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "*8"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$device$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ifName",
+                  "operator": "=~",
+                  "value": "/^$port$/"
+                }
+              ]
+            },
+            {
+              "alias": "Output - $tag_ifName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifName"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ports",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "OUTOCTETS"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "*8"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$device$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ifName",
+                  "operator": "=~",
+                  "value": "/^$port$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Interface BPS",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "current"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_INFLUXDB_- LIBRENMS}",
+          "decimals": 2,
+          "fill": 1,
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/Output.*/",
+              "stack": "B",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Input - $tag_ifName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifName"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ports",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "INBROADCASTPKTS"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$device$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ifName",
+                  "operator": "=~",
+                  "value": "/^$port$/"
+                }
+              ]
+            },
+            {
+              "alias": "Output - $tag_ifName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifName"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ports",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "OUTBROADCASTPKTS"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$device$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ifName",
+                  "operator": "=~",
+                  "value": "/^$port$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Broadcast PPS",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "current"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 298,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_INFLUXDB_- LIBRENMS}",
+          "decimals": 2,
+          "fill": 1,
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/Output.*/",
+              "stack": "B",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Input - $tag_ifName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifName"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ports",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "INUCASTPKTS"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$device$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ifName",
+                  "operator": "=~",
+                  "value": "/^$port$/"
+                }
+              ]
+            },
+            {
+              "alias": "Output - $tag_ifName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifName"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ports",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "OUTUCASTPKTS"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$device$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ifName",
+                  "operator": "=~",
+                  "value": "/^$port$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Interface PPS",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "current"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_INFLUXDB_- LIBRENMS}",
+          "decimals": 2,
+          "fill": 1,
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/Output.*/",
+              "stack": "B",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Input - $tag_ifName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifName"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ports",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "INERRORS"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$device$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ifName",
+                  "operator": "=~",
+                  "value": "/^$port$/"
+                }
+              ]
+            },
+            {
+              "alias": "Output - $tag_ifName",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifName"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ports",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "OUTERRORS"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$device$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ifName",
+                  "operator": "=~",
+                  "value": "/^$port$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Interface Errors",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "current"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_INFLUXDB_- LIBRENMS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Device Name",
+        "multi": true,
+        "name": "device",
+        "options": [],
+        "query": "SHOW TAG VALUES WITH KEY = \"hostname\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_INFLUXDB_- LIBRENMS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Interface Name",
+        "multi": true,
+        "name": "port",
+        "options": [],
+        "query": "SHOW TAG VALUES WITH KEY = \"ifName\" WHERE hostname =~ /$device/",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "LibreNMS Interfaces",
+  "version": 22,
+  "description": "Simple template dashboard to show you any interface stored in InfluxDB by LibreNMS. Supports calling directly from a URL as well as aggregating multiple interfaces. \r\n\r\n* The same interface name across 1 or more devices just shows up once.. This is useful for switch pairs, but you may want to add another group by with the device name if you want to see individual."
+}

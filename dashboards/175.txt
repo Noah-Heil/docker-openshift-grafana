@@ -1,0 +1,6222 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_ZABBIX",
+      "label": "Zabbix",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "alexanderzobnin-zabbix-datasource",
+      "pluginName": "Zabbix"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "alexanderzobnin-zabbix-datasource",
+      "name": "Zabbix",
+      "version": "1.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.1.1"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-clock-panel",
+      "name": "Clock",
+      "version": "0.0.9"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.1.6"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 4595,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": 15,
+      "panels": [
+        {
+          "content": "<div class=\"text-center dashboard-header\">\n  <span>DATACENTER</span>\n</div>",
+          "id": 35,
+          "links": [],
+          "mode": "html",
+          "span": 12,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 293,
+      "panels": [
+        {
+          "bgColor": null,
+          "clockType": "24 hour",
+          "countdownSettings": {
+            "endCountdownTime": "2018-02-03T18:33:00.000Z",
+            "endText": "00:00:00"
+          },
+          "dateSettings": {
+            "dateFormat": "YYYY-MM-DD",
+            "fontSize": "20px",
+            "fontWeight": "normal",
+            "showDate": false
+          },
+          "id": 33,
+          "links": [],
+          "mode": "time",
+          "offsetFromUtc": null,
+          "offsetFromUtcMinutes": null,
+          "span": 3,
+          "timeSettings": {
+            "customFormat": "HH:mm:ss",
+            "fontSize": "60px",
+            "fontWeight": "normal"
+          },
+          "title": "",
+          "type": "grafana-clock-panel"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "fill": 1,
+          "id": 32,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxDataPoints": "",
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Outgoing traffic on interface GigabitEthernet1/0/13",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "Incoming traffic on interface GigabitEthernet1/0/13",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "Outgoing traffic on interface GigabitEthernet1/0/13",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 5,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Incoming traffic on interface GigabitEthernet1/0/13"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Outgoing traffic on interface GigabitEthernet1/0/13"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Link ALGAR",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "fill": 1,
+          "id": 34,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Outgoing traffic on interface GigabitEthernet2/0/14",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "Incoming traffic on interface GigabitEthernet2/0/14",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "Outgoing traffic on interface GigabitEthernet2/0/14",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Incoming traffic on interface GigabitEthernet2/0/14"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Outgoing traffic on interface GigabitEthernet2/0/14"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Link GVT",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "fill": 1,
+          "id": 78,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Outgoing traffic on interface Bridge-Aggregation1",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "Incoming traffic on interface Bridge-Aggregation1",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "Outgoing traffic on interface Bridge-Aggregation1",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Incoming traffic on interface Bridge-Aggregation1"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Outgoing traffic on interface Bridge-Aggregation1"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "SW01 - Bridge-Aggregation1",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "fill": 1,
+          "id": 81,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Outgoing traffic on interface Bridge-Aggregation2",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "Incoming traffic on interface Bridge-Aggregation2",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "Outgoing traffic on interface Bridge-Aggregation2",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Incoming traffic on interface Bridge-Aggregation2"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Outgoing traffic on interface Bridge-Aggregation2"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "SW01 - Bridge-Aggregation2",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "fill": 1,
+          "id": 82,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Outgoing traffic on interface Bridge-Aggregation3",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "Incoming traffic on interface Bridge-Aggregation3",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "Outgoing traffic on interface Bridge-Aggregation3",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Incoming traffic on interface Bridge-Aggregation3"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Outgoing traffic on interface Bridge-Aggregation3"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "SW01 - Bridge-Aggregation3",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "fill": 1,
+          "id": 83,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Outgoing traffic on interface Bridge-Aggregation4",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "Incoming traffic on interface Bridge-Aggregation4",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "Outgoing traffic on interface Bridge-Aggregation4",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Incoming traffic on interface Bridge-Aggregation4"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Outgoing traffic on interface Bridge-Aggregation4"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "SW01 - Bridge-Aggregation4",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "fill": 1,
+          "id": 84,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Outgoing traffic on interface Bridge-Aggregation5",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "Incoming traffic on interface Bridge-Aggregation5",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "Outgoing traffic on interface Bridge-Aggregation5",
+              "color": "#BF1B00"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Incoming traffic on interface Bridge-Aggregation5"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Interfaces"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-SW01"
+              },
+              "item": {
+                "filter": "Outgoing traffic on interface Bridge-Aggregation5"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "SW01 - Bridge-Aggregation5",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 7,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 46,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 12,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "[Oracle] Database version"
+              },
+              "mode": 2,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Database version - DB01",
+          "type": "singlestat",
+          "valueFontSize": "50%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 67,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 48,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "[Oracle] Invalid objects"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Invalid objects",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 49,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "[Oracle] Connections available"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Connections available",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 50,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "[Oracle] RMAN problems counter"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "RMAN problems counter",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 51,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "[Oracle] Sessions blocks"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Sessions blocks",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 47,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "[Oracle] Locks count"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Locks count",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 56,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "[Oracle] Redo Logs count"
+              },
+              "mode": 2,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Redo Logs count",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(9, 164, 44, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 75,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Database is active and open"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Database is active and open",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "OK",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "ALERTA",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(9, 164, 44, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "dtdurations",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 74,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Database uptime"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Database UPTIME",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 63,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Flash Recovery Area percentage used"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Flash Recovery Area in %",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 76,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Memory"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "Free swap space in %"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Free swap space in %",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "decbytes",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 64,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "[Oracle] Database size"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Database size",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_ZABBIX}",
+          "fontSize": "70%",
+          "format": "decbytes",
+          "id": 69,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": true
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 2,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "application": {
+                "filter": "Filesystems"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "Free disk space on /"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Filesystems"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "Total disk space on /"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "title": "/",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_ZABBIX}",
+          "fontSize": "70%",
+          "format": "decbytes",
+          "id": 70,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": true
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 2,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "application": {
+                "filter": "Filesystems"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "Free disk space on /u01"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Filesystems"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "Total disk space on /u01"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "title": "/u01",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_ZABBIX}",
+          "fontSize": "70%",
+          "format": "decbytes",
+          "id": 71,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": true
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 2,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "application": {
+                "filter": "Filesystems"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "Free disk space on /u02"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Filesystems"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB01"
+              },
+              "item": {
+                "filter": "Total disk space on /u02"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "title": "/u02",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": -386,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 53,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 12,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Database version"
+              },
+              "mode": 2,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Database version - DB03",
+          "type": "singlestat",
+          "valueFontSize": "50%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 28,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 55,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Invalid objects"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Invalid objects",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 54,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Connections available"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Connections available",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 57,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] RMAN problems counter"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "RMAN problems counter",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 58,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Sessions blocks"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Sessions blocks",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 59,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Locks count"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Locks count",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 60,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Redo Logs count"
+              },
+              "mode": 2,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Redo Logs count",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(9, 164, 44, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 73,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Database is active and open"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Database is active and open",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "OK",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "ALERTA",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(9, 164, 44, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "dtdurations",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 65,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Database uptime"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Database UPTIME",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 61,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Flash Recovery Area percentage used"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Flash Recovery Area percentage used",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 77,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Memory"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "Free swap space in %"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Free swap space in %",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "decbytes",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 62,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Oracle"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "[Oracle] Database size"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Database size",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_ZABBIX}",
+          "fontSize": "70%",
+          "format": "decbytes",
+          "id": 68,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": true
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 2,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "application": {
+                "filter": "Filesystems"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "Free disk space on /"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Filesystems"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "Total disk space on /"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "title": "/",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_ZABBIX}",
+          "fontSize": "70%",
+          "format": "decbytes",
+          "id": 72,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": true
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 2,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "application": {
+                "filter": "Filesystems"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "Free disk space on /u01"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Filesystems"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-DB03"
+              },
+              "item": {
+                "filter": "Total disk space on /u01"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "title": "/u01",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": -83,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 85,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 6,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "/.*/"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Full name"
+              },
+              "mode": 2,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "VMWARE - VM01",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 42,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 87,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "CPU"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "CPU cores"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "CPU Cores",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 88,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "CPU"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "CPU threads"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "CPU Threads",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "hertz",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 89,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "CPU"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "CPU frequency"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "CPU Frequency",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "hertz",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 90,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "CPU"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "CPU usage"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "CPU usage",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "decbytes",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 91,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Datastore"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Total size of datastore Datastore01-MSA2040"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Total size of datastore Datastore01",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "decbytes",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 92,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Datastore"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Total size of datastore Datastore02-MSA2040"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Total size of datastore Datastore02",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(9, 164, 44, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "s",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 101,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "General"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Device uptime"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Device UPTIME",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "OK",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "ALERTA",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(9, 164, 44, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "s",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 102,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Health state rollup"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Health state rollup",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "OK",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "ALERTA",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 298,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 94,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Datastore"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Free space on datastore Datastore01-MSA2040 (percentage)"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Free space on datastore Datastore01-MSA2040 in %",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 95,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Datastore"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Free space on datastore Datastore02-MSA2040 (percentage)"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Free space on datastore Datastore02-MSA2040 in %",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 96,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Free space on datastore datastore1-itavm01 (percentage)"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Free space on datastore datastore1-itavm01 in %",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_ZABBIX}",
+          "fontSize": "70%",
+          "format": "decbytes",
+          "id": 97,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": true
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 3,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "application": {
+                "filter": "Disk partitions"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Free Space on VMFS 5"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Disk partitions"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Used disk on VMFS 5"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "C",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "title": "Size of VMFS 5",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_ZABBIX}",
+          "fontSize": "70%",
+          "format": "decbytes",
+          "id": 98,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": true
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 3,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "application": {
+                "filter": "Disk partitions"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Free Space on VMFS 6"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Disk partitions"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Used disk on VMFS 6"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "C",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "title": "Size of VMFS 6",
+          "transparent": false,
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_ZABBIX}",
+          "fontSize": "70%",
+          "format": "decbytes",
+          "id": 99,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": true
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 3,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "application": {
+                "filter": "Disk partitions"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Free Space on VMFS 7"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Disk partitions"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Used disk on VMFS 7"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "C",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "title": "Size of VMFS 7",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 92,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 103,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 12,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "/.*/"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM02"
+              },
+              "item": {
+                "filter": "Full name"
+              },
+              "mode": 2,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "VMWARE - VM02",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 24,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 104,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "CPU"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM02"
+              },
+              "item": {
+                "filter": "CPU cores"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "CPU Cores",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 105,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "CPU"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM02"
+              },
+              "item": {
+                "filter": "CPU threads"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "CPU Threads",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "hertz",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 106,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "CPU"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM02"
+              },
+              "item": {
+                "filter": "CPU frequency"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "CPU Frequency",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "hertz",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 107,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "CPU"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "CPU usage"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "CPU usage",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "decbytes",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 109,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Datastore"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Total size of datastore Datastore01-MSA2040"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Total size of datastore Datastore01",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(40, 86, 237, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "decbytes",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 110,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Datastore"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Total size of datastore Datastore02-MSA2040"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Total size of datastore Datastore02",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(9, 164, 44, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "s",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 111,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "General"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Device uptime"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Device UPTIME",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "OK",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "ALERTA",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(9, 164, 44, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "s",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 112,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM01"
+              },
+              "item": {
+                "filter": "Health state rollup"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Health state rollup",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "OK",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "ALERTA",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 113,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": "Datastore"
+              },
+              "functions": [],
+              "group": {
+                "filter": "DATACENTER -MTZ"
+              },
+              "host": {
+                "filter": "-VM02"
+              },
+              "item": {
+                "filter": "Free space on datastore Datastore01-MSA2040 (percentage)"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B",
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": "",
+          "title": "Free space on datastore Datastore01-MSA2040 in %",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "auto": true,
+        "auto_count": 100,
+        "auto_min": "30s",
+        "current": {
+          "text": "auto",
+          "value": "$__auto_interval"
+        },
+        "hide": 0,
+        "label": "Sampling",
+        "name": "inter",
+        "options": [
+          {
+            "selected": true,
+            "text": "auto",
+            "value": "$__auto_interval"
+          },
+          {
+            "selected": false,
+            "text": "10s",
+            "value": "10s"
+          },
+          {
+            "selected": false,
+            "text": "30s",
+            "value": "30s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "2m",
+            "value": "2m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          }
+        ],
+        "query": "10s,30s,1m,2m,5m,10m,30m,1h",
+        "refresh": 2,
+        "type": "interval"
+      }
+    ]
+  },
+  "time": {
+    "from": "2018-02-02T05:24:53.213Z",
+    "to": "2018-02-02T17:24:53.215Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "DASHBOARD Principal (Oracle, VMWARE)",
+  "version": 44,
+  "description": "DASHBOARD PRINCIPAL DATACENTER"
+}

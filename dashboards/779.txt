@@ -1,0 +1,1481 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_RBHMETRIC",
+      "label": "Graphite backend",
+      "description": "Select your graphite backend",
+      "type": "datasource",
+      "pluginId": "graphite",
+      "pluginName": "Graphite"
+    },
+    {
+      "name": "VAR_PREFIX",
+      "type": "constant",
+      "label": "Graphite metric prefix",
+      "value": "",
+      "description": "Path to Graphite metric file"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "graphite",
+      "name": "Graphite",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 2276,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": "1m",
+  "rows": [
+    {
+      "collapse": false,
+      "height": 102,
+      "panels": [
+        {
+          "aliasColors": {
+            "< 12h": "#EAB839",
+            "< 15min": "#BF1B00",
+            "< 1d": "#7EB26D",
+            "< 1h": "#EF843C",
+            "< 1m": "#1F78C1",
+            "< 1y": "#584477",
+            "< 6m": "#0A50A1",
+            "< 7d": "#6ED0E0",
+            "over 1y": "#6D1F62"
+          },
+          "bars": false,
+          "datasource": "${DS_RBHMETRIC}",
+          "description": "Represents the average size of files modified within given timespans. Obtained by dividing the total volume modified within a timespan by the total inode count modified within that timespan.",
+          "fill": 0,
+          "height": "300",
+          "id": 13,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "G",
+              "target": "alias($prefix.modifTempGraph.sizeFileAvg.over1y, 'over 1y')",
+              "textEditor": false
+            },
+            {
+              "refId": "H",
+              "target": "alias($prefix.modifTempGraph.sizeFileAvg.1y, '< 1y')",
+              "textEditor": false
+            },
+            {
+              "refId": "I",
+              "target": "alias($prefix.modifTempGraph.sizeFileAvg.6m, '< 6m')",
+              "textEditor": false
+            },
+            {
+              "refId": "F",
+              "target": "alias($prefix.modifTempGraph.sizeFileAvg.1m, '< 1m')",
+              "textEditor": false
+            },
+            {
+              "refId": "E",
+              "target": "alias($prefix.modifTempGraph.sizeFileAvg.1w, '< 7d')",
+              "textEditor": false
+            },
+            {
+              "refId": "D",
+              "target": "alias($prefix.modifTempGraph.sizeFileAvg.1d, '< 1d')",
+              "textEditor": false
+            },
+            {
+              "refId": "C",
+              "target": "alias($prefix.modifTempGraph.sizeFileAvg.12h, '< 12h')",
+              "textEditor": false
+            },
+            {
+              "refId": "B",
+              "target": "alias($prefix.modifTempGraph.sizeFileAvg.1h, '< 1h')",
+              "textEditor": false
+            },
+            {
+              "refId": "A",
+              "target": "alias($prefix.modifTempGraph.sizeFileAvg.15min, '< 15min')",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "avgFileSize (Modification)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "< 12h": "#EAB839",
+            "< 15min": "#BF1B00",
+            "< 1d": "#7EB26D",
+            "< 1h": "#EF843C",
+            "< 1m": "#1F78C1",
+            "< 1y": "#584477",
+            "< 6m": "#0A50A1",
+            "< 7d": "#6ED0E0",
+            "over 1y": "#6D1F62"
+          },
+          "bars": false,
+          "datasource": "${DS_RBHMETRIC}",
+          "decimals": 1,
+          "description": "Represents the average size of files created within given timespans. Obtained by dividing the total volume created within a timespan by the inode count created within that timespan.",
+          "fill": 0,
+          "height": "300",
+          "id": 8,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "I",
+              "target": "alias($prefix.creatTempGraph.sizeFileAvg.over1y, 'over 1y')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "H",
+              "target": "alias($prefix.creatTempGraph.sizeFileAvg.1y, '< 1y')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "G",
+              "target": "alias($prefix.creatTempGraph.sizeFileAvg.6m, '< 6m')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias($prefix.creatTempGraph.sizeFileAvg.1m, '< 1m')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "F",
+              "target": "alias($prefix.creatTempGraph.sizeFileAvg.1w, '< 7d')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "E",
+              "target": "alias($prefix.creatTempGraph.sizeFileAvg.1d, '< 1d')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "C",
+              "target": "alias($prefix.creatTempGraph.sizeFileAvg.12h, '< 12h')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "B",
+              "target": "alias($prefix.creatTempGraph.sizeFileAvg.1h, '< 1h')",
+              "textEditor": true
+            },
+            {
+              "refId": "A",
+              "target": "alias($prefix.creatTempGraph.sizeFileAvg.15min, '< 15min')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "avgFileSize (Creation)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "< 12h": "#EAB839",
+            "< 15min": "#BF1B00",
+            "< 1d": "#7EB26D",
+            "< 1h": "#EF843C",
+            "< 1m": "#1F78C1",
+            "< 1y": "#584477",
+            "< 6m": "#0A50A1",
+            "< 7d": "#6ED0E0",
+            "over 1y": "#6D1F62"
+          },
+          "bars": false,
+          "datasource": "${DS_RBHMETRIC}",
+          "description": "Represents the average size of files accessed within given timespans. Obtained by dividing the total volume accessed within a timespan by the total inode count accessed within that timespan.",
+          "fill": 0,
+          "height": "300",
+          "id": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "G",
+              "target": "alias($prefix.acsTempGraph.sizeFileAvg.over1y, 'over 1y')",
+              "textEditor": true
+            },
+            {
+              "refId": "H",
+              "target": "alias($prefix.acsTempGraph.sizeFileAvg.1y, '< 1y')",
+              "textEditor": true
+            },
+            {
+              "refId": "I",
+              "target": "alias($prefix.acsTempGraph.sizeFileAvg.6m, '< 6m')",
+              "textEditor": true
+            },
+            {
+              "refId": "F",
+              "target": "alias($prefix.acsTempGraph.sizeFileAvg.1m, '< 1m')",
+              "textEditor": true
+            },
+            {
+              "refId": "E",
+              "target": "alias($prefix.acsTempGraph.sizeFileAvg.1w, '< 7d')",
+              "textEditor": true
+            },
+            {
+              "refId": "D",
+              "target": "alias($prefix.acsTempGraph.sizeFileAvg.1d, '< 1d')",
+              "textEditor": true
+            },
+            {
+              "refId": "C",
+              "target": "alias($prefix.acsTempGraph.sizeFileAvg.12h, '< 12h')",
+              "textEditor": true
+            },
+            {
+              "refId": "B",
+              "target": "alias($prefix.acsTempGraph.sizeFileAvg.1h, '< 1h')",
+              "textEditor": true
+            },
+            {
+              "refId": "A",
+              "target": "alias($prefix.acsTempGraph.sizeFileAvg.15min, '< 15min')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "avgFileSize (Access)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 127,
+      "panels": [
+        {
+          "aliasColors": {
+            "<  1m [Read]": "#1F78C1",
+            "<  1m [Write]": "#1F78C1",
+            "< 12h [Read]": "#E0752D",
+            "< 12h [Write]": "#E0752D",
+            "< 15min [Read]": "#890F02",
+            "< 15min [Write]": "#890F02",
+            "< 1d [Read]": "#EAB839",
+            "< 1d [Write]": "#EAB839",
+            "< 1h [Read]": "#BF1B00",
+            "< 1h [Write]": "#BF1B00",
+            "< 1y [Read]": "#584477",
+            "< 1y [Write]": "#584477",
+            "< 6m [Read]": "#0A437C",
+            "< 6m [Write]": "#0A437C",
+            "< 7d [Read]": "#7EB26D",
+            "< 7d [Write]": "#7EB26D",
+            "over 1y [Read]": "#6D1F62",
+            "over 1y [Write]": "#6D1F62"
+          },
+          "bars": false,
+          "datasource": "${DS_RBHMETRIC}",
+          "decimals": 1,
+          "description": "Represents the accessed (positive y) and modified (negative y) inode count within given timespans ( < 7 days). Obtained by stacking a timespan's total inode count accessed and modified on separate y-axis.",
+          "fill": 7,
+          "height": "300",
+          "id": 15,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": false,
+            "sideWidth": null,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "< 15min [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1h [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 12h [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1d [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 7d [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "<  1m [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 6m [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1y [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "over 1y [Write]",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "E",
+              "target": "alias($prefix.acsTempGraph.cnt.1w, '< 7d [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias($prefix.acsTempGraph.cnt.1d, '< 1d [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "C",
+              "target": "alias($prefix.acsTempGraph.cnt.12h, '< 12h [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "B",
+              "target": "alias($prefix.acsTempGraph.cnt.1h, '< 1h [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "alias($prefix.acsTempGraph.cnt.15min, '< 15min [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "N",
+              "target": "alias($prefix.modifTempGraph.cnt.1w, '< 7d [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "O",
+              "target": "alias($prefix.modifTempGraph.cnt.1d, '< 1d [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "P",
+              "target": "alias($prefix.modifTempGraph.cnt.12h, '< 12h [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "Q",
+              "target": "alias($prefix.modifTempGraph.cnt.1h, '< 1h [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "S",
+              "target": "alias($prefix.modifTempGraph.cnt.15min, '< 15min [Write]')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Recent activity (inodes)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Write (Inodes) / Read (Inodes)",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "<  1m [Read]": "#1F78C1",
+            "<  1m [Write]": "#1F78C1",
+            "< 12h [Read]": "#E0752D",
+            "< 12h [Write]": "#E0752D",
+            "< 15min [Read]": "#890F02",
+            "< 15min [Write]": "#890F02",
+            "< 1d [Read]": "#EAB839",
+            "< 1d [Write]": "#EAB839",
+            "< 1h [Read]": "#BF1B00",
+            "< 1h [Write]": "#BF1B00",
+            "< 1y [Read]": "#584477",
+            "< 1y [Write]": "#584477",
+            "< 6m [Read]": "#0A437C",
+            "< 6m [Write]": "#0A437C",
+            "< 7d [Read]": "#7EB26D",
+            "< 7d [Write]": "#7EB26D",
+            "over 1y [Read]": "#6D1F62",
+            "over 1y [Write]": "#6D1F62"
+          },
+          "bars": false,
+          "datasource": "${DS_RBHMETRIC}",
+          "decimals": 1,
+          "description": "Represents the accessed (positive y) and modified (negative y) volume within given timespans ( < 7 days).  Obtained by stacking a timespan's total volume accessed and modified on separate y-axis.",
+          "fill": 7,
+          "height": "300",
+          "id": 16,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": false,
+            "sideWidth": null,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "< 15min [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1h [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 12h [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1d [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 7d [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "<  1m [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 6m [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1y [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "over 1y [Write]",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "E",
+              "target": "alias($prefix.acsTempGraph.size.1w, '< 7d [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias($prefix.acsTempGraph.size.1d, '< 1d [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "C",
+              "target": "alias($prefix.acsTempGraph.size.12h, '< 12h [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "B",
+              "target": "alias($prefix.acsTempGraph.size.1h, '< 1h [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "alias($prefix.acsTempGraph.size.15min, '< 15min [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "N",
+              "target": "alias($prefix.modifTempGraph.size.1w, '< 7d [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "O",
+              "target": "alias($prefix.modifTempGraph.size.1d, '< 1d [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "P",
+              "target": "alias($prefix.modifTempGraph.size.12h, '< 12h [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "Q",
+              "target": "alias($prefix.modifTempGraph.size.1h, '< 1h [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "S",
+              "target": "alias($prefix.modifTempGraph.size.15min, '< 15min [Write]')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Recent activity (volume)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": "Write (Volumes) / Read (Volumes)",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 336,
+      "panels": [
+        {
+          "aliasColors": {
+            "<  1m [Read]": "#1F78C1",
+            "<  1m [Write]": "#1F78C1",
+            "< 12h [Read]": "#EAB839",
+            "< 12h [Write]": "#EAB839",
+            "< 15min [Read]": "#890F02",
+            "< 15min [Write]": "#890F02",
+            "< 1d [Read]": "#7EB26D",
+            "< 1d [Write]": "#7EB26D",
+            "< 1h [Read]": "#C15C17",
+            "< 1h [Write]": "#C15C17",
+            "< 1y [Read]": "#584477",
+            "< 1y [Write]": "#584477",
+            "< 6m [Read]": "#0A437C",
+            "< 6m [Write]": "#0A437C",
+            "< 7d [Read]": "#6ED0E0",
+            "< 7d [Write]": "#6ED0E0",
+            "over 1y [Read]": "#6D1F62",
+            "over 1y [Write]": "#6D1F62"
+          },
+          "bars": false,
+          "datasource": "${DS_RBHMETRIC}",
+          "decimals": 1,
+          "description": "Represents the inodes accessed (positive y) and modified (negative y) within a given timespan.  Obtained by stacking a timespan's total inode count accessed and modified on different y-axis",
+          "fill": 4,
+          "height": "600",
+          "id": 2,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": false,
+            "sideWidth": null,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "< 15min [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1h [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 12h [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1d [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 7d [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "<  1m [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 6m [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1y [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "over 1y [Write]",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "H",
+              "target": "alias($prefix.acsTempGraph.cnt.over1y, 'over 1y [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "I",
+              "target": "alias($prefix.acsTempGraph.cnt.1y, '< 1y [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "G",
+              "target": "alias($prefix.acsTempGraph.cnt.6m, '< 6m [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "F",
+              "target": "alias($prefix.acsTempGraph.cnt.1m, '<  1m [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "E",
+              "target": "alias($prefix.acsTempGraph.cnt.1w, '< 7d [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias($prefixacsTempGraph.cnt.1d, '< 1d [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "C",
+              "target": "alias($prefix.acsTempGraph.cnt.12h, '< 12h [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "B",
+              "target": "alias($prefix.acsTempGraph.cnt.1h, '< 1h [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "alias($prefix.acsTempGraph.cnt.15min, '< 15min [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "J",
+              "target": "alias($prefix.modifTempGraph.cnt.over1y, 'over 1y [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "K",
+              "target": "alias($prefix.modifTempGraph.cnt.1y, '< 1y [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "L",
+              "target": "alias($prefix.modifTempGraph.cnt.6m, '< 6m [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "M",
+              "target": "alias($prefix.modifTempGraph.cnt.1m, '<  1m [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "N",
+              "target": "alias($prefix.modifTempGraph.cnt.1w, '< 7d [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "O",
+              "target": "alias($prefix.modifTempGraph.cnt.1d, '< 1d [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "P",
+              "target": "alias($prefix.modifTempGraph.cnt.12h, '< 12h [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "Q",
+              "target": "alias($prefix.modifTempGraph.cnt.1h, '< 1h [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "S",
+              "target": "alias($prefix.modifTempGraph.cnt.15min, '< 15min [Write]')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Filesystem temperature (inodes)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Write (Inodes) / Read (Inodes)",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "<  1m [Read]": "#1F78C1",
+            "<  1m [Write]": "#1F78C1",
+            "< 12h [Read]": "#EAB839",
+            "< 12h [Write]": "#EAB839",
+            "< 15min [Read]": "#890F02",
+            "< 15min [Write]": "#890F02",
+            "< 1d [Read]": "#7EB26D",
+            "< 1d [Write]": "#7EB26D",
+            "< 1h [Read]": "#C15C17",
+            "< 1h [Write]": "#C15C17",
+            "< 1y [Read]": "#584477",
+            "< 1y [Write]": "#584477",
+            "< 6m [Read]": "#0A437C",
+            "< 6m [Write]": "#0A437C",
+            "< 7d [Read]": "#6ED0E0",
+            "< 7d [Write]": "#6ED0E0",
+            "over 1y [Read]": "#6D1F62",
+            "over 1y [Write]": "#6D1F62"
+          },
+          "bars": false,
+          "datasource": "${DS_RBHMETRIC}",
+          "decimals": 1,
+          "description": "Represents the volume accessed (positive y) and modified (negative y) within given timespans. Obtained by stacking a timespan's volume accessed and modified on separate y-axis",
+          "fill": 4,
+          "height": "600",
+          "id": 14,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": false,
+            "sideWidth": null,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "< 15min [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1h [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 12h [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1d [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 7d [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "<  1m [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 6m [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "< 1y [Write]",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "over 1y [Write]",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "H",
+              "target": "alias($prefix.acsTempGraph.size.over1y, 'over 1y [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "I",
+              "target": "alias($prefix.acsTempGraph.size.1y, '< 1y [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "G",
+              "target": "alias($prefix.acsTempGraph.size.6m, '< 6m [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "F",
+              "target": "alias($prefix.acsTempGraph.size.1m, '<  1m [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "E",
+              "target": "alias($prefix.acsTempGraph.size.1w, '< 7d [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias($prefix.acsTempGraph.size.1d, '< 1d [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "C",
+              "target": "alias($prefix.acsTempGraph.size.12h, '< 12h [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "B",
+              "target": "alias($prefix.acsTempGraph.size.1h, '< 1h [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "alias($prefix.acsTempGraph.size.15min, '< 15min [Read]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "J",
+              "target": "alias($prefix.modifTempGraph.size.over1y, 'over 1y [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "K",
+              "target": "alias($prefix.modifTempGraph.size.1y, '< 1y [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "L",
+              "target": "alias($prefix.modifTempGraph.size.6m, '< 6m [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "M",
+              "target": "alias($prefix.modifTempGraph.size.1m, '<  1m [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "N",
+              "target": "alias($prefix.modifTempGraph.size.1w, '< 7d [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "O",
+              "target": "alias($prefix.modifTempGraph.size.1d, '< 1d [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "P",
+              "target": "alias($prefix.modifTempGraph.size.12h, '< 12h [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "Q",
+              "target": "alias($prefix.modifTempGraph.size.1h, '< 1h [Write]')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "S",
+              "target": "alias($prefix.modifTempGraph.size.15min, '< 15min [Write]')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Filesystem temperature (volume)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": "Write (Volume) / Read (Volume)",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 195,
+      "panels": [
+        {
+          "aliasColors": {
+            "ChangelogCount_UNLNK)": "#BF1B00",
+            "derivative(sboucen.chnglogActivity.ChangelogCount_CREAT)": "#7EB26D",
+            "derivative(sboucen.chnglogActivity.ChangelogCount_UNLNK)": "#BF1B00"
+          },
+          "bars": false,
+          "datasource": "${DS_RBHMETRIC}",
+          "description": "Represents the derivated changelog events counter value consumed by Robinhood. Obtained by derivating the queried ChangelogCount values in robinhood's db from table VARS (Change the filter settings to select event types). The data is updated every 15 minutes. One point represents the number of selected events occuring in the last 15 minutes.",
+          "fill": 0,
+          "height": "200",
+          "id": 9,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "maxDataPoints": "",
+          "minSpan": null,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 1,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "aliasByMetric(derivative($prefix.chnglogActivity.$changelogFilter))",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "ChangeLog Events",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "value": "${VAR_PREFIX}",
+          "text": "${VAR_PREFIX}"
+        },
+        "hide": 2,
+        "label": "Graphite metric prefix",
+        "name": "prefix",
+        "options": [
+          {
+            "value": "${VAR_PREFIX}",
+            "text": "${VAR_PREFIX}"
+          }
+        ],
+        "query": "${VAR_PREFIX}",
+        "type": "constant"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_RBHMETRIC}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Changelog filter",
+        "multi": true,
+        "name": "changelogFilter",
+        "options": [],
+        "query": "$prefix.chnglogActivity.*",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "rbhMonitoring",
+  "version": 15,
+  "description": "Displays temperature graphs based on volume and inode count for Read/Write operations as well as Lustre's changelogs counter and the average size of files used (Read/Written/Created) using rbh-monitoring (https://github.com/LiquidSame/rbh-monitoring)"
+}

@@ -1,0 +1,1243 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_VCENTERDB",
+      "label": "VcenterDB",
+      "description": "Enter influxdb datasource name for VCenter ",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    },
+    {
+      "name": "VAR_HOSTSYSTEM",
+      "type": "constant",
+      "label": "hostsystem",
+      "value": "vsphere_hostsystem",
+      "description": "Name of the influxdb measurement in which host data is stored (e.g. vsphere_hostsystem)"
+    },
+    {
+      "name": "VAR_VIRTUALMACHINE",
+      "type": "constant",
+      "label": "virtualmachine",
+      "value": "vsphere_virtualmachine",
+      "description": "Name of the influxdb measurement in which VM data is stored (e.g. vsphere_virtualmachine)"
+    },
+    {
+      "name": "VAR_M_DATASTORE",
+      "type": "constant",
+      "label": "m_datastore",
+      "value": "vsphere_datastore",
+      "description": "VCenter datastore influxdb measurement name"
+    },
+    {
+      "name": "VAR_M_HOST_DATASTORE",
+      "type": "constant",
+      "label": "m_host_datastore",
+      "value": "vsphere_host_datastore",
+      "description": "Name of the influxdb measurement in which host datastore data is stored (e.g. vsphere_host_datastore)"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "5.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "A nice Host datastore wise metrics for VCenter.",
+  "editable": true,
+  "gnetId": 6176,
+  "graphTooltip": 1,
+  "id": null,
+  "iteration": 1526715036499,
+  "links": [
+    {
+      "icon": "external link",
+      "tags": [
+        "vcenter"
+      ],
+      "type": "dashboards"
+    }
+  ],
+  "panels": [
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "#299c46",
+            "#d44a3a"
+          ],
+          "datasource": "$datasourceName",
+          "decimals": 2,
+          "format": "bytes",
+          "gauge": {
+            "maxValue": 300,
+            "minValue": null,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 6,
+            "x": 0,
+            "y": 1
+          },
+          "id": 5,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": " ",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [],
+              "measurement": "/^$m_datastore$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT \"capacity\" FROM /^$m_datastore$/ WHERE (\"host\" =~ /^$vcenter$/ AND \"ds_name\" =~ /^$datastore$/) AND $timeFilter",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "capacity"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$vcenter$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ds_name",
+                  "operator": "=~",
+                  "value": "/^$datastore$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Capacity",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "50%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "#299c46",
+            "#d44a3a"
+          ],
+          "datasource": "$datasourceName",
+          "decimals": 2,
+          "format": "bytes",
+          "gauge": {
+            "maxValue": 300,
+            "minValue": null,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 6,
+            "x": 6,
+            "y": 1
+          },
+          "id": 6,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": " ",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [],
+              "measurement": "/^$m_datastore$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT \"free_space\" FROM /^$m_datastore$/ WHERE (\"host\" =~ /^$vcenter$/ AND \"ds_name\" =~ /^$datastore$/) AND $timeFilter",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "free_space"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$vcenter$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ds_name",
+                  "operator": "=~",
+                  "value": "/^$datastore$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Free space",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "50%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "#299c46",
+            "#d44a3a"
+          ],
+          "datasource": "$datasourceName",
+          "decimals": null,
+          "format": "bytes",
+          "gauge": {
+            "maxValue": 300,
+            "minValue": null,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 6,
+            "x": 12,
+            "y": 1
+          },
+          "id": 7,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": " ",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [],
+              "measurement": "/^$m_datastore$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT \"maintenance_mode\" FROM /^$m_datastore$/ WHERE (\"host\" =~ /^$vcenter$/ AND \"ds_name\" =~ /^$datastore$/) AND $timeFilter",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "maintenance_mode"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$vcenter$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ds_name",
+                  "operator": "=~",
+                  "value": "/^$datastore$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Maintenance mode",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "50%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "#299c46",
+            "#d44a3a"
+          ],
+          "datasource": "$datasourceName",
+          "decimals": null,
+          "format": "none",
+          "gauge": {
+            "maxValue": 300,
+            "minValue": null,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 6,
+            "x": 18,
+            "y": 1
+          },
+          "id": 10,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": " ",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [],
+              "measurement": "/^$m_datastore$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT last(\"mounted_host_count\") FROM /^$m_datastore$/ WHERE (\"host\" =~ /^$vcenter$/ AND \"ds_name\" =~ /^$datastore$/) AND $timeFilter",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mounted_host_count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$vcenter$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ds_name",
+                  "operator": "=~",
+                  "value": "/^$datastore$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Mounted on hosts",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "50%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasourceName",
+          "fontSize": "100%",
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 4
+          },
+          "id": 17,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "styles": [
+            {
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "Time",
+              "thresholds": [],
+              "type": "hidden",
+              "unit": "short"
+            },
+            {
+              "alias": "Name",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "link": true,
+              "linkTargetBlank": true,
+              "linkTooltip": "Click here for details",
+              "linkUrl": "http://10.1.63.224/d/-E2VW0mmz/vmware-hosts-detail?orgId=1&var-vcenter=$vcenter&var-host=$__cell",
+              "pattern": "host",
+              "sanitize": false,
+              "thresholds": [],
+              "type": "string",
+              "unit": "short"
+            },
+            {
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "pattern": "last",
+              "thresholds": [],
+              "type": "hidden",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "groupBy": [
+                {
+                  "params": [
+                    "host"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "/^$m_host_datastore$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT last(\"value\") FROM /^$m_host_datastore$/ WHERE (\"vcenter\" =~ /^$vcenter$/ AND \"ds_name\" =~ /^$datastore$/) AND $timeFilter GROUP BY \"host\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "table",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "vcenter",
+                  "operator": "=~",
+                  "value": "/^$vcenter$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ds_name",
+                  "operator": "=~",
+                  "value": "/^$datastore$/"
+                }
+              ]
+            }
+          ],
+          "title": "Hosts",
+          "transform": "table",
+          "type": "table"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "#299c46",
+            "#d44a3a"
+          ],
+          "datasource": "$datasourceName",
+          "decimals": null,
+          "format": "none",
+          "gauge": {
+            "maxValue": 300,
+            "minValue": null,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 6,
+            "x": 0,
+            "y": 6
+          },
+          "id": 11,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": " ",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [],
+              "measurement": "/^$m_datastore$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT last(\"mounted_vm_count\") FROM /^$m_datastore$/ WHERE (\"host\" =~ /^$vcenter$/ AND \"ds_name\" =~ /^$datastore$/) AND $timeFilter",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mounted_vm_count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$vcenter$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ds_name",
+                  "operator": "=~",
+                  "value": "/^$datastore$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Mounted on VM",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "50%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "#299c46",
+            "#d44a3a"
+          ],
+          "datasource": "$datasourceName",
+          "decimals": null,
+          "format": "bytes",
+          "gauge": {
+            "maxValue": 300,
+            "minValue": null,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 6,
+            "x": 6,
+            "y": 6
+          },
+          "id": 9,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": " ",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [],
+              "measurement": "/^$m_datastore$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT \"type\" FROM /^$m_datastore$/ WHERE (\"host\" =~ /^$vcenter$/ AND \"ds_name\" =~ /^$datastore$/) AND $timeFilter",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "type"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$vcenter$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ds_name",
+                  "operator": "=~",
+                  "value": "/^$datastore$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Type",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "50%",
+          "valueMaps": [],
+          "valueName": "current"
+        }
+      ],
+      "title": "Overview",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 13,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasourceName",
+          "fill": 1,
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 11
+          },
+          "id": 15,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 1,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "groupBy": [
+                {
+                  "params": [
+                    "host"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "ds_name"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "/^$m_datastore$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT last(\"free_space\") FROM /^$m_datastore$/ WHERE (\"host\" =~ /^$vcenter$/ AND \"ds_name\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval), \"host\", \"ds_name\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "capacity"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "Total"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "free_space"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "Available"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$vcenter$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ds_name",
+                  "operator": "=~",
+                  "value": "/^$datastore$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Summary",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "bytes",
+              "label": "Size",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "Memory summary",
+      "type": "row"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [
+    "vcenter",
+    "vmhost",
+    "vm"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "VcenterDB",
+          "value": "VcenterDB"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "datasourceName",
+        "options": [],
+        "query": "influxdb",
+        "refresh": 1,
+        "regex": "VcenterDB",
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$datasourceName",
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "measurements",
+        "options": [],
+        "query": "show measurements",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "value": "${VAR_HOSTSYSTEM}",
+          "text": "${VAR_HOSTSYSTEM}"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "hostsystem",
+        "options": [
+          {
+            "value": "${VAR_HOSTSYSTEM}",
+            "text": "${VAR_HOSTSYSTEM}"
+          }
+        ],
+        "query": "${VAR_HOSTSYSTEM}",
+        "type": "constant"
+      },
+      {
+        "current": {
+          "value": "${VAR_VIRTUALMACHINE}",
+          "text": "${VAR_VIRTUALMACHINE}"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "virtualmachine",
+        "options": [
+          {
+            "value": "${VAR_VIRTUALMACHINE}",
+            "text": "${VAR_VIRTUALMACHINE}"
+          }
+        ],
+        "query": "${VAR_VIRTUALMACHINE}",
+        "type": "constant"
+      },
+      {
+        "current": {
+          "value": "${VAR_M_DATASTORE}",
+          "text": "${VAR_M_DATASTORE}"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "m_datastore",
+        "options": [
+          {
+            "value": "${VAR_M_DATASTORE}",
+            "text": "${VAR_M_DATASTORE}"
+          }
+        ],
+        "query": "${VAR_M_DATASTORE}",
+        "type": "constant"
+      },
+      {
+        "current": {
+          "value": "${VAR_M_HOST_DATASTORE}",
+          "text": "${VAR_M_HOST_DATASTORE}"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "m_host_datastore",
+        "options": [
+          {
+            "value": "${VAR_M_HOST_DATASTORE}",
+            "text": "${VAR_M_HOST_DATASTORE}"
+          }
+        ],
+        "query": "${VAR_M_HOST_DATASTORE}",
+        "type": "constant"
+      },
+      {
+        "allFormat": "regex values",
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_VCENTERDB}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "multiFormat": "regex values",
+        "name": "vcenter",
+        "options": [],
+        "query": "show tag values from vsphere_hostsystem with key = \"host\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allFormat": "regex values",
+        "allValue": "",
+        "current": {},
+        "datasource": "$datasourceName",
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "multiFormat": "regex values",
+        "name": "host",
+        "options": [],
+        "query": "show tag values from vsphere_hostsystem with key = \"name\" where host =~ /$vcenter/",
+        "refresh": 2,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allFormat": "regex values",
+        "allValue": "",
+        "current": {},
+        "datasource": "$datasourceName",
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "multiFormat": "regex values",
+        "name": "vm",
+        "options": [],
+        "query": "show tag values from /$virtualmachine/ with key = \"name\" where host =~ /$vcenter/ and esx =~  /$host/",
+        "refresh": 2,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allFormat": "regex values",
+        "allValue": "",
+        "current": {},
+        "datasource": "$datasourceName",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "multiFormat": "regex values",
+        "name": "datastore",
+        "options": [],
+        "query": "show tag values from /$m_datastore/ with key = \"ds_name\" where host =~ /$vcenter/",
+        "refresh": 2,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "now": true,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "VCenter datastores",
+  "uid": "WKf5zYiiz",
+  "version": 48
+}

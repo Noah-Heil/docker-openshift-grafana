@@ -1,0 +1,2563 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_ZIMBRA-GRAYLOG",
+      "label": "Zimbra-graylog",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "elasticsearch",
+      "pluginName": "Elasticsearch"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "briangann-datatable-panel",
+      "name": "Datatable Panel",
+      "version": "0.0.6"
+    },
+    {
+      "type": "datasource",
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "version": "5.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.0.3"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-worldmap-panel",
+      "name": "Worldmap Panel",
+      "version": "0.0.21"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": "5.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": 4985,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1522532710407,
+  "links": [],
+  "panels": [
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "decimals": 2,
+      "format": "decbytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "Trafic",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "real_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "size",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "query": "from:$from",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "thresholds": "",
+      "title": "Out Traffic for $from",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "format": "decbytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "id": 2,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "Top Mail Destination",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "to_domain",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "1"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "real_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "size",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "count"
+            }
+          ],
+          "query": "from:$from AND to:$to AND to_domain:$to_domain",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "thresholds": "",
+      "title": "Top Mail Destination for $from",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "name"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "decimals": 2,
+      "format": "decbytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "In Traffic",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "real_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "size",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "query": "from:$external_mail AND from_domain:$from_domain  AND NOT reason:\"Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10024\"  AND NOT  (reason:\"Recipient address rejected: mpcfg.co.cu\"  OR reason:\"Relay access denied\" OR reason:\"Sender address rejected: Correo Internacional Limitado\" OR reason:\"Recipient address rejected: 4 mail quota recipient, please come back later\" OR reason:\"Sender address rejected: You have no rights to send mail to our domain\" OR reason:\"Sender address rejected: Solo correo nacional\" OR reason:\"Sender address rejected: Account limit exceeded\")",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "thresholds": "",
+      "title": "In Trafic",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "format": "decbytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 0
+      },
+      "id": 4,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "Top Mail Source",
+      "prefixFontSize": "30%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "from_domain",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "1"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "real_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "size",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "count"
+            }
+          ],
+          "query": "to:$to_local_mail  AND from_domain:$from_domain  AND  reason:\"Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10024\" AND NOT  (reason:\"Recipient address rejected: mpcfg.co.cu\"  OR reason:\"Relay access denied\" OR reason:\"Sender address rejected: Correo Internacional Limitado\" OR reason:\"Recipient address rejected: 4 mail quota recipient, please come back later\" OR reason:\"Sender address rejected: You have no rights to send mail to our domain\" OR reason:\"Sender address rejected: Solo correo nacional\" OR reason:\"Sender address rejected: Account limit exceeded\")",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "thresholds": "",
+      "title": "Top Mail Source",
+      "type": "singlestat",
+      "valueFontSize": "70%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "name"
+    },
+    {
+      "content": "![https://www.sysadminsdecuba.com](https://www.sysadminsdecuba.com/wp-content/uploads/2017/10/cropped-placeholder-medium.png)\n# Zimbra Dashboard Logs Analisys .\nDocumentation in [sysadminsdecuba](https://www.sysadminsdecuba.com)\n\nDesing by: Omar Padrón Capote\n\nemail: omar@mpcfg.co.cu",
+      "gridPos": {
+        "h": 11,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 34,
+      "links": [],
+      "mode": "markdown",
+      "title": "Credits",
+      "type": "text"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "format": "decbytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 5
+      },
+      "id": 5,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "Top mail local sender",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "from",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "1"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "real_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "size",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "count"
+            }
+          ],
+          "query": "from:$from AND to:$to AND to_domain:$to_domain AND NOT reaseon:\"Relay access denied\"",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "thresholds": "",
+      "title": "Top mail local sender for $from",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "name"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "format": "decbytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 12,
+        "y": 5
+      },
+      "id": 6,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "Top Mail Destination",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "to",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "1"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "real_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "size",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "count"
+            }
+          ],
+          "query": "to:$to_local_mail  AND from_domain:$from_domain  AND  reason:\"Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10024\" AND  NOT (reason:\"Recipient address rejected: mpcfg.co.cu\"  OR reason:\"Relay access denied\" OR reason:\"Sender address rejected: Correo Internacional Limitado\" OR reason:\"Recipient address rejected: 4 mail quota recipient, please come back later\" OR reason:\"Sender address rejected: You have no rights to send mail to our domain\" OR reason:\"Sender address rejected: Solo correo nacional\" OR reason:\"Sender address rejected: Account limit exceeded\")",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "thresholds": "",
+      "title": "Top Mail Local Destination",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "name"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 24,
+      "panels": [],
+      "repeat": null,
+      "title": "Resume",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 25,
+      "panels": [],
+      "repeat": null,
+      "title": "Details",
+      "type": "row"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "decimals": 0,
+      "esGeoPoint": "dst_location",
+      "esLocationName": "dst_relayhost",
+      "esMetric": "Count",
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 0,
+        "y": 13
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 7,
+      "initialZoom": 1,
+      "links": [],
+      "locationData": "geohash",
+      "mapCenter": "(0°, 0°)",
+      "mapCenterLatitude": 0,
+      "mapCenterLongitude": 0,
+      "maxDataPoints": 1,
+      "showLegend": true,
+      "stickyLabels": false,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "dst_relayhost",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "dst_location",
+              "id": "2",
+              "settings": {
+                "precision": 7
+              },
+              "type": "geohash_grid"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "thresholds": "0,10",
+      "title": "Destination Geo-Location",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "valueName": "total"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "decimals": 0,
+      "esGeoPoint": "src_location",
+      "esLocationName": "src_relayhost",
+      "esMetric": "Count",
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 12,
+        "y": 13
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 8,
+      "initialZoom": 1,
+      "links": [],
+      "locationData": "geohash",
+      "mapCenter": "(0°, 0°)",
+      "mapCenterLatitude": 0,
+      "mapCenterLongitude": 0,
+      "maxDataPoints": 1,
+      "showLegend": true,
+      "stickyLabels": false,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "src_relayhost",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "src_location",
+              "id": "2",
+              "settings": {
+                "precision": 7
+              },
+              "type": "geohash_grid"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "from:$external_mail AND from_domain:$from_domain  AND proto:ESMTP  AND NOT  (reason:\"Recipient address rejected: mpcfg.co.cu\"  OR reason:\"Relay access denied\" OR reason=\"Sender address rejected: Correo Internacional Limitado\" OR reason:\"Recipient address rejected: 4 mail quota recipient, please come back later\" OR reason:\"Sender address rejected: You have no rights to send mail to our domain\" OR reason:\"Sender address rejected: Solo correo nacional\" OR reason:\"Sender address rejected: Account limit exceeded\")",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "thresholds": "0,10",
+      "title": "Source Geo-Location",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {},
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "80%",
+      "format": "short",
+      "gridPos": {
+        "h": 12,
+        "w": 6,
+        "x": 0,
+        "y": 25
+      },
+      "id": 9,
+      "interval": null,
+      "legend": {
+        "percentage": false,
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "Status {{term result}}",
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "result",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "real_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "to:$to AND NOT dst_relayhost:127.0.0.1",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Mail Status",
+      "type": "grafana-piechart-panel",
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {},
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 12,
+        "w": 6,
+        "x": 6,
+        "y": 25
+      },
+      "id": 10,
+      "interval": null,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "protocol",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "real_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "username:$from AND type:zimbra_mailbox",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Protocols",
+      "type": "grafana-piechart-panel",
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {},
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 12,
+        "y": 25
+      },
+      "id": 14,
+      "interval": null,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": "",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "src_relayip_country_code",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "real_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "from:$external_mail AND from_domain:$from_domain  AND proto:ESMTP AND reason:\"Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10024\"  AND NOT action:reject",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Countries Codes",
+      "type": "grafana-piechart-panel",
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {},
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 37
+      },
+      "id": 12,
+      "interval": null,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "ZMUSERAGENT",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "timestamp_graf",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "type:zimbra_mailbox AND NOT user_agent:Zimbra AND NOT user_agent:zmprov  AND NOT user_agent:zclient AND NOT user_agent:ZCS",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "User Agents",
+      "type": "grafana-piechart-panel",
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {},
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 37
+      },
+      "id": 13,
+      "interval": null,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "reason",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "real_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "from:$external_mail AND from_domain:$from_domain  AND action:reject",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Alerts",
+      "type": "grafana-piechart-panel",
+      "valueName": "total"
+    },
+    {
+      "columns": [
+        {
+          "text": "real_timestamp",
+          "value": "real_timestamp"
+        },
+        {
+          "text": "from",
+          "value": "from"
+        },
+        {
+          "text": "to",
+          "value": "to"
+        },
+        {
+          "text": "reason",
+          "value": "reason"
+        }
+      ],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "90%",
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 47
+      },
+      "id": 32,
+      "links": [],
+      "pageSize": 10,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "real_timestamp",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [],
+          "metrics": [
+            {
+              "field": "select field",
+              "hide": true,
+              "id": "1",
+              "meta": {},
+              "settings": {
+                "size": 500
+              },
+              "type": "raw_document"
+            }
+          ],
+          "query": "from:$from  AND action:reject",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Rejected Local Senders",
+      "transform": "json",
+      "type": "table"
+    },
+    {
+      "columns": [
+        {
+          "text": "real_timestamp",
+          "value": "real_timestamp"
+        },
+        {
+          "text": "from",
+          "value": "from"
+        },
+        {
+          "text": "to",
+          "value": "to"
+        },
+        {
+          "text": "reason",
+          "value": "reason"
+        }
+      ],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "90%",
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 47
+      },
+      "id": 28,
+      "links": [],
+      "pageSize": 10,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "real_timestamp",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [],
+          "metrics": [
+            {
+              "field": "select field",
+              "hide": true,
+              "id": "1",
+              "meta": {},
+              "settings": {
+                "size": 20000
+              },
+              "type": "raw_document"
+            }
+          ],
+          "query": "from:$external_mail AND from_domain:$from_domain AND action:reject",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Alert Details",
+      "transform": "json",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 0,
+        "y": 57
+      },
+      "id": 15,
+      "links": [],
+      "pageSize": 10,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Traffic",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "Sum",
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "pattern": "from",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "from",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "1",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "size",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "query": "from:$from AND NOT action:reject",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Trafic by local User",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 12,
+        "y": 57
+      },
+      "id": 16,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Traffic",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "Sum",
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "from",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "1",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "size",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "query": "from:$external_mail AND from_domain:$from_domain  AND NOT reason:\"Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10024\"",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Trafic by Outside Sender",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 12,
+        "w": 6,
+        "x": 0,
+        "y": 69
+      },
+      "id": 17,
+      "links": [],
+      "pageSize": 10,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Count",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Count",
+          "type": "number",
+          "unit": "none"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "from",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "from:$from AND to:$to AND  to_domain:$to_domain AND NOT action:reject",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Top Senders",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 12,
+        "w": 6,
+        "x": 6,
+        "y": 69
+      },
+      "id": 18,
+      "links": [],
+      "pageSize": 10,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Count",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Count",
+          "type": "number",
+          "unit": "none"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "to_domain",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "10"
+              },
+              "type": "terms"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "from:$from AND to:$to AND  to_domain:$to_domain",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Top domains",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 12,
+        "w": 6,
+        "x": 12,
+        "y": 69
+      },
+      "id": 19,
+      "links": [],
+      "pageSize": 10,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Count",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Count",
+          "type": "number",
+          "unit": "none"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "to",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "from_domain:$from_domain AND to:$to_local_mail AND from:$external_mail  AND reason:\"Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10024\"  AND NOT action:reject",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Top recipients",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 12,
+        "w": 6,
+        "x": 18,
+        "y": 69
+      },
+      "id": 20,
+      "links": [],
+      "pageSize": 10,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Count",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Count",
+          "type": "number",
+          "unit": "none"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "from_domain",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "to:$to_local_mail AND from:$external_mail AND from_domain:$from_domain AND proto:ESMTP  AND NOT reason:\"Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10026\" AND NOT (reason:\"Recipient address rejected: mpcfg.co.cu\"  OR reason:\"Relay access denied\" OR reason:\"Sender address rejected: Correo Internacional Limitado\" OR reason:\"Recipient address rejected: 4 mail quota recipient, please come back later\" OR reason:\"Sender address rejected: You have no rights to send mail to our domain\" OR reason:\"Sender address rejected: Solo correo nacional\" OR reason:\"Sender address rejected: Account limit exceeded\")",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "title": "Top Domain Senders",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [
+        {
+          "text": "real_timestamp",
+          "value": "real_timestamp"
+        },
+        {
+          "text": "from",
+          "value": "from"
+        },
+        {
+          "text": "to",
+          "value": "to"
+        }
+      ],
+      "compactRowsEnabled": true,
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "datatablePagingType": "full_numbers",
+      "datatableTheme": "basic_theme",
+      "emptyData": false,
+      "fontSize": "90%",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 81
+      },
+      "hoverEnabled": true,
+      "id": 31,
+      "infoEnabled": true,
+      "lengthChangeEnabled": true,
+      "links": [],
+      "orderColumnEnabled": true,
+      "pagingTypes": [
+        {
+          "text": "Page number buttons only",
+          "value": "numbers"
+        },
+        {
+          "text": "'Previous' and 'Next' buttons only",
+          "value": "simple"
+        },
+        {
+          "text": "'Previous' and 'Next' buttons, plus page numbers",
+          "value": "simple_numbers"
+        },
+        {
+          "text": "'First', 'Previous', 'Next' and 'Last' buttons",
+          "value": "full"
+        },
+        {
+          "text": "'First', 'Previous', 'Next' and 'Last' buttons, plus page numbers",
+          "value": "full_numbers"
+        },
+        {
+          "text": "'First' and 'Last' buttons, plus page numbers",
+          "value": "first_last_numbers"
+        }
+      ],
+      "panelHeight": 401,
+      "rowNumbersEnabled": false,
+      "rowsPerPage": 10,
+      "scroll": false,
+      "scrollHeight": "default",
+      "searchEnabled": true,
+      "showCellBorders": true,
+      "showHeader": true,
+      "showRowBorders": false,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "stripedRowsEnabled": true,
+      "styles": [
+        {
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "real_timestamp",
+          "thresholds": [],
+          "type": "date",
+          "unit": "short"
+        },
+        {
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "pattern": "Count",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "hide": true,
+              "id": "1",
+              "meta": {},
+              "settings": {
+                "size": 1000000
+              },
+              "type": "raw_document"
+            }
+          ],
+          "query": "from:$from AND to:$to  AND to_domain:$to_domain AND NOT reason:\"Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10024\" AND NOT action:reject",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "themeOptions": {
+        "dark": "./css/datatable-dark.css",
+        "light": "./css/datatable-light.css"
+      },
+      "themes": [
+        {
+          "disabled": false,
+          "text": "Basic",
+          "value": "basic_theme"
+        },
+        {
+          "disabled": true,
+          "text": "Bootstrap",
+          "value": "bootstrap_theme"
+        },
+        {
+          "disabled": true,
+          "text": "Foundation",
+          "value": "foundation_theme"
+        },
+        {
+          "disabled": true,
+          "text": "ThemeRoller",
+          "value": "themeroller_theme"
+        }
+      ],
+      "title": "Out Mail",
+      "transform": "json",
+      "type": "briangann-datatable-panel"
+    },
+    {
+      "columns": [
+        {
+          "text": "real_timestamp",
+          "value": "real_timestamp"
+        },
+        {
+          "text": "from",
+          "value": "from"
+        },
+        {
+          "text": "to",
+          "value": "to"
+        }
+      ],
+      "compactRowsEnabled": true,
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "datatablePagingType": "full_numbers",
+      "datatableTheme": "basic_theme",
+      "emptyData": false,
+      "fontSize": "90%",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 81
+      },
+      "hoverEnabled": true,
+      "id": 30,
+      "infoEnabled": true,
+      "lengthChangeEnabled": true,
+      "links": [],
+      "orderColumnEnabled": true,
+      "pagingTypes": [
+        {
+          "text": "Page number buttons only",
+          "value": "numbers"
+        },
+        {
+          "text": "'Previous' and 'Next' buttons only",
+          "value": "simple"
+        },
+        {
+          "text": "'Previous' and 'Next' buttons, plus page numbers",
+          "value": "simple_numbers"
+        },
+        {
+          "text": "'First', 'Previous', 'Next' and 'Last' buttons",
+          "value": "full"
+        },
+        {
+          "text": "'First', 'Previous', 'Next' and 'Last' buttons, plus page numbers",
+          "value": "full_numbers"
+        },
+        {
+          "text": "'First' and 'Last' buttons, plus page numbers",
+          "value": "first_last_numbers"
+        }
+      ],
+      "panelHeight": 401,
+      "rowNumbersEnabled": false,
+      "rowsPerPage": 10,
+      "scroll": false,
+      "scrollHeight": "default",
+      "searchEnabled": true,
+      "showCellBorders": true,
+      "showHeader": true,
+      "showRowBorders": false,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "stripedRowsEnabled": true,
+      "styles": [
+        {
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "real_timestamp",
+          "type": "date"
+        },
+        {
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": false,
+          "pattern": "Count",
+          "sanitize": false,
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [],
+          "dsType": "elasticsearch",
+          "hide": false,
+          "metrics": [
+            {
+              "field": "select field",
+              "hide": true,
+              "id": "1",
+              "meta": {},
+              "settings": {
+                "size": 1000000
+              },
+              "type": "raw_document"
+            }
+          ],
+          "query": "from_domain:$from_domain AND to:$to_local_mail  AND from:$external_mail  AND reason:\"Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10024\" AND NOT action:reject",
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "themeOptions": {
+        "dark": "./css/datatable-dark.css",
+        "light": "./css/datatable-light.css"
+      },
+      "themes": [
+        {
+          "disabled": false,
+          "text": "Basic",
+          "value": "basic_theme"
+        },
+        {
+          "disabled": true,
+          "text": "Bootstrap",
+          "value": "bootstrap_theme"
+        },
+        {
+          "disabled": true,
+          "text": "Foundation",
+          "value": "foundation_theme"
+        },
+        {
+          "disabled": true,
+          "text": "ThemeRoller",
+          "value": "themeroller_theme"
+        }
+      ],
+      "title": "In Mail",
+      "transform": "json",
+      "type": "briangann-datatable-panel"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 92
+      },
+      "id": 26,
+      "panels": [],
+      "repeat": null,
+      "title": "Real time logs",
+      "type": "row"
+    },
+    {
+      "columns": [
+        {
+          "text": "real_timestamp",
+          "value": "real_timestamp"
+        },
+        {
+          "text": "message",
+          "value": "message"
+        }
+      ],
+      "compactRowsEnabled": false,
+      "datasource": "${DS_ZIMBRA-GRAYLOG}",
+      "datatablePagingType": "simple_numbers",
+      "datatableTheme": "basic_theme",
+      "emptyData": false,
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 93
+      },
+      "hoverEnabled": true,
+      "id": 23,
+      "infoEnabled": true,
+      "lengthChangeEnabled": true,
+      "links": [],
+      "orderColumnEnabled": true,
+      "pagingTypes": [
+        {
+          "text": "Page number buttons only",
+          "value": "numbers"
+        },
+        {
+          "text": "'Previous' and 'Next' buttons only",
+          "value": "simple"
+        },
+        {
+          "text": "'Previous' and 'Next' buttons, plus page numbers",
+          "value": "simple_numbers"
+        },
+        {
+          "text": "'First', 'Previous', 'Next' and 'Last' buttons",
+          "value": "full"
+        },
+        {
+          "text": "'First', 'Previous', 'Next' and 'Last' buttons, plus page numbers",
+          "value": "full_numbers"
+        },
+        {
+          "text": "'First' and 'Last' buttons, plus page numbers",
+          "value": "first_last_numbers"
+        }
+      ],
+      "panelHeight": 401,
+      "rowNumbersEnabled": false,
+      "rowsPerPage": 5,
+      "scroll": false,
+      "scrollHeight": "default",
+      "searchEnabled": true,
+      "showCellBorders": false,
+      "showHeader": true,
+      "showRowBorders": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "stripedRowsEnabled": true,
+      "styles": [
+        {
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "real_timestamp",
+          "thresholds": [],
+          "type": "date",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [],
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "meta": {},
+              "settings": {
+                "size": 10000
+              },
+              "type": "raw_document"
+            }
+          ],
+          "refId": "A",
+          "target": "",
+          "timeField": "real_timestamp"
+        }
+      ],
+      "themeOptions": {
+        "dark": "./css/datatable-dark.css",
+        "light": "./css/datatable-light.css"
+      },
+      "themes": [
+        {
+          "disabled": false,
+          "text": "Basic",
+          "value": "basic_theme"
+        },
+        {
+          "disabled": true,
+          "text": "Bootstrap",
+          "value": "bootstrap_theme"
+        },
+        {
+          "disabled": true,
+          "text": "Foundation",
+          "value": "foundation_theme"
+        },
+        {
+          "disabled": true,
+          "text": "ThemeRoller",
+          "value": "themeroller_theme"
+        }
+      ],
+      "title": "Real time Logs",
+      "transform": "json",
+      "type": "briangann-datatable-panel"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [
+    "Elasticsearch",
+    "Zimbra",
+    "mail",
+    "Logs Analyzer"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ZIMBRA-GRAYLOG}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "From Local mail",
+        "multi": true,
+        "name": "from",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\":\"from\",\"query\":\"NOT to_domain:mpcfg.co.cu\",\"size\": \"1000000\" }",
+        "refresh": 2,
+        "regex": "/.*@mpcfg.co.cu/",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ZIMBRA-GRAYLOG}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "To external Mail",
+        "multi": true,
+        "name": "to",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"to\",\"query\":\"NOT auditor@piler.mpcfg.co.cu AND from:$from\",\"size\": \"1000000\"} ",
+        "refresh": 2,
+        "regex": "^(?!.*mpcfg.co.cu).*$",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ZIMBRA-GRAYLOG}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "To External Domain",
+        "multi": true,
+        "name": "to_domain",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\":\"to_domain\",\"query\":\"from:$from\",\"size\": \"1000000\"} ",
+        "refresh": 2,
+        "regex": "^(?!.*mpcfg.co.cu).*$",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ZIMBRA-GRAYLOG}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "To Local Recipents",
+        "multi": true,
+        "name": "to_local_mail",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"to\",\"query\":\"NOT auditor@piler.mpcfg.co.cu\",\"size\": \"1000000\"} ",
+        "refresh": 2,
+        "regex": "/.*@mpcfg.co.cu/",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ZIMBRA-GRAYLOG}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "From External Mail",
+        "multi": true,
+        "name": "external_mail",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\":\"from\",\"query\":\"NOT from_domain:mpcfg.co.cu AND to:$to_local_mail\" ,\"size\": \"5000000\" } ",
+        "refresh": 2,
+        "regex": "^(?!.*mpcfg.co.cu).*$",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ZIMBRA-GRAYLOG}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "From External Domain",
+        "multi": true,
+        "name": "from_domain",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"from_domain\", \"query\":\"NOT from_domain:mpcfg.co.cu AND to:$to_local_mail\",\"size\": \"1000000\"} ",
+        "refresh": 2,
+        "regex": "^(?!.*mpcfg.co.cu).*$",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now/M",
+    "to": "now/M"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Zimbra-Graylog",
+  "uid": "000000056",
+  "version": 30,
+  "description": "Zimbra -> Filebeat -> Graylog -> Elasticsear

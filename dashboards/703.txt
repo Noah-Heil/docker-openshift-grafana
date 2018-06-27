@@ -1,0 +1,1355 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_OPSMIND",
+      "label": "OpsMind",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "description": "OpsMind-机器详情",
+  "editable": false,
+  "gnetId": 2568,
+  "graphTooltip": 0,
+  "hideControls": true,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": "30",
+      "panels": [
+        {
+          "content": "# 如果机器较多，建议先选择机器再展开监控图，否则数据过多，监控图打开速度很慢",
+          "height": "30",
+          "id": 4,
+          "links": [],
+          "mode": "markdown",
+          "span": 12,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": "350",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 1,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sort": "current",
+            "sortDesc": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "host"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "dog_load_avg{{dur=\"1\",host=-\"/$host/\"}}--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}",
+              "refId": "A",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Load1(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 60,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 0,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*/",
+              "color": "#7EB26D"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "1-avg(irate(dog_cpu_time{{cpu=~\".*\",host=-\"/$host/\",mode=\"idle\"}}[5m])) by (host)--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}",
+              "refId": "A",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU使用率(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "CPU",
+      "titleSize": "h1"
+    },
+    {
+      "collapse": true,
+      "height": "350",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 2,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*/",
+              "color": "#7EB26D"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "dog_mem_main_size{{host=-\"/$host/\",mode=\"used\"}} / on (host) sum(dog_mem_main_size{{host=-\"/$host/\",mode=-\"used,free,buffer,cache\"}}) by (host)--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}",
+              "refId": "A",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "内存使用率(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 117,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*使用量/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/.*总量/",
+              "color": "#EAB839",
+              "lines": false,
+              "pointradius": 1,
+              "points": true
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "dog_mem_main_size{{host=-\"/$host/\",mode=\"used\"}}--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}} 使用量",
+              "refId": "A",
+              "step": 300
+            },
+            {
+              "expr": "sum(dog_mem_main_size{host=-\"/$host/\",mode=-\"used,free,buffer,cache\"}) by (host)--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}} 总量",
+              "refId": "B",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "内存使用量(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "内存",
+      "titleSize": "h1"
+    },
+    {
+      "collapse": true,
+      "height": "350",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 118,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*发送/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/.*接收/",
+              "color": "#447EBC",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(dog_netdev_bytes{{host=-\"/$host/\",dev=\"$netdev\",dir=-\"tx\"}}[5m])--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}接收",
+              "refId": "A",
+              "step": 300
+            },
+            {
+              "expr": "irate(dog_netdev_bytes{{host=-\"/$host/\",dev=\"$netdev\",dir=-\"rx\"}}[5m])--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}发送",
+              "refId": "B",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$netdev--网卡收发带宽(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": "<-接收--发送->",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 122,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*发送包/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/.*接收包/",
+              "color": "#447EBC",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(dog_netdev_packets{{dev=\"$netdev\",dir=\"tx\",host=-\"/$host/\",type=\"success\"}}[5m])--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}发送包",
+              "refId": "A",
+              "step": 300
+            },
+            {
+              "expr": "irate(dog_netdev_packets{{dev=\"$netdev\",dir=\"rx\",host=-\"/$host/\",type=\"success\"}}[5m])--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}接收包",
+              "refId": "B",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$netdev--网卡收发包(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 123,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*发送错误包/",
+              "color": "#E24D42"
+            },
+            {
+              "alias": "/.*接收错误包/",
+              "color": "#EF843C",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(irate(dog_netdev_packets{{dev=\"$netdev\",dir=\"tx\",host=-\"/$host/\",type=-\"error,drop\"}}[5m])) by (host)--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}发送错误包",
+              "refId": "A",
+              "step": 300
+            },
+            {
+              "expr": "sum(irate(dog_netdev_packets{{dev=\"$netdev\",dir=\"rx\",host=-\"/$host/\",type=-\"error,drop\"}}[5m])) by (host)--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}接收错误包",
+              "refId": "B",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$netdev--网卡收发错误包(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "netdev",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "网络 ($netdev)",
+      "titleSize": "h3"
+    },
+    {
+      "collapse": true,
+      "height": "350",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 3,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*读/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/.*写/",
+              "color": "#447EBC",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(dog_disk_io_time{{dev=\"$diskdev\",host=-\"/$host/\",type=\"r\"}}[5m])/1000--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}读",
+              "refId": "A",
+              "step": 300
+            },
+            {
+              "expr": "irate(dog_disk_io_time{{dev=\"$diskdev\",host=-\"/$host/\",type=\"w\"}}[5m])/1000--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}写",
+              "refId": "B",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$diskdev--\bioutil%(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": "<--写--读-->",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "fill": 0,
+          "id": 124,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*读/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/.*写/",
+              "color": "#447EBC",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(dog_disk_io_complete{{dev=\"$diskdev\",host=-\"/$host/\",type=\"r\"}}[5m])--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}读",
+              "refId": "A",
+              "step": 300
+            },
+            {
+              "expr": "irate(dog_disk_io_complete{{dev=\"$diskdev\",host=-\"/$host/\",type=\"w\"}}[5m])--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}写",
+              "refId": "B",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$diskdev--IO次数(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "iops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 125,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*读/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/.*写/",
+              "color": "#447EBC",
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(dog_disk_io_bytes{{dev=\"$diskdev\",host=-\"/$host/\",type=\"r\"}}[5m])--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}读",
+              "refId": "A",
+              "step": 300
+            },
+            {
+              "expr": "irate(dog_disk_io_bytes{{dev=\"$diskdev\",host=-\"/$host/\",type=\"w\"}}[5m])--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}写",
+              "refId": "B",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$diskdev--IO带宽(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": "<--写--读-->",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 126,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*/",
+              "color": "#7EB26D"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "dog_fs_size{{dev=\"$diskdev\",host=-\"/$host/\",mode=\"used\"}} / on (host)  sum(dog_fs_size{{dev=\"$diskdev\",host=-\"/$host/\",mode=-\"used,free\"}}) by (host)--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}",
+              "refId": "A",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$diskdev--文件系统使用率(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_OPSMIND}",
+          "decimals": 0,
+          "fill": 0,
+          "id": 127,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/.*使用/",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "/.*全部/",
+              "color": "#EAB839",
+              "lines": false,
+              "pointradius": 1,
+              "points": true
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "dog_fs_size{{dev=\"$diskdev\",host=-\"/$host/\",mode=\"used\"}}--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}使用",
+              "refId": "A",
+              "step": 300
+            },
+            {
+              "expr": "sum(dog_fs_size{{dev=\"$diskdev\",host=-\"/$host/\",mode=-\"used,free\"}}) by (host)--aggr-->$aggr",
+              "intervalFactor": 5,
+              "legendFormat": "{{host}}全部",
+              "refId": "B",
+              "step": 300
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$diskdev--文件系统使用值(聚合:$aggr)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "diskdev",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "磁盘 ($diskdev)",
+      "titleSize": "h3"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "OpsMind"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "服务",
+        "multi": true,
+        "name": "service",
+        "options": [],
+        "query": "label_values(xhost{cluster=-\"*\",app=-\"*\",service=-\"*\",host=-\"*\",ret=\"name\"},service)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "集群",
+        "multi": true,
+        "name": "cluster",
+        "options": [],
+        "query": "label_values(xhost{cluster=-\"*\",app=-\"*\",service=-\"/$service/\",host=-\"*\",ret=\"name\"},cluster)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "*",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "业务",
+        "multi": true,
+        "name": "app",
+        "options": [],
+        "query": "label_values(xhost{cluster=-\"/$cluster/\",app=-\"*\",service=-\"/$service/\",host=-\"*\",ret=\"name\"},app)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "机器",
+        "multi": true,
+        "name": "host",
+        "options": [],
+        "query": "label_values(xhost{cluster=-\"/$cluster/\",app=-\"/$app/\",service=-\"/$service/\",host=-\"*\",ret=\"name\"},host)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "none",
+          "value": "none"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "聚合",
+        "multi": false,
+        "name": "aggr",
+        "options": [
+          {
+            "selected": true,
+            "text": "none",
+            "value": "none"
+          },
+          {
+            "selected": false,
+            "text": "sum",
+            "value": "sum"
+          },
+          {
+            "selected": false,
+            "text": "avg",
+            "value": "avg"
+          },
+          {
+            "selected": false,
+            "text": "top10",
+            "value": "top10"
+          },
+          {
+            "selected": false,
+            "text": "bottom10",
+            "value": "bottom10"
+          },
+          {
+            "selected": false,
+            "text": "max",
+            "value": "max"
+          },
+          {
+            "selected": false,
+            "text": "min",
+            "value": "min"
+          }
+        ],
+        "query": "none,sum,avg,top10, bottom10,max,min",
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 2,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "netdev",
+        "options": [],
+        "query": "label_values(list_devs{host=-\"/$host/\"},network)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_OPSMIND}",
+        "hide": 2,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "diskdev",
+        "options": [],
+        "query": "label_values(list_devs{host=-\"/$host/\"},disk)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now

@@ -1,0 +1,1260 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_ZABBIX",
+      "label": "Zabbix",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "alexanderzobnin-zabbix-datasource",
+      "pluginName": "Zabbix"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "alexanderzobnin-zabbix-datasource",
+      "name": "Zabbix",
+      "version": "1.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.1.2"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.1.4"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "description": "Dashboard universal para Hosts com visualização dinâmica e seleção múltipla de itens",
+  "editable": true,
+  "gnetId": 1760,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": "30s",
+  "rows": [
+    {
+      "collapse": true,
+      "height": "250px",
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "decimals": null,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 15,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "repeat": null,
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "/Host name (.*)/"
+              },
+              "mode": 2,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            }
+          ],
+          "thresholds": "",
+          "title": "Name",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "decimals": 0,
+          "format": "s",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 56,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "/System uptime/"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            }
+          ],
+          "thresholds": "",
+          "title": "Uptime",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(36, 168, 32, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "decimals": null,
+          "format": "short",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 57,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "/Agent ping/"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            }
+          ],
+          "thresholds": "1",
+          "title": "Status",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "UP",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "DOWN",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "columns": [
+            {
+              "text": "Current",
+              "value": "current"
+            }
+          ],
+          "fontSize": "100%",
+          "id": 14,
+          "links": [],
+          "pageSize": null,
+          "repeat": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "span": 5,
+          "styles": [
+            {
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(41, 165, 28, 0.93)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": null,
+              "pattern": "/.*/",
+              "thresholds": [
+                "1"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "application": {
+                "filter": "/service/"
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "/service/"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            }
+          ],
+          "title": "$host Services",
+          "transform": "timeseries_aggregations",
+          "type": "table"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 223, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 97,
+          "interval": null,
+          "links": [],
+          "mappingType": 2,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "0",
+              "text": "OK",
+              "to": "50"
+            },
+            {
+              "from": "51",
+              "text": "WARNING",
+              "to": "80"
+            },
+            {
+              "from": "81",
+              "text": "CRITICAL",
+              "to": "100"
+            }
+          ],
+          "span": 4,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": true,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Processor load (1 min average)"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "CPU user time"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B"
+            }
+          ],
+          "thresholds": "50,80",
+          "title": "CPU Usage",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": ""
+          },
+          "datasource": "${DS_ZABBIX}",
+          "fontSize": "80%",
+          "format": "bytes",
+          "id": 153,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": false
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 4,
+          "strokeWidth": "10",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Total memory"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Free memory"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B"
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Available memory"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "C"
+            }
+          ],
+          "title": "Memory Usage",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 223, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ZABBIX}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 206,
+          "interval": null,
+          "links": [],
+          "mappingType": 2,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [],
+          "span": 4,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Free disk space on / (percentage)"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Free disk space on C: (percentage)"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B"
+            }
+          ],
+          "thresholds": "5,15",
+          "title": "% Disk Free",
+          "type": "singlestat",
+          "valueFontSize": "70%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "fill": 1,
+          "id": 227,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "hide": false,
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "/CPU/"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "hide": false,
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Processor load (1 min average)"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "D"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Graph",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": "",
+              "logBase": 1,
+              "max": "100",
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "fill": 1,
+          "id": 222,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "minSpan": null,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "hide": false,
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Available memory"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "hide": false,
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Free memory"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B"
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "hide": false,
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "/Total memory/"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Graph",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "decimals": 2,
+          "fill": 1,
+          "id": 224,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "minSpan": null,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Free disk space on /"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "Free disk space on C:"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Free disk space history",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ZABBIX}",
+          "fill": 1,
+          "id": 207,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": null,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "netif",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host"
+              },
+              "item": {
+                "filter": "/$netif/"
+              },
+              "mode": 0,
+              "options": {
+                "showDisabledItems": false
+              },
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network Traffic on $netif",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "host",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "System info - $host",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "zabbix"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ZABBIX}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Grupo",
+        "multi": false,
+        "name": "grupo",
+        "options": [],
+        "query": "*",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_ZABBIX}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Host",
+        "multi": true,
+        "name": "host",
+        "options": [],
+        "query": "$grupo.*",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ZABBIX}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Interface",
+        "multi": true,
+        "name": "netif",
+        "options": [],
+        "query": "*.$host.Network interfaces.*",
+        "refresh": 1,
+        "regex": "/(?:Incoming|Outgoing) network traffic on (.*)/",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Hosts Dashboard by Lessa",
+  "version"

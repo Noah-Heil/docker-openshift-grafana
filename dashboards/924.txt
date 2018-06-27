@@ -1,0 +1,2465 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_TELEGRAF_@ INFLUXDB",
+      "label": "telegraf @ influxdb",
+      "description": "Data are polled using Telegraf / Net-SNMP",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    },
+    {
+      "name": "DS_SYSLOG_@ ELASTICSEARCH",
+      "label": "syslog @ elasticsearch",
+      "description": "Logs are parsed using Logstash",
+      "type": "datasource",
+      "pluginId": "elasticsearch",
+      "pluginName": "Elasticsearch"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "version": "3.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.6.0"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": 6549,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": true,
+      "height": "250",
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_TELEGRAF_@ INFLUXDB}",
+          "decimals": 0,
+          "format": "s",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "128px",
+          "hideTimeOverride": true,
+          "id": 62,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "time.up"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": "",
+          "timeShift": "5m",
+          "title": "Uptime",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_SYSLOG_@ ELASTICSEARCH}",
+          "format": "locale",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "128px",
+          "hideTimeOverride": true,
+          "id": 30,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$my_interval",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "host:$hostname AND program:unbound AND _exists_:ns_record_type AND (clientip=$clientip AND NOT clientip:$ignore_ip)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.num.queries"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": "",
+          "timeShift": "5m",
+          "title": "Queries per $my_interval",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_TELEGRAF_@ INFLUXDB}",
+          "decimals": 1,
+          "format": "decbytes",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "128px",
+          "id": 80,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT last(\"mem.cache.message\") + last(\"mem.cache.rrset\") FROM \"snmp_unbound\" WHERE (\"sysName\" =~ /^$hostname$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": "",
+          "title": "Memory Cache Size",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_TELEGRAF_@ INFLUXDB}",
+          "decimals": null,
+          "format": "locale",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "128px",
+          "id": 81,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT last(\"msg.cache.count\") + last(\"rrset.cache.count\") FROM \"snmp_unbound\" WHERE (\"sysName\" =~ /^$hostname$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": "",
+          "title": "Memory Cache Items",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF_@ INFLUXDB}",
+          "fill": 1,
+          "height": "",
+          "id": 61,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/(Ratelimited|Prefetch|Expired|Recursive)/",
+              "bars": false,
+              "fill": 0,
+              "lines": true,
+              "linewidth": 2,
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 9,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Cache Hit",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.num.cachehits"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ]
+            },
+            {
+              "alias": "Cache Miss",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.num.cachemiss"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ]
+            },
+            {
+              "alias": "Ratelimited",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.num.queries_ip_ratelimited"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ]
+            },
+            {
+              "alias": "Prefetch",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"exec_value\" WHERE (\"host\" =~ /^$hostname$/ AND \"instance\" = 'unbound' AND \"type_instance\" = 'total_num_queries_ip_ratelimited') AND $timeFilter GROUP BY time($my_interval) fill(null)",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.num.prefetch"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ]
+            },
+            {
+              "alias": "Expired",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"exec_value\" WHERE (\"host\" =~ /^$hostname$/ AND \"instance\" = 'unbound' AND \"type_instance\" = 'total_num_queries_ip_ratelimited') AND $timeFilter GROUP BY time($my_interval) fill(null)",
+              "rawQuery": false,
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.num.zero_ttl"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ]
+            },
+            {
+              "alias": "Recursive",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"exec_value\" WHERE (\"host\" =~ /^$hostname$/ AND \"instance\" = 'unbound' AND \"type_instance\" = 'total_num_queries_ip_ratelimited') AND $timeFilter GROUP BY time($my_interval) fill(null)",
+              "rawQuery": false,
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.num.recursivereplies"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "DNS Cache Performance per $my_interval",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "locale",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_SYSLOG_@ ELASTICSEARCH}",
+          "fontSize": "80%",
+          "format": "locale",
+          "height": "",
+          "id": 76,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "percentageDecimals": 0,
+            "show": true,
+            "values": false
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 3,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "alias": "Hit",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$my_interval",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "host:$hostname AND program:unbound AND from_cache:1 AND (clientip=$clientip AND NOT clientip:$ignore_ip)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.num.cachehits"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Hit"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "total.num.cachemiss"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Miss"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ],
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "Miss",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$my_interval",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "host:$hostname AND program:unbound AND from_cache:0 AND NOT clientip:$ignore_ip",
+              "refId": "B",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Client Cache Ratio",
+          "transparent": false,
+          "type": "grafana-piechart-panel",
+          "valueName": "avg"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF_@ INFLUXDB}",
+          "fill": 0,
+          "id": 68,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "median",
+              "bars": true,
+              "lines": false,
+              "zindex": 0
+            },
+            {
+              "alias": "Size",
+              "fill": 4,
+              "linewidth": 0,
+              "steppedLine": true,
+              "yaxis": 2,
+              "zindex": -3
+            },
+            {
+              "alias": "Drops",
+              "bars": true,
+              "lines": false,
+              "yaxis": 2,
+              "zindex": -2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.recursion.time.avg"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "average"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "total.recursion.time.median"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "median"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ]
+            },
+            {
+              "alias": "Size",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.requestlist.current.all"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ]
+            },
+            {
+              "alias": "Drops",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "total.requestlist.exceeded"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Recursive Requests per $my_interval",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "s",
+              "label": "Recursion Time",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "locale",
+              "label": "Recursion Request List",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "General Service",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_SYSLOG_@ ELASTICSEARCH}",
+          "fill": 0,
+          "height": "",
+          "id": 71,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "ns_record_type.raw",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "asc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$my_interval",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "host:$hostname AND program:unbound AND _exists_:ns_record_type AND (clientip=$clientip AND NOT clientip:$ignore_ip)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Query Resource Record (RR)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "locale",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_SYSLOG_@ ELASTICSEARCH}",
+          "fill": 0,
+          "height": "",
+          "id": 72,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "NOERROR",
+              "bars": true,
+              "lines": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "ns_rcode.raw",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "asc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$my_interval",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "0"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "host:$hostname AND program:unbound AND _exists_:ns_rcode AND (clientip=$clientip AND NOT clientip:$ignore_ip)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.NOERROR"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "No Error"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.FORMERR"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Format Error"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.SERVFAIL"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Server Failure"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.NXDOMAIN"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Non-Existent Domain"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.NOTIMPL"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Not Implemented"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.REFUSED"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Query Refused"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Reply Code",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "locale",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "DNS Operations per $my_interval",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_SYSLOG_@ ELASTICSEARCH}",
+          "fill": 0,
+          "height": "",
+          "id": 73,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 2,
+          "links": [],
+          "minSpan": 12,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "clientip.raw",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$my_interval",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "groupBy": [
+                {
+                  "params": [
+                    "$my_interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "0"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp_unbound",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "host:$hostname AND program:unbound AND _exists_:ns_record_type AND (clientip=$clientip AND NOT clientip:$ignore_ip)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.NOERROR"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "No Error"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.FORMERR"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Format Error"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.SERVFAIL"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Server Failure"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.NXDOMAIN"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Non-Existent Domain"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.NOTIMPL"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Not Implemented"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "num.answer.rcode.REFUSED"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Query Refused"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "sysName",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                }
+              ],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Client requests distribution per $my_interval",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "locale",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_SYSLOG_@ ELASTICSEARCH}",
+          "fontSize": "80%",
+          "format": "percent",
+          "height": "",
+          "id": 75,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "percentageDecimals": 1,
+            "show": true,
+            "values": false
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "minSpan": 5,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 5,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "ns_record_name.raw",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "5"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "host:$hostname AND program:unbound AND _exists_:ns_record_name AND (clientip=$clientip AND NOT clientip:$ignore_ip)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [],
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Top 5 Record Name",
+          "type": "grafana-piechart-panel",
+          "valueName": "avg"
+        },
+        {
+          "columns": [],
+          "datasource": "${DS_SYSLOG_@ ELASTICSEARCH}",
+          "description": "",
+          "fontSize": "100%",
+          "id": 82,
+          "links": [],
+          "minSpan": 7,
+          "pageSize": 5,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 1,
+            "desc": true
+          },
+          "span": 7,
+          "styles": [
+            {
+              "alias": "Fully Qualified Domain Name",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "pattern": "ns_record_name.raw",
+              "preserveFormat": false,
+              "sanitize": true,
+              "thresholds": [],
+              "type": "string",
+              "unit": "short"
+            },
+            {
+              "alias": "Number of lookups",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "pattern": "Count",
+              "thresholds": [],
+              "type": "number",
+              "unit": "locale"
+            },
+            {
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "FQDN",
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "ns_record_name.raw",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "host:$hostname AND program:unbound AND _exists_:ns_record_name AND (clientip=$clientip AND NOT clientip:$ignore_ip)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [],
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Client Usage",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "unbound",
+    "openbsd",
+    "telegraf",
+    "elasticsearch",
+    "snmp",
+    "influxdb"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_TELEGRAF_@ INFLUXDB}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Hostname",
+        "multi": true,
+        "name": "hostname",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"snmp_unbound\" WITH KEY = \"sysName\"",
+        "refresh": 2,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": "${DS_SYSLOG_@ ELASTICSEARCH}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Client IP",
+        "multi": true,
+        "name": "clientip",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"clientip.raw\", \"query\": \"host:$hostname AND program:unbound\"}",
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "auto": false,
+        "auto_count": 30,
+        "auto_min": "10s",
+        "current": {
+          "text": "127.0.0.1",
+          "value": "127.0.0.1"
+        },
+        "hide": 0,
+        "label": "Ignore client IP",
+        "name": "ignore_ip",
+        "options": [
+          {
+            "selected": false,
+            "text": "None",
+            "value": "None"
+          },
+          {
+            "selected": true,
+            "text": "127.0.0.1",
+            "value": "127.0.0.1"
+          }
+        ],
+        "query": "None,\"127.0.0.1\"",
+        "refresh": 2,
+        "type": "interval"
+      },
+      {
+        "auto": true,
+        "auto_count": 30,
+        "auto_min": "1m",
+        "current": {
+          "text": "1h",
+          "value": "1h"
+        },
+        "hide": 0,
+        "label": "Interval",
+        "name": "my_interval",
+        "options": [
+          {
+            "selected": false,
+            "text": "auto",
+            "value": "$__auto_interval"
+          },
+          {
+            "selected": false,
+            "text": "1s",
+            "value": "1s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": true,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "1s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "refresh": 2,
+        "type": "interval"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Unbound DNS resolver",
+  "version": 52,
+  "description": "Usage statistics for the Unbound daemon on OpenBSD"
+}

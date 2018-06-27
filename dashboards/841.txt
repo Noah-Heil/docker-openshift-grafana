@@ -1,0 +1,558 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_STATSEEKER",
+      "label": "Statseeker",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "statseeker-datasource",
+      "pluginName": "Statseeker"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.4.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "statseeker-datasource",
+      "name": "Statseeker",
+      "version": "5.2.0"
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 3454,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": 271,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_STATSEEKER}",
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "port",
+          "seriesOverrides": [
+            {
+              "alias": "/Tx|Out/",
+              "color": "#1F78C1"
+            },
+            {
+              "alias": "/Rx|In/",
+              "color": "#BF1B00"
+            },
+            {
+              "alias": "/InOut/",
+              "color": "#508642"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "adv_filter": null,
+              "fields": [
+                {
+                  "format": "Select format",
+                  "hide": true,
+                  "name": "id"
+                },
+                {
+                  "alias": "",
+                  "format": "$TS_format",
+                  "hide": false,
+                  "name": "$fields"
+                },
+                {
+                  "format": "Select format",
+                  "hide": true,
+                  "name": "deviceid"
+                },
+                {
+                  "format": "Select format",
+                  "hide": true,
+                  "name": "name"
+                }
+              ],
+              "filters": [
+                {
+                  "field": "deviceid",
+                  "format": "Select format",
+                  "query": "= $device"
+                },
+                {
+                  "field": "name",
+                  "format": "Select format",
+                  "query": "= $port_name"
+                }
+              ],
+              "limit": "0",
+              "object": "cdt_port",
+              "object_opts": null,
+              "offset": 0,
+              "output": "timeseries",
+              "refId": "A",
+              "sortby": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$fields - $port_name $TS_format",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "fields",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Row title",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_STATSEEKER}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Device",
+        "multi": false,
+        "name": "device",
+        "options": [],
+        "query": "{\"object\":\"cdt_device\",\"fields\":[{\"name\":\"id\"},{\"name\":\"name\"}],\"filters\":[],\"sortby\":[],\"limit\":\"0\",\"offset\":0,\"output\":\"table\"}",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_STATSEEKER}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "interface",
+        "multi": false,
+        "name": "port_name",
+        "options": [],
+        "query": "{\"object\":\"cdt_port\",\"object_opts\":null,\"fields\":[{\"name\":\"name\",\"format\":\"Select format\",\"hide\":false},{\"name\":\"deviceid\",\"format\":\"Select format\",\"hide\":true}],\"filters\":[{\"field\":\"deviceid\",\"format\":\"Select format\",\"query\":\"= $device\"}],\"adv_filter\":null,\"sortby\":[],\"limit\":\"0\",\"offset\":0,\"output\":\"table\",\"refId\":\"A\"}",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": "Fields",
+        "multi": true,
+        "name": "fields",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "InBroadcastPkts",
+            "value": "InBroadcastPkts"
+          },
+          {
+            "selected": false,
+            "text": "InBroadcastPps",
+            "value": "InBroadcastPps"
+          },
+          {
+            "selected": false,
+            "text": "InErrors",
+            "value": "InErrors"
+          },
+          {
+            "selected": false,
+            "text": "InMulticastPkts",
+            "value": "InMulticastPkts"
+          },
+          {
+            "selected": false,
+            "text": "InMulticastPps",
+            "value": "InMulticastPps"
+          },
+          {
+            "selected": false,
+            "text": "InOctets",
+            "value": "InOctets"
+          },
+          {
+            "selected": false,
+            "text": "InOutBroadcastPkts",
+            "value": "InOutBroadcastPkts"
+          },
+          {
+            "selected": false,
+            "text": "InOutDiscards",
+            "value": "InOutDiscards"
+          },
+          {
+            "selected": false,
+            "text": "InOutErrors",
+            "value": "InOutErrors"
+          },
+          {
+            "selected": false,
+            "text": "InOutMulticastPkts",
+            "value": "InOutMulticastPkts"
+          },
+          {
+            "selected": false,
+            "text": "InOutOctets",
+            "value": "InOutOctets"
+          },
+          {
+            "selected": false,
+            "text": "InOutUcastPkts",
+            "value": "InOutUcastPkts"
+          },
+          {
+            "selected": false,
+            "text": "InUcastPkts",
+            "value": "InUcastPkts"
+          },
+          {
+            "selected": false,
+            "text": "InUcastPps",
+            "value": "InUcastPps"
+          },
+          {
+            "selected": false,
+            "text": "OutBroadcastPkts",
+            "value": "OutBroadcastPkts"
+          },
+          {
+            "selected": false,
+            "text": "OutBroadcastPps",
+            "value": "OutBroadcastPps"
+          },
+          {
+            "selected": false,
+            "text": "OutErrors",
+            "value": "OutErrors"
+          },
+          {
+            "selected": false,
+            "text": "OutMulticastPkts",
+            "value": "OutMulticastPkts"
+          },
+          {
+            "selected": false,
+            "text": "OutMulticastPps",
+            "value": "OutMulticastPps"
+          },
+          {
+            "selected": false,
+            "text": "OutOctets",
+            "value": "OutOctets"
+          },
+          {
+            "selected": false,
+            "text": "OutUcastPkts",
+            "value": "OutUcastPkts"
+          },
+          {
+            "selected": false,
+            "text": "OutUcastPps",
+            "value": "OutUcastPps"
+          },
+          {
+            "selected": false,
+            "text": "RxBps",
+            "value": "RxBps"
+          },
+          {
+            "selected": false,
+            "text": "RxDiscardsPercent",
+            "value": "RxDiscardsPercent"
+          },
+          {
+            "selected": false,
+            "text": "RxErrorPercent",
+            "value": "RxErrorPercent"
+          },
+          {
+            "selected": false,
+            "text": "RxTxDiscardsPercent",
+            "value": "RxTxDiscardsPercent"
+          },
+          {
+            "selected": false,
+            "text": "RxTxErrorPercent",
+            "value": "RxTxErrorPercent"
+          },
+          {
+            "selected": false,
+            "text": "RxUtil",
+            "value": "RxUtil"
+          },
+          {
+            "selected": false,
+            "text": "TxBps",
+            "value": "TxBps"
+          },
+          {
+            "selected": false,
+            "text": "TxDiscardsPercent",
+            "value": "TxDiscardsPercent"
+          },
+          {
+            "selected": false,
+            "text": "TxErrorPercent",
+            "value": "TxErrorPercent"
+          },
+          {
+            "selected": false,
+            "text": "TxUtil",
+            "value": "TxUtil"
+          }
+        ],
+        "query": "InBroadcastPkts,InBroadcastPps,InErrors,InMulticastPkts,InMulticastPps,InOctets,InOutBroadcastPkts,InOutDiscards,InOutErrors,InOutMulticastPkts,InOutOctets,InOutUcastPkts,InUcastPkts,InUcastPps,OutBroadcastPkts,OutBroadcastPps,OutErrors,OutMulticastPkts,OutMulticastPps,OutOctets,OutUcastPkts,OutUcastPps,RxBps,RxDiscardsPercent,RxErrorPercent,RxTxDiscardsPercent,RxTxErrorPercent,RxUtil,TxBps,TxDiscardsPercent,TxErrorPercent,TxUtil",
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "vals",
+          "value": "vals"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "TS_format",
+        "multi": false,
+        "name": "TS_format",
+        "options": [
+          {
+            "selected": false,
+            "text": "count",
+            "value": "count"
+          },
+          {
+            "selected": false,
+            "text": "trendline_daily_change",
+            "value": "trendline_daily_change"
+          },
+          {
+            "selected": false,
+            "text": "avg",
+            "value": "avg"
+          },
+          {
+            "selected": false,
+            "text": "95th",
+            "value": "95th"
+          },
+          {
+            "selected": false,
+            "text": "min",
+            "value": "min"
+          },
+          {
+            "selected": false,
+            "text": "max",
+            "value": "max"
+          },
+          {
+            "selected": false,
+            "text": "start_time",
+            "value": "start_time"
+          },
+          {
+            "selected": false,
+            "text": "trendline_predict",
+            "value": "trendline_predict"
+          },
+          {
+            "selected": false,
+            "text": "trendline_upr",
+            "value": "trendline_upr"
+          },
+          {
+            "selected": false,
+            "text": "median",
+            "value": "median"
+          },
+          {
+            "selected": false,
+            "text": "percentile",
+            "value": "percentile"
+          },
+          {
+            "selected": false,
+            "text": "trendline_start",
+            "value": "trendline_start"
+          },
+          {
+            "selected": false,
+            "text": "stddev",
+            "value": "stddev"
+          },
+          {
+            "selected": true,
+            "text": "vals",
+            "value": "vals"
+          },
+          {
+            "selected": false,
+            "text": "trendline_fit",
+            "value": "trendline_fit"
+          },
+          {
+            "selected": false,
+            "text": "total",
+            "value": "total"
+          },
+          {
+            "selected": false,
+            "text": "trendline_lwr",
+            "value": "trendline_lwr"
+          },
+          {
+            "selected": false,
+            "text": "cvals",
+            "value": "cvals"
+          },
+          {
+            "selected": false,
+            "text": "trendline_strength",
+            "value": "trendline_strength"
+          }
+        ],
+        "query": "count,trendline_daily_change,avg,95th,min,max,start_time,trendline_predict,trendline_upr,median,percentile,trendline_start,stddev,vals,trendline_fit,total,trendline_lwr,cvals,trendline_strength",
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Statseeker Interface Details",
+  "version": 9
+}

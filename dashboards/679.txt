@@ -1,0 +1,749 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_OPENNMS_PERFORMANCE",
+      "label": "OpenNMS Performance",
+      "description": "To be used with OpenNMS Helm 1.1.0",
+      "type": "datasource",
+      "pluginId": "opennms-helm-performance-datasource",
+      "pluginName": "OpenNMS Performance"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.6.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "opennms-helm-performance-datasource",
+      "name": "OpenNMS Performance",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": 6006,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": 251,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 21,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "AvgMsgSize",
+              "label": "Average message size",
+              "nodeId": "$opennms",
+              "refId": "G",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "MaxMsgSize",
+              "label": "Max Message Size",
+              "nodeId": "$opennms",
+              "refId": "H",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "MinMsgSize",
+              "label": "Min Message Size",
+              "nodeId": "$opennms",
+              "refId": "I",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Message sizes ($opennms)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 19,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total dequeue count",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "Total message count",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "TtlEnqCnt",
+              "label": "Total enqueue count",
+              "nodeId": "$opennms",
+              "refId": "B",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "TtlDeqCnt",
+              "label": "Total dequeue count",
+              "nodeId": "$opennms",
+              "refId": "C",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "TtlMsgCnt",
+              "label": "Total message count",
+              "nodeId": "$opennms",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Messages ($opennms)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Messages",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 277,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 20,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Total Consumer Count",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "TtlConsumerCnt",
+              "label": "Total Consumer Count",
+              "nodeId": "$opennms",
+              "refId": "D",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "TtlProdCnt",
+              "label": "Total producer count",
+              "nodeId": "$opennms",
+              "refId": "E",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Producer / Consumer ($opennms)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Producer / Consumer",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 22,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Memory percent usage",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "MemLimit",
+              "label": "Memory limit",
+              "nodeId": "$opennms",
+              "refId": "J",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "MemPctUsage",
+              "hide": true,
+              "label": "Memory percent usage",
+              "nodeId": "$opennms",
+              "refId": "K",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "expression": "MemLimit * MemPctUsage",
+              "label": "Memory used",
+              "refId": "A",
+              "type": "expression"
+            },
+            {
+              "expression": "MemLimit * (1.0 - MemPctUsage)",
+              "label": "Memory free",
+              "refId": "B",
+              "type": "expression"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory ($opennms)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 2,
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 30,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Store percent usage",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "StoreLimit",
+              "label": "Store limit",
+              "nodeId": "$opennms",
+              "refId": "J",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "StorePctUsage",
+              "hide": true,
+              "label": "Store percent usage",
+              "nodeId": "$opennms",
+              "refId": "K",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "expression": "StoreLimit * StorePctUsage",
+              "label": "Store used",
+              "refId": "A",
+              "type": "expression"
+            },
+            {
+              "expression": "StoreLimit * (1.0 - StorePctUsage)",
+              "label": "Store free",
+              "refId": "B",
+              "type": "expression"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Store ($opennms)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 2,
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_OPENNMS_PERFORMANCE}",
+          "fill": 1,
+          "id": 31,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Temp percent usage",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "TempLimit",
+              "label": "Temp limit",
+              "nodeId": "$opennms",
+              "refId": "J",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "TempPctUsage",
+              "hide": true,
+              "label": "Temp percent usage",
+              "nodeId": "$opennms",
+              "refId": "K",
+              "resourceId": "interfaceSnmp[opennms-jvm]",
+              "type": "attribute"
+            },
+            {
+              "expression": "TempLimit * TempPctUsage",
+              "label": "Temp used",
+              "refId": "A",
+              "type": "expression"
+            },
+            {
+              "expression": "TempLimit * (1.0 - TempPctUsage)",
+              "label": "Temp free",
+              "refId": "B",
+              "type": "expression"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Temp ($opennms)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 2,
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Limits",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "opennms",
+    "activemq",
+    "jmx"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_OPENNMS_PERFORMANCE}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "",
+        "multi": false,
+        "name": "opennms",
+        "options": [],
+        "query": "nodeFilter(serviceName like 'OpenNMS-JVM')",
+        "refresh": 2,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now-6m"
+  },
+  "timepicker": {
+    "nowDelay": "6m",
+    "refresh_intervals": [
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "OpenNMS ActiveMQ",
+  "version": 3,
+  "description": "Monitor the backbone of OpenNMS"
+}

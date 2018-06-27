@@ -1,0 +1,4188 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_INFLUXDB",
+      "label": "InfluxDB",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    },
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.6.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": 4755,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": "5m",
+  "rows": [
+    {
+      "collapse": true,
+      "height": 317,
+      "panels": [
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    1
+                  ],
+                  "type": "lt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              },
+              {
+                "evaluator": {
+                  "params": [
+                    1
+                  ],
+                  "type": "lt"
+                },
+                "operator": {
+                  "type": "or"
+                },
+                "query": {
+                  "params": [
+                    "B",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              },
+              {
+                "evaluator": {
+                  "params": [
+                    1
+                  ],
+                  "type": "lt"
+                },
+                "operator": {
+                  "type": "or"
+                },
+                "query": {
+                  "params": [
+                    "C",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "30m",
+            "handler": 1,
+            "name": "Mapi Connectivity alert",
+            "noDataState": "no_data",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "Этот командлет выполняет вход в указанный почтовый ящик (или в почтовый ящик SystemMailbox, если не указан параметр Identity) и извлекает список элементов папки \"Входящие\". С помощью подключения к почтовым ящикам проверяются два важнейших протокола, используемых при подключении клиента к серверу почтовых ящиков: MAPI и LDAP. Во время проверки подлинности командлет Test-MapiConnectivity косвенно проверяет работоспособность сервера MAPI, хранилища Exchange и DSAccess (Directory Service Access).",
+          "fill": 1,
+          "id": 17,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Main",
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mapi",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mapi_main"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            },
+            {
+              "alias": "Archive",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "exec_mapi",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mapi_archive"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            },
+            {
+              "alias": "Etc",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "exec_mapi",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mapi_etc"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "lt",
+              "value": 1
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mapi Connectivity",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    1
+                  ],
+                  "type": "lt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              },
+              {
+                "evaluator": {
+                  "params": [
+                    1
+                  ],
+                  "type": "lt"
+                },
+                "operator": {
+                  "type": "or"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              },
+              {
+                "evaluator": {
+                  "params": [
+                    1
+                  ],
+                  "type": "lt"
+                },
+                "operator": {
+                  "type": "or"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "30m",
+            "handler": 1,
+            "name": "Mount Databases alert",
+            "noDataState": "no_data",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "",
+          "fill": 1,
+          "id": 18,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Main",
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mount_main",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Mounted_main"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            },
+            {
+              "alias": "Archive",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "exec_mount_main",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Mounted_archive"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            },
+            {
+              "alias": "Etc",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "exec_mount_main",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Mounted_etc"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "lt",
+              "value": 1
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mount Databases",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    2424
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "max"
+                },
+                "type": "query"
+              },
+              {
+                "evaluator": {
+                  "params": [
+                    543
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "or"
+                },
+                "query": {
+                  "params": [
+                    "B",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "max"
+                },
+                "type": "query"
+              },
+              {
+                "evaluator": {
+                  "params": [
+                    400
+                  ],
+                  "type": "lt"
+                },
+                "operator": {
+                  "type": "or"
+                },
+                "query": {
+                  "params": [
+                    "C",
+                    "12h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "min"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "1h",
+            "handler": 1,
+            "name": "Size databases alert",
+            "noDataState": "no_data",
+            "notifications": []
+          },
+          "aliasColors": {
+            "Active": "#f2c96d",
+            "Exclude internal": "#1f78c1",
+            "на внешние": "#1f78c1"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "",
+          "fill": 1,
+          "id": 7,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Exclude internal",
+              "yaxis": 1
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Archive",
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "2h"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_sizearchive",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "DB Size (Gb)"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            },
+            {
+              "alias": "Main",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "2h"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "exec_sizemain",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "DB Size (Gb)"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            },
+            {
+              "alias": "WS-Archive",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "2h"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "exec_whitespacearchive",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Available New Mbx Space Gb)"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 2424
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Size databases",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "decgbytes",
+              "label": "",
+              "logBase": 1,
+              "max": "3000",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Mapi, Mount и размеры баз",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 281,
+      "panels": [
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    100040052992
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "max"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "3h",
+            "handler": 1,
+            "name": "Size logs main alert",
+            "noDataState": "no_data",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "fill": 1,
+          "id": 8,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "logs_main",
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "12h"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_size_logs_main",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Sum"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 100040052992
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Size logs main",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": "100040052992",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    1
+                  ],
+                  "type": "lt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "10m",
+            "handler": 1,
+            "name": "Mailflow alert",
+            "noDataState": "no_data",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "Командлет Test-Mailflow проверяет отправку, передачу и доставку почты. Он проверяет, может ли каждый сервер почтовых ящиков успешно отправить себе сообщение. Командлет можно также использовать для проверки того, что системный почтовый ящик на одном сервере почтовых ящиков может успешно отправить сообщение системному почтовому ящику на другом сервере. Системный почтовый ящик необходим на всех серверах, которые участвуют в проверке.",
+          "fill": 1,
+          "id": 30,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "mailflow",
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mailflow",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mailflow"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "lt",
+              "value": 1
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mailflow",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "fill": 1,
+          "id": 9,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "uptime",
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_uptime",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Days"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Uptime",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "short",
+              "label": "days",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Размер логов, Mailflow, Uptime",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 253,
+      "panels": [
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    10
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "144h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "max"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "2h",
+            "handler": 1,
+            "name": "Mail Queue alert",
+            "noDataState": "no_data",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "Очереди на внутреннюю и внешнюю отправку",
+          "fill": 1,
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Active",
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "0"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 2,
+              "limit": "",
+              "measurement": "exec_queue",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Sum"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 10
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mail Queue",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": "10",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "Active": "#1f78c1",
+            "Exclude internal": "#1f78c1",
+            "на внешние": "#1f78c1"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "Только очереди на внешнюю отправку",
+          "fill": 1,
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Exclude internal",
+              "yaxis": 1
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Active",
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "0"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_queue_exin",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Sum"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mail queue exclude internal",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": "10",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Очереди",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 276,
+      "panels": [
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    10000
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "24h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "avg"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "1h",
+            "handler": 1,
+            "name": "Средняя задержка времени обработки CAS alert",
+            "noDataState": "no_data",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "All of those reflect the average latency (ms) of CAS processing time (does not include time spent proxying) over the last 200 requests.",
+          "fill": 1,
+          "id": 3,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "OutlookAnywhere (RPCHTTP)",
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "4m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mycollector",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "OutlookAnywhere"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            },
+            {
+              "alias": "Autodiscover",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "4m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "exec_mycollector",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Autodiscover"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            },
+            {
+              "alias": "OAB",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "4m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "exec_mycollector",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "OAB"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 10000
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Средняя задержка времени обработки CAS",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "ms",
+              "label": "Latency, ms",
+              "logBase": 1,
+              "max": "20000",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    150
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "48h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "avg"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "1h",
+            "handler": 1,
+            "name": "HTTPProxyOutstandingRequests alert",
+            "noDataState": "no_data",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "Эти счетчики показывают количество одновременных выданных прокси-запросов, и их следует внимательно отслеживать.",
+          "fill": 1,
+          "id": 6,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "rpchttp",
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "0"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "intervalFactor": 2,
+              "limit": "",
+              "measurement": "exec_out",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "OutlookAnywhere"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 150
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "HTTPProxyOutstandingRequests",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "К-во одновременных запросов",
+              "logBase": 1,
+              "max": "500",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Задержка и выдача запросов",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 214,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "decimals": 0,
+          "fill": 1,
+          "id": 2,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "current",
+            "sortDesc": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 6,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "wmi_service_state{name=~\"$name\", state=\"running\"}",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{name}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Exchange services",
+          "tooltip": {
+            "shared": true,
+            "sort": 1,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "state",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    1
+                  ],
+                  "type": "lt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "1h",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "1m",
+            "handler": 1,
+            "name": "DNS alert",
+            "noDataState": "no_data",
+            "notifications": []
+          },
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "",
+          "fill": 1,
+          "id": 20,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "dns",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "exec_dns",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "dns"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "lt",
+              "value": 1
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "DNS",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Сервисы",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": -15,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#299c46",
+            "#629e51",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 10,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_countmb_main",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Main",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#299c46",
+            "#cca300",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 11,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_countmb_archive",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Archive",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#299c46",
+            "#1f78c1",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 12,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_countmb_etc",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "0920953347",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#299c46",
+            "#bf1b00",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 13,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mbarchive_all",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Sum"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Archive MBs",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Количество ящиков",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 105,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#bf1b00",
+            "#629e51",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 14,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mount_main",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Mounted_main"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "0.1",
+          "title": "MOUNT MAIN",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "True",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "False",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#bf1b00",
+            "#629e51",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 15,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mount_main",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Mounted_archive"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "0.1",
+          "title": "MOUNT ARCHIVE",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "True",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "False",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#bf1b00",
+            "#629e51",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 16,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mount_main",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Mounted_etc"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "0.1",
+          "title": "MOUNT 0920953347",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "True",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "False",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#bf1b00",
+            "#629e51",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "description": "Test-Mailflow\nСмотреть на параметры:\nTestMailflowResult : Удачное завершение\nMessageLatencyTime : 00:00:01.1529207",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 31,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mailflow",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mailflow"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "0.1",
+          "title": "MAILFLOW",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "True",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "False",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#bf1b00",
+            "#629e51",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 19,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_dns",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "dns"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "0.1",
+          "title": "DNS",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "True",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "False",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#bf1b00",
+            "#629e51",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 21,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mapi",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mapi_main"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "0.1",
+          "title": "MAPI MAIN",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "True",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "False",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#bf1b00",
+            "#629e51",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 22,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mapi",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mapi_archive"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "0.1",
+          "title": "MAPI ARCHIVE",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "True",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "False",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#bf1b00",
+            "#629e51",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 23,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mapi",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mapi_etc"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "0.1",
+          "title": "MAPI 0920953347",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "True",
+              "value": "1"
+            },
+            {
+              "op": "=",
+              "text": "False",
+              "value": "0"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#bf1b00",
+            "#1f78c1",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "decbytes",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 24,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_size_logs_main",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Sum"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "LOGS",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#d44a3a",
+            "#1f78c1",
+            "#bf1b00"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "decgbytes",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 26,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_whitespacearchive",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Available New Mbx Space Gb)"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "WHITE SPACE",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#d44a3a",
+            "#1f78c1",
+            "#bf1b00"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 25,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": " days",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_uptime",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Days"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "7,50",
+          "title": "UPTIME",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#d44a3a",
+            "#1f78c1",
+            "#bf1b00"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "ms",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 28,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "4m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_mycollector",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "OutlookAnywhere"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "AVG LATENCY CAS",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#d44a3a",
+            "#1f78c1",
+            "#bf1b00"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "short",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 29,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "expr": "",
+              "format": "time_series",
+              "groupBy": [
+                {
+                  "params": [
+                    "4m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "intervalFactor": 2,
+              "measurement": "exec_out",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "OutlookAnywhere"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "MAIL"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "OUT REQUESTS",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+  

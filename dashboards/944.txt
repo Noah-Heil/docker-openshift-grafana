@@ -1,0 +1,1106 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_MONITORING_DATASOURCE",
+      "label": "Monitoring datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "savantly-heatmap-panel",
+      "name": "Heatmap",
+      "version": "0.1.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.0.1"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    }
+  ],
+  "id": null,
+  "title": "VMware Datastore IOPS Monitoring",
+  "tags": [
+    "monitor",
+    "vmware"
+  ],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "sharedCrosshair": false,
+  "hideControls": false,
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "now": true,
+    "refresh_intervals": [
+      "20m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "allFormat": "regex values",
+        "current": {},
+        "datasource": "${DS_MONITORING_DATASOURCE}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "",
+        "multi": true,
+        "multiFormat": "regex values",
+        "name": "CPD",
+        "options": [],
+        "query": "SHOW TAG VALUES from vmiops WITH key= \"cpd\"",
+        "refresh": 1,
+        "type": "query",
+        "useTags": false,
+        "regex": "",
+        "sort": 0,
+        "allValue": null,
+        "tagsQuery": null,
+        "tagValuesQuery": null
+      },
+      {
+        "allFormat": "regex values",
+        "current": {},
+        "datasource": "${DS_MONITORING_DATASOURCE}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "",
+        "multi": true,
+        "multiFormat": "regex values",
+        "name": "entorno",
+        "options": [],
+        "query": "SHOW TAG VALUES from vmiops WITH key= \"entorno\" ",
+        "refresh": 1,
+        "type": "query",
+        "useTags": false,
+        "regex": "",
+        "sort": 0,
+        "allValue": null,
+        "tagsQuery": null,
+        "tagValuesQuery": null
+      },
+      {
+        "allFormat": "regex values",
+        "current": {},
+        "datasource": "${DS_MONITORING_DATASOURCE}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "device type",
+        "multi": true,
+        "multiFormat": "regex values",
+        "name": "type",
+        "options": [],
+        "query": "SHOW TAG VALUES from vmiops WITH key= \"type\" ",
+        "refresh": 1,
+        "type": "query",
+        "useTags": false,
+        "regex": "",
+        "sort": 0,
+        "allValue": null,
+        "tagsQuery": null,
+        "tagValuesQuery": null
+      },
+      {
+        "allFormat": "regex values",
+        "current": {},
+        "datasource": "${DS_MONITORING_DATASOURCE}",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "multiFormat": "regex values",
+        "name": "datastore",
+        "options": [],
+        "query": "SHOW TAG VALUES from vmiops WITH KEY = \"datastore\" where entorno=~ /$entorno$/ and type =~ /$type$/ and cpd =~ /$CPD$/",
+        "refresh": 1,
+        "regex": "",
+        "type": "query",
+        "useTags": false,
+        "label": null,
+        "sort": 0,
+        "allValue": null,
+        "tagsQuery": null,
+        "tagValuesQuery": null
+      },
+      {
+        "allFormat": "regex values",
+        "current": {},
+        "datasource": "${DS_MONITORING_DATASOURCE}",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "multiFormat": "regex values",
+        "name": "host",
+        "options": [],
+        "query": "SHOW TAG VALUES from vmiops WITH KEY = \"host\" where entorno=~ /$entorno$/ and type =~ /$type$/ and cpd =~ /$CPD$/",
+        "refresh": 1,
+        "regex": "",
+        "type": "query",
+        "useTags": false,
+        "label": null,
+        "sort": 0,
+        "allValue": null,
+        "tagsQuery": null,
+        "tagValuesQuery": null
+      },
+      {
+        "allFormat": "regex values",
+        "current": {},
+        "datasource": "${DS_MONITORING_DATASOURCE}",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "multiFormat": "regex values",
+        "name": "vm",
+        "options": [],
+        "query": "SHOW TAG VALUES from vmiops WITH KEY = \"vm\" where datastore  =~ /$datastore$/ and host =~ /$host$/",
+        "refresh": 1,
+        "regex": "",
+        "type": "query",
+        "useTags": false,
+        "label": null,
+        "sort": 0,
+        "allValue": null,
+        "tagsQuery": null,
+        "tagValuesQuery": null
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "1h",
+  "schemaVersion": 13,
+  "version": 85,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "dashboard",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "vmware",
+        "monitor"
+      ],
+      "title": "VM IOPS",
+      "tooltip": "",
+      "type": "link",
+      "url": "http://svpnainfluxdb01.acciona.int:3000/dashboard/db/vmware-datastore-iops-monitoring-vms"
+    }
+  ],
+  "gnetId": 1106,
+  "rows": [
+    {
+      "title": "Row",
+      "panels": [
+        {
+          "columns": [
+            {
+              "text": "Min",
+              "value": "min"
+            },
+            {
+              "text": "Max",
+              "value": "max"
+            },
+            {
+              "text": "Avg",
+              "value": "avg"
+            },
+            {
+              "text": "Current",
+              "value": "current"
+            }
+          ],
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "height": "",
+          "id": 63,
+          "interval": ">1h",
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 3,
+            "desc": true
+          },
+          "span": 4,
+          "styles": [
+            {
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": "cell",
+              "colors": [
+                "rgba(50, 172, 45, 0.97)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(245, 54, 54, 0.9)"
+              ],
+              "decimals": 0,
+              "pattern": "/.*/",
+              "thresholds": [
+                "1400",
+                "2500"
+              ],
+              "type": "number",
+              "unit": "iops"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "$tag_datastore",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "20m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "datastore"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vmiops",
+              "policy": "default",
+              "query": "SELECT sum(\"iopsavg\") FROM \"vmiops\" WHERE \"datastore\" =~ /$datastore$/ AND $timeFilter GROUP BY time(20m), \"datastore\" fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "iopsavg"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "datastore",
+                  "operator": "=~",
+                  "value": "/$datastore$/"
+                }
+              ]
+            }
+          ],
+          "title": "Avg IOPS per datastore",
+          "transform": "timeseries_aggregations",
+          "type": "table"
+        },
+        {
+          "columns": [
+            {
+              "text": "Min",
+              "value": "min"
+            },
+            {
+              "text": "Max",
+              "value": "max"
+            },
+            {
+              "text": "Avg",
+              "value": "avg"
+            },
+            {
+              "text": "Current",
+              "value": "current"
+            }
+          ],
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "height": "",
+          "id": 109,
+          "interval": ">1h",
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 3,
+            "desc": true
+          },
+          "span": 4,
+          "styles": [
+            {
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": "cell",
+              "colors": [
+                "rgba(50, 172, 45, 0.97)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(245, 54, 54, 0.9)"
+              ],
+              "decimals": 0,
+              "pattern": "/.*/",
+              "thresholds": [
+                "1400",
+                "3000"
+              ],
+              "type": "number",
+              "unit": "iops"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "$tag_host",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "20m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "host"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vmiops",
+              "policy": "default",
+              "query": "SELECT sum(\"iopsavg\") FROM \"vmiops\" WHERE \"host\" =~ /$host$/ AND $timeFilter GROUP BY time(20m), \"host\" fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "iopsavg"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/$host$/"
+                }
+              ]
+            }
+          ],
+          "title": "Avg IOPS per host",
+          "transform": "timeseries_aggregations",
+          "type": "table"
+        },
+        {
+          "columns": [
+            {
+              "text": "Min",
+              "value": "min"
+            },
+            {
+              "text": "Max",
+              "value": "max"
+            },
+            {
+              "text": "Avg",
+              "value": "avg"
+            },
+            {
+              "text": "Current",
+              "value": "current"
+            }
+          ],
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "height": "",
+          "id": 108,
+          "interval": ">1h",
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 3,
+            "desc": true
+          },
+          "span": 4,
+          "styles": [
+            {
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": "cell",
+              "colors": [
+                "rgba(50, 172, 45, 0.97)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(245, 54, 54, 0.9)"
+              ],
+              "decimals": 0,
+              "pattern": "/.*/",
+              "thresholds": [
+                "1000",
+                "2000"
+              ],
+              "type": "number",
+              "unit": "iops"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "$tag_vm",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "vm"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vmiops",
+              "policy": "default",
+              "query": "SELECT mean(\"iopsavg\") FROM \"vmiops\" WHERE \"vm\" =~ /$vm$/ and entorno =~ /$entorno$/ and cpd =~ /$CPD$/ AND $timeFilter GROUP BY time($interval), \"vm\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "iopsavg"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "vm",
+                  "operator": "=~",
+                  "value": "/$vm$/"
+                }
+              ]
+            }
+          ],
+          "title": "Avg IOPS per VM",
+          "transform": "timeseries_aggregations",
+          "type": "table"
+        }
+      ],
+      "showTitle": false,
+      "titleSize": "h6",
+      "height": "200px",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    },
+    {
+      "title": "DATASTORES GLOBAL VIEW",
+      "panels": [
+        {
+          "aliasColors": {
+            "DSOfimatica01FCsol": "#7EB26D",
+            "DSProduccion01FC (max)": "#EAB839",
+            "max": "#E24D42"
+          },
+          "bars": false,
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "decimals": 0,
+          "editable": true,
+          "error": false,
+          "fill": 5,
+          "grid": {},
+          "height": "",
+          "hideTimeOverride": false,
+          "id": 110,
+          "interval": ">1h",
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "max",
+              "lines": false,
+              "pointradius": 1,
+              "points": true
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_datastore (avg)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "20m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "datastore"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vmiops",
+              "policy": "default",
+              "query": "SELECT sum(\"iopsavg\") FROM \"vmiops\" WHERE \"datastore\" =~ /$datastore$/ AND $timeFilter GROUP BY time(20m), \"datastore\" fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "iopsavg"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "datastore",
+                  "operator": "=~",
+                  "value": "/$datastore$/"
+                }
+              ]
+            },
+            {
+              "alias": "max",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "20m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "datastore"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": true,
+              "measurement": "vmiops",
+              "policy": "default",
+              "query": "SELECT sum(\"iopsmax\") FROM \"vmiops\" WHERE \"datastore\" =~ /$datastore$/ AND $timeFilter GROUP BY time(20m), \"datastore\" fill(null)",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "iopsmax"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "datastore",
+                  "operator": "=~",
+                  "value": "/$datastore$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Datastore IOPS",
+          "tooltip": {
+            "msResolution": false,
+            "shared": false,
+            "value_type": "cumulative",
+            "sort": 0
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "iops",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "thresholds": []
+        },
+        {
+          "chartId": "chart_159",
+          "colors": [
+            "rgba(36, 218, 28, 0.89)",
+            "rgba(231, 125, 42, 0.89)",
+            "rgba(245, 54, 54, 1)"
+          ],
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "height": "200",
+          "id": 159,
+          "legend": {
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": false,
+            "total": false
+          },
+          "links": [],
+          "mappingType": 1,
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "seriesOverrides": [],
+          "span": 6,
+          "targets": [
+            {
+              "alias": "$tag_datastore",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "datastore"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vmiops",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "latency"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "datastore",
+                  "operator": "=~",
+                  "value": "/^$datastore$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "600,3000",
+          "title": "Datastore Write Latency",
+          "treeMap": {
+            "colorByFunction": "current",
+            "debug": false,
+            "depth": 0,
+            "enableGrouping": true,
+            "enableTimeBlocks": false,
+            "groups": [
+              {
+                "key": "server",
+                "value": "/^.*./g"
+              }
+            ],
+            "ids": [
+              "alias"
+            ],
+            "mode": "squarify",
+            "nodeSizeProperty": "value",
+            "showLegend": false,
+            "sizeByFunction": "current"
+          },
+          "type": "savantly-heatmap-panel",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ]
+        }
+      ],
+      "showTitle": true,
+      "titleSize": "h6",
+      "height": "240",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    },
+    {
+      "title": "DATASTORES INDIVIDUAL VIEW",
+      "panels": [
+        {
+          "aliasColors": {
+            "DSOfimatica01FCsol": "#7EB26D",
+            "DSProduccion01FC (max)": "#EAB839",
+            "max": "#E24D42"
+          },
+          "bars": false,
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "decimals": 0,
+          "editable": true,
+          "error": false,
+          "fill": 5,
+          "grid": {},
+          "height": "",
+          "hideTimeOverride": false,
+          "id": 2,
+          "interval": ">1h",
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "datastore",
+          "seriesOverrides": [
+            {
+              "alias": "max",
+              "lines": false,
+              "pointradius": 1,
+              "points": true
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_datastore (avg)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "20m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "datastore"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vmiops",
+              "policy": "default",
+              "query": "SELECT sum(\"iopsavg\") FROM \"vmiops\" WHERE \"datastore\" =~ /$datastore$/ AND $timeFilter GROUP BY time(20m), \"datastore\" fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "iopsavg"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "datastore",
+                  "operator": "=~",
+                  "value": "/$datastore$/"
+                }
+              ]
+            },
+            {
+              "alias": "max",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "20m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "datastore"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": true,
+              "measurement": "vmiops",
+              "policy": "default",
+              "query": "SELECT sum(\"iopsmax\") FROM \"vmiops\" WHERE \"datastore\" =~ /$datastore$/ AND $timeFilter GROUP BY time(20m), \"datastore\" fill(null)",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "iopsmax"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "datastore",
+                  "operator": "=~",
+                  "value": "/$datastore$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "value_type": "cumulative",
+            "sort": 0
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "iops",
+              "label": "",
+              "logBase": 1,
+              "max": 2000,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "thresholds": []
+        }
+      ],
+      "showTitle": true,
+      "titleSize": "h6",
+      "height": "200px",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    }
+  ],
+  "description": "vmware vCenter IOPS and write latency stats"
+}

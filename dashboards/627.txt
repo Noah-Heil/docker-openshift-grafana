@@ -1,0 +1,476 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_NIFI-METRICS",
+      "label": "Nifi-Metrics",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.5.0-beta1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 3294,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": "5s",
+  "rows": [
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_NIFI-METRICS}",
+          "fill": 1,
+          "id": 3,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "process_group_amount_flowfiles_total{process_group=\"testGroup\", status=\"sent\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Flowfiles Sent",
+              "refId": "A",
+              "step": 2
+            },
+            {
+              "expr": "process_group_amount_flowfiles_total{process_group=\"testGroup\", status=\"queued\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Flowfiles Queued",
+              "refId": "B",
+              "step": 2
+            },
+            {
+              "expr": "process_group_amount_flowfiles_total{process_group=\"testGroup\", status=\"received\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Flowfiles Received",
+              "refId": "C",
+              "step": 2
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "FlowFiles",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_NIFI-METRICS}",
+          "fill": 1,
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "process_group_amount_bytes_total{process_group=\"testGroup\", status=\"written\"}",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "Bytes Written",
+              "refId": "A",
+              "step": 2
+            },
+            {
+              "expr": "process_group_amount_bytes_total{process_group=\"testGroup\", status=\"received\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Bytes Received",
+              "refId": "B",
+              "step": 2
+            },
+            {
+              "expr": "process_group_amount_bytes_total{process_group=\"testGroup\", status=\"sent\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Bytes Sent",
+              "refId": "C",
+              "step": 2
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Bytes",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_NIFI-METRICS}",
+          "fill": 1,
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg_over_time(process_group_size_content_total{process_group=\"testGroup\", status=\"output\"}[1m]) / 1024 / 1024",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Content Output",
+              "refId": "A",
+              "step": 2
+            },
+            {
+              "expr": "avg_over_time(process_group_size_content_total{process_group=\"testGroup\", status=\"input\"}[1m]) / 1024 / 1024",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Content Input",
+              "refId": "B",
+              "step": 2
+            },
+            {
+              "expr": "avg_over_time(process_group_size_content_total{process_group=\"testGroup\", status=\"queued\"}[1m]) / 1024 / 1024",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Content Queued ",
+              "refId": "C",
+              "step": 2
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Content",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "mbytes",
+              "label": "In MiB",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_NIFI-METRICS}",
+          "fill": 1,
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg_over_time(process_group_amount_items{process_group=\"testGroup\", status=\"output\"}[1m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Items Output",
+              "refId": "A",
+              "step": 2
+            },
+            {
+              "expr": "avg_over_time(process_group_amount_items{process_group=\"testGroup\", status=\"queued\"}[1m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Items Queued",
+              "refId": "B",
+              "step": 2
+            },
+            {
+              "expr": "avg_over_time(process_group_amount_items{process_group=\"testGroup\", status=\"input\"}[1m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Items Input",
+              "refId": "C",
+              "step": 2
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Items",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Nifi ReportingTask Sample",
+  "version": 19,
+  "description": "A simple example dashboard for the Nifi PrometheusReportingTask"
+}

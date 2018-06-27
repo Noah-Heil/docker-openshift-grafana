@@ -1,0 +1,1935 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_TELEGRAF",
+      "label": "telegraf",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.6.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "UBNT  Templated Dashboard",
+  "editable": true,
+  "gnetId": 4946,
+  "graphTooltip": 1,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": "1m",
+  "rows": [
+    {
+      "collapse": false,
+      "height": "100px",
+      "panels": [
+        {
+          "columns": [],
+          "datasource": "${DS_TELEGRAF}",
+          "editable": true,
+          "error": false,
+          "fontSize": "100%",
+          "id": 1,
+          "links": [],
+          "pageSize": null,
+          "scroll": false,
+          "showHeader": true,
+          "sort": {
+            "col": 5,
+            "desc": false
+          },
+          "span": 12,
+          "styles": [
+            {
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "sysName"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "snmp.UAP",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "table",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "dot11manufacturerProductName"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "Model"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "dot11manufacturerProductVersion"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "Version"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "sysDescr"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "Description"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "dot11DesiredSSID"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "SSID"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "sysLocation"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "Location"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "title": "$host",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "System Identification",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "150px",
+      "panels": [
+        {
+          "content": "<p style=\"text-align:center; vertical-align: middle;\"><br/><img src=\"https://dl.ubnt.com/press/Company_Logos/Primary/WEB/UBNT_Primary_Logo_RGB.png\" height=\"100\"  alt=\"UBNT\"/></p>",
+          "editable": true,
+          "error": false,
+          "height": "",
+          "id": 46,
+          "links": [],
+          "mode": "html",
+          "span": 2,
+          "title": "",
+          "transparent": false,
+          "type": "text"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "format": "s",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "",
+          "id": 2,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "s",
+          "postfixFontSize": "70%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "snmp.UAP",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "sysUpTime"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      " / 100"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Uptime",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "70%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": null,
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "",
+          "id": 47,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "70%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "snmp.UAP",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "dot11CurrentChannel"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Radio Channel",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "70%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": null,
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "",
+          "id": 49,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": " MHz",
+          "postfixFontSize": "70%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "snmp.UAP",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "ubntRadioFreq"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Frequency",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "70%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": null,
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "",
+          "id": 50,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "70%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "snmp.UAP",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "ubntWlStatSignal"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Signal",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "70%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": null,
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "",
+          "id": 51,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "m",
+          "postfixFontSize": "70%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "snmp.UAP",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "ubntRadioDistance"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Distance",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "70%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Uptime & BSS Settings",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 263,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "id": 48,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_ifDescr:$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifDescr"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ifTable",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(last(\"ifInDiscards\"), 1s) AS \"Drop:In\", non_negative_derivative(last(\"ifOutDiscards\"), 1s) AS \"Drop:Out\", non_negative_derivative(last(\"ifInErrors\"), 1s) AS \"Error:In\", non_negative_derivative(last(\"ifOutErrors\"), 1s) AS \"Error:Out\", non_negative_derivative(last(\"ifInUnknownProtos\"), 1s) AS \"Unkwn:In\" FROM \"ifTable\" WHERE \"agent_host\" =~ /^$host$/ AND \"ifOperStatus\" = 1 AND $timeFilter GROUP BY time($interval), \"ifDescr\" fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "ifInOctets"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "In"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "ifOutOctets"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "Out"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ifDescr",
+                  "operator": "=",
+                  "value": "eth0"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Interface Bandwidth",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "WiFi (802.11) Interface Statistics",
+      "titleSize": "h1"
+    },
+    {
+      "collapse": false,
+      "height": 286,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "id": 55,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": ":CCQ",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_ifDescr:$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifDescr"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp.UAP",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(last(\"ifInDiscards\"), 1s) AS \"Drop:In\", non_negative_derivative(last(\"ifOutDiscards\"), 1s) AS \"Drop:Out\", non_negative_derivative(last(\"ifInErrors\"), 1s) AS \"Error:In\", non_negative_derivative(last(\"ifOutErrors\"), 1s) AS \"Error:Out\", non_negative_derivative(last(\"ifInUnknownProtos\"), 1s) AS \"Unkwn:In\" FROM \"ifTable\" WHERE \"agent_host\" =~ /^$host$/ AND \"ifOperStatus\" = 1 AND $timeFilter GROUP BY time($interval), \"ifDescr\" fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "ubntWlStatTxRate"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      " / 1000000"
+                    ],
+                    "type": "math"
+                  },
+                  {
+                    "params": [
+                      "Tx Rate"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "ubntWlStatRxRate"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      " / 1000000"
+                    ],
+                    "type": "math"
+                  },
+                  {
+                    "params": [
+                      "RX Rate"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Tx/Rx Radio Rate",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "Mbits",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 277,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "id": 53,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": ":CCQ",
+              "yaxis": 1
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_ifDescr:$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifDescr"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp.UAP",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(last(\"ifInDiscards\"), 1s) AS \"Drop:In\", non_negative_derivative(last(\"ifOutDiscards\"), 1s) AS \"Drop:Out\", non_negative_derivative(last(\"ifInErrors\"), 1s) AS \"Error:In\", non_negative_derivative(last(\"ifOutErrors\"), 1s) AS \"Error:Out\", non_negative_derivative(last(\"ifInUnknownProtos\"), 1s) AS \"Unkwn:In\" FROM \"ifTable\" WHERE \"agent_host\" =~ /^$host$/ AND \"ifOperStatus\" = 1 AND $timeFilter GROUP BY time($interval), \"ifDescr\" fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "ubntWlStatCcq"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "CCQ"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "ubntWlStatSignal"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "* -1"
+                    ],
+                    "type": "math"
+                  },
+                  {
+                    "params": [
+                      "Signal"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Signal / CCQ",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 275,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "id": 54,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": ":CCQ",
+              "yaxis": 1
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_ifDescr:$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifDescr"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp.UAP",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(last(\"ifInDiscards\"), 1s) AS \"Drop:In\", non_negative_derivative(last(\"ifOutDiscards\"), 1s) AS \"Drop:Out\", non_negative_derivative(last(\"ifInErrors\"), 1s) AS \"Error:In\", non_negative_derivative(last(\"ifOutErrors\"), 1s) AS \"Error:Out\", non_negative_derivative(last(\"ifInUnknownProtos\"), 1s) AS \"Unkwn:In\" FROM \"ifTable\" WHERE \"agent_host\" =~ /^$host$/ AND \"ifOperStatus\" = 1 AND $timeFilter GROUP BY time($interval), \"ifDescr\" fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "ubntRadioFreq"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "CCQ"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Frequency",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 293,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "id": 7,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp.UAP",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memBuffer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "Buffer"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "memCache"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "Cache"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "memFree"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "Free"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "deckbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "System Statistics",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 326,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "id": 4,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/:Out$/",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_ifDescr:$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "ifDescr"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ifTable",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(last(\"ifInDiscards\"), 1s) AS \"Drop:In\", non_negative_derivative(last(\"ifOutDiscards\"), 1s) AS \"Drop:Out\", non_negative_derivative(last(\"ifInErrors\"), 1s) AS \"Error:In\", non_negative_derivative(last(\"ifOutErrors\"), 1s) AS \"Error:Out\", non_negative_derivative(last(\"ifInUnknownProtos\"), 1s) AS \"Unkwn:In\" FROM \"ifTable\" WHERE \"agent_host\" =~ /^$host$/ AND \"ifOperStatus\" = 1 AND $timeFilter GROUP BY time($interval), \"ifDescr\" fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "ifInDiscards"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "Drop:In"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "ifOutDiscards"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "Drop:Out"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "ifInErrors"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "Error:In"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "ifOutErrors"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "Error:Out"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "agent_host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "ifDescr",
+                  "operator": "=",
+                  "value": "wifi0"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Radio Interface Drops/Errors",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "All/Aggregate Interface Statistics",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "AP",
+    "System",
+    "Templated",
+    "UBNT"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "default",
+          "value": "default"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "dataSource",
+        "options": [],
+        "query": "influxdb",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_TELEGRAF}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "UBNT Radio:",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"snmp.UAP\" WITH KEY = \"agent_host\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": null,
+        "tags": [],
+        "tagsQuery": null,
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "UBNT Bridge Dashboard",
+  "version": 19
+}

@@ -1,0 +1,868 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_RAINTANK",
+      "label": "worldPing Data Source",
+      "description": "Please select data source: raintank",
+      "type": "datasource",
+      "pluginId": "graphite",
+      "pluginName": "Graphite"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.1.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "graphite",
+      "name": "Graphite",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "description": "An example dashboard to configure Grafana Alerts with worldPing as a data source.",
+  "editable": true,
+  "gnetId": 6597,
+  "graphTooltip": 0,
+  "hideControls": true,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": 30,
+      "panels": [
+        {
+          "content": "<div style=\"display:flex; justify-content: space-between;\">\n<img src=\"public/plugins/raintank-worldping-app/img/worldPing-grey.svg\" height=\"50\">\n<div style=\"text-align: right;\">\n<h2>Using worldPing with Grafana Alerting</h2>\n<span>Related docs: <a href=\"http://docs.grafana.org/alerting/rules/\" target=\"_blank\"> Alerting Engine & Rules Guide </a> | <a href=\"http://docs.grafana.org/alerting/notifications/\">Creating and Configuring Notifications</a></span>\n</div>\n</div>\n",
+          "id": 9,
+          "links": [],
+          "mode": "html",
+          "span": 12,
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "175px",
+      "panels": [
+        {
+          "content": "<div style=\"display: flex; margin: 15px; color: #D8D9DA;'\">\n<i class=\"fa fa-save\" style=\"font-size: 40px; margin-right:20px;\" />\n<div>\n<h5>Save this dashboard</h5>\n<p style=\"font-size:90%;\">Alerts are <b>not enabled</b> until this dashboard is saved.<br>Click the Save icon in the dashboard menu above.</p>\n</div>",
+          "id": 14,
+          "links": [],
+          "mode": "html",
+          "span": 4,
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "content": "<div style=\"display: flex; margin: 15px; color: #D8D9DA\">\n<i class=\"icon-gf icon-gf-alert\" style=\"font-size: 40px; margin-right:20px;\" />\n<div>\n<h5>Configure Notification Channels</h5>\n<p style=\"font-size:90%;\">Grafana notification channels are created and managed in a single location. To configure alerts for Slack, Hipchat, Email and more, visit the <a href=\"/alerting/notifications\">notifications</a> page.</p>\n</div>",
+          "id": 15,
+          "links": [],
+          "mode": "html",
+          "span": 4,
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "content": "<div style=\"display: flex; margin: 15px; color: #D8D9DA\">\n<i class=\"icon-gf icon-gf-panel\" style=\"font-size: 40px; margin-right:20px;\" />\n<div>\n<h5>Add Notifications to Panel</h5>\n<p style=\"font-size:90%;\">Alerts are configured on a per-panel basis, including notifications. Edit a panel, select the Alert tab and associate one of your channels using the Notification link in the left-side menu.</p>\n</div>",
+          "id": 17,
+          "links": [],
+          "mode": "html",
+          "span": 4,
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Things to know",
+      "titleSize": "h4"
+    },
+    {
+      "collapse": false,
+      "height": "375px",
+      "panels": [
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    1
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "5m",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "max"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "300s",
+            "handler": 1,
+            "message": "Warning. Please investigate.",
+            "name": "Endpoint Outage (All Endpoint) alert",
+            "noDataState": "no_data",
+            "notifications": [
+              {
+                "id": 2
+              }
+            ]
+          },
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_RAINTANK}",
+          "description": "Example alert notification alerting based on endpoint health measured in the previous 5 minutes",
+          "fill": 1,
+          "height": "300px",
+          "id": 2,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 9,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "groupByNode(health.*.*.error_state, 1, 'sum')"
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 1
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Endpoint Health (All Endpoints)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "content": "<p>This example alert notification alerting is based on the <b>health of the endpoint</b> measured in the previous <b>5 minutes</b>.</p>\n\n<p>In worldPing, an outage is defined on a per-check basis, within each endpoint's configuration. You can edit health definition within the configuration tab of the endpoint.</p>\n\n<p>An example outage configuration may be \"If 3 or more probes report connection errors for 3 or more consecutive checks, health will be marked as down\".</p>\n",
+          "description": "",
+          "height": "300px",
+          "id": 8,
+          "links": [],
+          "mode": "html",
+          "span": 3,
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Alerting on General Endpoint Health",
+      "titleSize": "h4"
+    },
+    {
+      "collapse": false,
+      "height": 426,
+      "panels": [
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    200
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "5m",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "60s",
+            "handler": 1,
+            "name": "Endpoint DNS Latency (All Endpoints) alert",
+            "noDataState": "no_data",
+            "notifications": [
+              {
+                "id": 8
+              }
+            ]
+          },
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_RAINTANK}",
+          "description": "Example alert notification which evaluates the total time of DNS resolution every 60 seconds and alerts if any endpoint is over 200ms",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 6,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "groupByNode(worldping.*.*.dns.time, 1, 'avg')",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 200
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "DNS Latency (All Endpoints)",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "total"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    50
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "5m",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "60s",
+            "handler": 1,
+            "name": "Endpoint Ping Latency (All Endpoints) alert",
+            "noDataState": "no_data",
+            "notifications": [
+              {
+                "id": 8
+              }
+            ]
+          },
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_RAINTANK}",
+          "description": "Example alert notification which evaluates the total ping response time every 5 minutes and alerts if any endpoint is over 50ms.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 7,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "groupByNode(worldping.*.*.ping.max, 1, 'avg')",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 50
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Ping Latency (All Endpoints)",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "total"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    1000
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "5m",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "300s",
+            "handler": 1,
+            "name": "Endpoint HTTP Latency (All Endpoints) alert",
+            "noDataState": "no_data",
+            "notifications": [
+              {
+                "id": 8
+              }
+            ]
+          },
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_RAINTANK}",
+          "description": "Example alert notification which evaluates the total time of HTTP resolution every 5 minutes and alerts if any endpoint is over 1s",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 4,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "groupByNode(worldping.*.*.http.total, 1, 'avg')",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 1000
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "HTTP Latency (All Endpoints)",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "total"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "alert": {
+            "conditions": [
+              {
+                "evaluator": {
+                  "params": [
+                    1500
+                  ],
+                  "type": "gt"
+                },
+                "operator": {
+                  "type": "and"
+                },
+                "query": {
+                  "params": [
+                    "A",
+                    "5m",
+                    "now"
+                  ]
+                },
+                "reducer": {
+                  "params": [],
+                  "type": "last"
+                },
+                "type": "query"
+              }
+            ],
+            "executionErrorState": "alerting",
+            "frequency": "300s",
+            "handler": 1,
+            "name": "Endpoint HTTPS Latency (All Endpoints) alert",
+            "noDataState": "no_data",
+            "notifications": [
+              {
+                "id": 8
+              }
+            ]
+          },
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_RAINTANK}",
+          "description": "Example alert notification which evaluates the total time of HTTPS resolution every 5 min and alerts if any endpoint is over 1.5s.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 5,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "groupByNode(worldping.*.*.https.total, 1, 'avg')",
+              "textEditor": false
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 1500
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "HTTPS Latency (All Endpoints)",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "total"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Alerting on Protocol Specific Performance Metrics",
+      "titleSize": "h4"
+    },
+    {
+      "collapse": false,
+      "height": "350",
+      "panels": [
+        {
+          "content": "<p style=\"margin:20px 10% 0 10%; text-align: center;\">\nThe above alert notification evaluates the total time of <b>DNS</b> resolution every 60 seconds and alerts if any endpoint is over 200ms. \n</p>",
+          "height": "100px",
+          "id": 10,
+          "links": [],
+          "mode": "html",
+          "span": 3,
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "content": "<p style=\"margin:20px 10% 0 10%; text-align: center;\">The above alert notification evaluates the total <b>Ping</b> response time every 5 minutes and alerts if any endpoint is over 50ms.</p>",
+          "height": "100px",
+          "id": 11,
+          "links": [],
+          "mode": "html",
+          "span": 3,
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "content": "<p style=\"margin:20px 10% 0 10%; text-align: center;\">The above alert notification evaluates the total time of <b>HTTP</b> resolution every 5 minutes and alerts if any endpoint is over 1s.</p>",
+          "height": "100px",
+          "id": 12,
+          "links": [],
+          "mode": "html",
+          "span": 3,
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "content": "<p style=\"margin:20px 10% 0 10%; text-align: center;\">The above alert notification evaluates the total time of <b>HTTPS</b> resolution every 5 min and alerts if any endpoint is over 1.5s.</p>",
+          "height": "100px",
+          "id": 13,
+          "links": [],
+          "mode": "html",
+          "span": 3,
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "worldPing"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "worldPing: Alerting Example",
+  "version": 20
+}

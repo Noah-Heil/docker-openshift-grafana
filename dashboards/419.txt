@@ -1,0 +1,1357 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_KAMON_IO",
+      "label": "Kamon IO",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "3.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    }
+  ],
+  "id": null,
+  "title": "Kamon IO",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": -502.375,
+      "panels": [],
+      "title": "Row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": 228,
+      "panels": [
+        {
+          "content": "### JVM Metrics",
+          "editable": true,
+          "error": false,
+          "height": "10px",
+          "id": 5,
+          "isNew": true,
+          "links": [],
+          "mode": "markdown",
+          "span": 12,
+          "title": "",
+          "type": "text"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_KAMON_IO}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 9,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "heap used",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "heap-used"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            },
+            {
+              "alias": "heap max",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "heap-max"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            },
+            {
+              "alias": "heap commited",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "heap-committed"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "JVM Heap Memory",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_KAMON_IO}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 10,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "non-heap used",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "entity",
+                  "operator": "=",
+                  "value": "jmx-memory"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "non-heap-used"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            },
+            {
+              "alias": "non-heap max",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "entity",
+                  "operator": "=",
+                  "value": "jmx-memory"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "non-heap-committed"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "JVM Non-Heap Memory",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_KAMON_IO}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 12,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "thread-count",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "entity",
+                  "operator": "=",
+                  "value": "threads"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "thread-count"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            },
+            {
+              "alias": "peak-thread-count",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "entity",
+                  "operator": "=",
+                  "value": "threads"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "peak-thread-count"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            },
+            {
+              "alias": "daemon-thread-count",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "entity",
+                  "operator": "=",
+                  "value": "threads"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "daemon-thread-count"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Threads",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_KAMON_IO}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 11,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "open-files-average",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "entity",
+                  "operator": "=",
+                  "value": "ulimit"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "open-files"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            },
+            {
+              "alias": "open-files-lower",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "lower"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "entity",
+                  "operator": "=",
+                  "value": "ulimit"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "open-files"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            },
+            {
+              "alias": "open-files-upper",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "upper"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "entity",
+                  "operator": "=",
+                  "value": "ulimit"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "open-files"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Open Files",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "title": "CPU",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 13,
+          "targets": [
+            {
+              "refId": "A",
+              "policy": "default",
+              "dsType": "influxdb",
+              "resultFormat": "time_series",
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "system-metric"
+                },
+                {
+                  "condition": "AND",
+                  "key": "entity",
+                  "operator": "=",
+                  "value": "process-cpu"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ],
+              "groupBy": [],
+              "select": [
+                [
+                  {
+                    "type": "field",
+                    "params": [
+                      "mean"
+                    ]
+                  }
+                ]
+              ],
+              "measurement": "kamon-timers",
+              "alias": "cpu-used"
+            }
+          ],
+          "datasource": "${DS_KAMON_IO}",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "percent"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": true
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": []
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": 295,
+      "panels": [
+        {
+          "content": "### Akka Metrics",
+          "editable": true,
+          "error": false,
+          "height": "10px",
+          "id": 6,
+          "isNew": true,
+          "links": [],
+          "mode": "markdown",
+          "span": 12,
+          "title": "",
+          "type": "text"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_KAMON_IO}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)",
+            "thresholdLine": false
+          },
+          "id": 4,
+          "isNew": true,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": true,
+          "targets": [
+            {
+              "alias": "$tag_entity",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "entity"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "hide": false,
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "akka-actor"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "mailbox-size"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mailbox Size",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_KAMON_IO}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 7,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_entity",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "entity"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "akka-actor"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "time-in-mailbox"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Time in Mailbox",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "ns",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_KAMON_IO}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 8,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_entity",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "entity"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "kamon-timers",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "category",
+                  "operator": "=",
+                  "value": "akka-actor"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "processing-time"
+                },
+                {
+                  "condition": "AND",
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$entity$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Processing Time",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "ns",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "New row"
+    }
+  ],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": "${DS_KAMON_IO}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Application",
+        "multi": false,
+        "name": "entity",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"kamon-timers\" WITH KEY = \"hostname\"",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": false,
+  "schemaVersion": 12,
+  "version": 2,
+  "links": [],
+  "gnetId": 797
+}

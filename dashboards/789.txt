@@ -1,0 +1,1762 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_GRAPHITE",
+      "label": "graphite",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "graphite",
+      "pluginName": "Graphite"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.1.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "graphite",
+      "name": "Graphite",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": "5.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Red Hat OpenStack Overview",
+  "editable": true,
+  "gnetId": 6653,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "panels": [],
+      "title": "Service Overview",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#d44a3a",
+        "#299c46",
+        "#ef843c"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 20,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 0,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 4,
+      "interval": null,
+      "links": [],
+      "mappingType": 2,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "Nova ",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "0",
+          "text": "ERROR",
+          "to": "5"
+        },
+        {
+          "from": "6",
+          "text": "OK",
+          "to": "15"
+        },
+        {
+          "from": "16",
+          "text": "WARN",
+          "to": "20"
+        }
+      ],
+      "repeat": null,
+      "repeatDirection": "h",
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "hide": true,
+          "refCount": -1,
+          "refId": "C",
+          "target": "keepLastValue(collectd.*.processes-nova-conductor.ps_count.processes, 2)"
+        },
+        {
+          "hide": true,
+          "refCount": -1,
+          "refId": "B",
+          "target": "keepLastValue(collectd.*.processes-nova-consoleauth.ps_count.processes, 2)"
+        },
+        {
+          "hide": true,
+          "refCount": -1,
+          "refId": "D",
+          "target": "keepLastValue(collectd.*.processes-nova-novncproxy.ps_count.processes, 2)"
+        },
+        {
+          "refCount": 0,
+          "refId": "E",
+          "target": "alias(sumSeries(#A, #B, #C, #D), \"Total\")",
+          "targetFull": "alias(sumSeries(keepLastValue(collectd.*.processes-nova-compute.ps_count.processes, 2), keepLastValue(collectd.*.processes-nova-consoleauth.ps_count.processes, 2), keepLastValue(collectd.*.processes-nova-conductor.ps_count.processes, 2), keepLastValue(collectd.*.processes-nova-novncproxy.ps_count.processes, 2)), \"Total\")",
+          "textEditor": true
+        },
+        {
+          "hide": true,
+          "refCount": -1,
+          "refId": "A",
+          "target": "keepLastValue(collectd.*.processes-nova-compute.ps_count.processes, 2)"
+        }
+      ],
+      "thresholds": "5,15",
+      "timeFrom": "2m",
+      "timeShift": null,
+      "title": "Nova",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "30%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "OK",
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "ERROR",
+          "value": "0"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#d44a3a",
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 32,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 4,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 2,
+      "interval": null,
+      "links": [],
+      "mappingType": 2,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "Neutron ",
+      "prefixFontSize": "80%",
+      "rangeMaps": [
+        {
+          "from": "0",
+          "text": "ERROR",
+          "to": "7"
+        },
+        {
+          "from": "8",
+          "text": "OK",
+          "to": "25"
+        },
+        {
+          "from": "25",
+          "text": "WARN",
+          "to": "35"
+        }
+      ],
+      "repeatDirection": "h",
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "hide": true,
+          "refCount": -1,
+          "refId": "A",
+          "target": "keepLastValue(collectd.*.processes-neutron-server.ps_count.processes, 2)"
+        },
+        {
+          "hide": true,
+          "refCount": -1,
+          "refId": "B",
+          "target": "keepLastValue(collectd.*.processes-neutron-dhcp-agent.ps_count.processes, 2)"
+        },
+        {
+          "hide": true,
+          "refCount": -1,
+          "refId": "C",
+          "target": "keepLastValue(collectd.*.processes-neutron-lbaasv2-agent.ps_count.processes, 2)"
+        },
+        {
+          "hide": true,
+          "refCount": -1,
+          "refId": "D",
+          "target": "keepLastValue(collectd.*.processes-neutron-metadata-agent.ps_count.processes, 2)"
+        },
+        {
+          "hide": true,
+          "refCount": -1,
+          "refId": "E",
+          "target": "keepLastValue(collectd.*.processes-neutron-openvswitch-agent.ps_count.processes, 2)"
+        },
+        {
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias(sumSeries(#A, #B, #C, #D,#E), \"Total\")",
+          "targetFull": "alias(sumSeries(keepLastValue(collectd.*.processes-neutron-server.ps_count.processes, 2), keepLastValue(collectd.*.processes-neutron-dhcp-agent.ps_count.processes, 2), keepLastValue(collectd.*.processes-neutron-lbaasv2-agent.ps_count.processes, 2), keepLastValue(collectd.*.processes-neutron-metadata-agent.ps_count.processes, 2),keepLastValue(collectd.*.processes-neutron-openvswitch-agent.ps_count.processes, 2)), \"Total\")",
+          "textEditor": true
+        }
+      ],
+      "thresholds": "7,25",
+      "timeFrom": "2m",
+      "timeShift": null,
+      "title": "Neutron",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "30%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "OK",
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "ERROR",
+          "value": "0"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#d44a3a",
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 20,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 8,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 31,
+      "interval": null,
+      "links": [],
+      "mappingType": 2,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "Cinder ",
+      "prefixFontSize": "80%",
+      "rangeMaps": [
+        {
+          "from": "0",
+          "text": "ERROR",
+          "to": "2"
+        },
+        {
+          "from": "3",
+          "text": "OK",
+          "to": "10"
+        },
+        {
+          "from": "11",
+          "text": "WARN",
+          "to": "20"
+        }
+      ],
+      "repeatDirection": "h",
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "hide": true,
+          "refCount": 1,
+          "refId": "A",
+          "target": "keepLastValue(collectd.*.processes-cinder-backup.ps_count.processes, 2)"
+        },
+        {
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias(sumSeries(#A, #B, #C), \"Total\")",
+          "targetFull": "alias(sumSeries(keepLastValue(collectd.*.processes-cinder-backup.ps_count.processes, 2), keepLastValue(collectd.*.processes-cinder-scheduler.ps_count.processes, 2), keepLastValue(collectd.*.processes-cinder-volume.ps_count.processes, 2)), \"Total\")",
+          "textEditor": true
+        },
+        {
+          "hide": true,
+          "refCount": 1,
+          "refId": "B",
+          "target": "keepLastValue(collectd.*.processes-cinder-scheduler.ps_count.processes, 2)"
+        },
+        {
+          "hide": true,
+          "refCount": 1,
+          "refId": "C",
+          "target": "keepLastValue(collectd.*.processes-cinder-volume.ps_count.processes, 2)"
+        }
+      ],
+      "thresholds": "2,10",
+      "timeFrom": "1m",
+      "timeShift": null,
+      "title": "Cinder",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "30%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "OK",
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "ERROR",
+          "value": "0"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#d44a3a",
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 20,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 12,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 32,
+      "interval": null,
+      "links": [],
+      "mappingType": 2,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "Glance ",
+      "prefixFontSize": "80%",
+      "rangeMaps": [
+        {
+          "from": "0",
+          "text": "ERROR",
+          "to": "0"
+        },
+        {
+          "from": "1",
+          "text": "OK",
+          "to": "10"
+        },
+        {
+          "from": "11",
+          "text": "WARN",
+          "to": "20"
+        }
+      ],
+      "repeatDirection": "h",
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "hide": false,
+          "refCount": 1,
+          "refId": "A",
+          "target": "collectd.lab-controller*.processes-glance-api.ps_count.processes"
+        }
+      ],
+      "thresholds": "1,10",
+      "timeFrom": "1m",
+      "timeShift": null,
+      "title": "Glance",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "30%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "OK",
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "ERROR",
+          "value": "0"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#d44a3a",
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 20,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 33,
+      "interval": null,
+      "links": [],
+      "mappingType": 2,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "Keystone ",
+      "prefixFontSize": "80%",
+      "rangeMaps": [
+        {
+          "from": "0",
+          "text": "ERROR",
+          "to": "0"
+        },
+        {
+          "from": "1",
+          "text": "OK",
+          "to": "10"
+        },
+        {
+          "from": "11",
+          "text": "WARN",
+          "to": "20"
+        }
+      ],
+      "repeatDirection": "h",
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "hide": false,
+          "refCount": 1,
+          "refId": "A",
+          "target": "collectd.lab-controller*.processes-keystone.ps_count.processes"
+        }
+      ],
+      "thresholds": "1,10",
+      "timeFrom": "1m",
+      "timeShift": null,
+      "title": "Keystone",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "30%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "OK",
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "ERROR",
+          "value": "0"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "decimals": 0,
+      "format": "none",
+      "gauge": {
+        "maxValue": 30,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 20,
+        "y": 1
+      },
+      "hideTimeOverride": true,
+      "id": 6,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "  vms",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "collectd.*.processes-Instances.ps_count.processes"
+        }
+      ],
+      "thresholds": "10,20",
+      "timeFrom": "1m",
+      "title": "Active Instances",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "50%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 10,
+      "panels": [],
+      "title": "Compute Health - All",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_GRAPHITE}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 0,
+        "y": 9
+      },
+      "id": 8,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [
+        {
+          "dashUri": "db/compute-health",
+          "dashboard": "Compute Health",
+          "title": "Compute Health",
+          "type": "dashboard"
+        }
+      ],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(averageSeries(collectd.*compute*.memory.memory-used), 'Memory Used')"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(averageSeries(collectd.*compute*.memory.memory-free), 'Memory Free')"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(averageSeries(collectd.*compute*.memory.memory-cached), 'Memory Cached')"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Compute Memory Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_GRAPHITE}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 9,
+        "y": 9
+      },
+      "id": 14,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [
+        {
+          "dashUri": "db/compute-health",
+          "dashboard": "Compute Health",
+          "title": "Compute Health",
+          "type": "dashboard"
+        }
+      ],
+      "nullPointMode": "null",
+      "percentage": true,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(averageSeries(collectd.*compute*.cpu-*.percent-idle), 'cpu-idle')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(averageSeries(collectd.*compute*.cpu-*.percent-wait), 'cpu-wait')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(averageSeries(collectd.*compute*.cpu-*.percent-interrupt), 'cpu-interrupt')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "D",
+          "target": "alias(averageSeries(collectd.*compute*.cpu-*.percent-nice), 'cpu-nice')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "E",
+          "target": "alias(averageSeries(collectd.*compute*.cpu-*.percent-softirq), 'cpu-softirq')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias(averageSeries(collectd.*compute*.cpu-*.percent-steal), 'cpu-steal')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "G",
+          "target": "alias(averageSeries(collectd.*compute*.cpu-*.percent-system), 'cpu-system')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "H",
+          "target": "alias(averageSeries(collectd.*compute*.cpu-*.percent-user), 'cpu-user')",
+          "textEditor": false
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Compute CPU Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "decimals": 2,
+      "format": "short",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 18,
+        "y": 9
+      },
+      "id": 24,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "averageSeries(collectd.*compute*.load.*.shortterm)"
+        }
+      ],
+      "thresholds": "",
+      "title": "Compute Load 5min Avg",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "decimals": null,
+      "format": "bps",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 18,
+        "y": 12
+      },
+      "id": 27,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "hide": false,
+          "refCount": -1,
+          "refId": "A",
+          "target": "collectd.*compute*.interface-eth0.if_octets.tx"
+        }
+      ],
+      "thresholds": "1073741824,5368709120",
+      "title": "eth0 tx rate",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "70%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "decimals": null,
+      "format": "bps",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 12
+      },
+      "id": 29,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "hide": false,
+          "refCount": -1,
+          "refId": "A",
+          "target": "collectd.*compute*.interface-eth0.if_octets.rx"
+        }
+      ],
+      "thresholds": "1073741824,5368709120",
+      "title": "eth0 rx rate",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "70%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 16,
+      "panels": [],
+      "repeat": null,
+      "title": "Controller Health - All",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_GRAPHITE}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 0,
+        "y": 17
+      },
+      "id": 18,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [
+        {
+          "dashUri": "db/controller-health",
+          "dashboard": "Controller Health",
+          "title": "Controller Health",
+          "type": "dashboard"
+        }
+      ],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(averageSeries(collectd.*controller*.memory.memory-used), 'Memory Used')"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(averageSeries(collectd.*controller*.memory.memory-free), 'Memory Free')"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(averageSeries(collectd.*controller*.memory.memory-cached), 'Memory Cached')"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Controllers Memory Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_GRAPHITE}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 9,
+        "y": 17
+      },
+      "id": 20,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [
+        {
+          "dashUri": "db/controller-health",
+          "dashboard": "Controller Health",
+          "title": "Controller Health",
+          "type": "dashboard"
+        }
+      ],
+      "nullPointMode": "null",
+      "percentage": true,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(averageSeries(collectd.*controller*.cpu-*.percent-idle), 'cpu-idle')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(averageSeries(collectd.*controller*.cpu-*.percent-wait), 'cpu-wait')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(averageSeries(collectd.*controller*.cpu-*.percent-interrupt), 'cpu-interrupt')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "D",
+          "target": "alias(averageSeries(collectd.*controller*.cpu-*.percent-nice), 'cpu-nice')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "E",
+          "target": "alias(averageSeries(collectd.*controller*.cpu-*.percent-softirq), 'cpu-softirq')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias(averageSeries(collectd.*controller*.cpu-*.percent-steal), 'cpu-steal')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "G",
+          "target": "alias(averageSeries(collectd.*controller*.cpu-*.percent-system), 'cpu-system')",
+          "textEditor": false
+        },
+        {
+          "refCount": 0,
+          "refId": "H",
+          "target": "alias(averageSeries(collectd.*controller*.cpu-*.percent-user), 'cpu-user')",
+          "textEditor": false
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Controllers CPU Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "decimals": 2,
+      "format": "short",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 18,
+        "y": 17
+      },
+      "id": 25,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "averageSeries(collectd.*controller*.load.*.shortterm)"
+        }
+      ],
+      "thresholds": "",
+      "title": "Controllers Load 5min Avg",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "format": "bps",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 18,
+        "y": 20
+      },
+      "id": 28,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "hide": false,
+          "refCount": -1,
+          "refId": "A",
+          "target": "collectd.*controller*.interface-br-ex.if_octets.tx"
+        }
+      ],
+      "thresholds": "1073741824,5368709120",
+      "title": "br-ex tx rate",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "70%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_GRAPHITE}",
+      "format": "bps",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 20
+      },
+      "id": 30,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "hide": false,
+          "refCount": -1,
+          "refId": "A",
+          "target": "collectd.*controller*.interface-br-ex.if_octets.rx"
+        }
+      ],
+      "thresholds": "1073741824,5368709120",
+      "title": "br-ex rx rate",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "70%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    }
+  ],
+  "refresh": "5m",
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": false,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "RHOSP Quick Overview",
+  "uid": "JF5INQNik",
+  "version": 63
+}

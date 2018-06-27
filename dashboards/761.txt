@@ -1,0 +1,720 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_INFLUX",
+      "label": "Influx",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.0.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": "5.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": 3046,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1523798561187,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 7,
+      "panels": [],
+      "repeat": null,
+      "title": "Proxmox backup overall size",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_INFLUX}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": true,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "percentage": false,
+      "pointradius": 5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$location backup amount of data",
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "backup_px",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "size"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "location",
+              "operator": "=~",
+              "value": "/^$location$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "7d",
+      "timeShift": null,
+      "title": "Proxmox backup overall size",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": "Amount of data",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 8,
+      "panels": [],
+      "repeat": null,
+      "title": "Proxmox backup state",
+      "type": "row"
+    },
+    {
+      "columns": [],
+      "datasource": "${DS_INFLUX}",
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 3,
+      "links": [],
+      "pageSize": null,
+      "repeat": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Date",
+          "dateFormat": "YYYY-MM-DD",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "pattern": "/.*/",
+          "thresholds": [
+            "0.5",
+            "1"
+          ],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "alias": "$tag_host",
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "host"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "backup_px",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "success"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "location",
+              "operator": "=~",
+              "value": "/^$location$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "7d",
+      "timeShift": null,
+      "title": "Proxmox backup state",
+      "transform": "timeseries_to_columns",
+      "type": "table"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 9,
+      "panels": [
+        {
+          "columns": [],
+          "datasource": null,
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 17
+          },
+          "id": 4,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "styles": [
+            {
+              "alias": "Date",
+              "dateFormat": "YYYY-MM-DD",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(50, 172, 45, 0.97)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(245, 54, 54, 0.9)"
+              ],
+              "decimals": 1,
+              "pattern": "/.*/",
+              "thresholds": [
+                "3600",
+                "7200"
+              ],
+              "type": "number",
+              "unit": "s"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "$tag_host",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1d"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "host"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "backup_px",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "duration"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "location",
+                  "operator": "=~",
+                  "value": "/^$location$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": "7d",
+          "timeShift": null,
+          "title": "Proxmox backup duration",
+          "transform": "timeseries_to_columns",
+          "type": "table"
+        }
+      ],
+      "repeat": null,
+      "title": "Proxmox backup duration",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 10,
+      "panels": [
+        {
+          "columns": [],
+          "datasource": null,
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 18
+          },
+          "id": 5,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "styles": [
+            {
+              "alias": "Date",
+              "dateFormat": "YYYY-MM-DD",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(50, 172, 45, 0.97)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(245, 54, 54, 0.9)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "53678091200",
+                "85899345920"
+              ],
+              "type": "number",
+              "unit": "bytes"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "$tag_host",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1d"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "host"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "backup_px",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "size"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "location",
+                  "operator": "=~",
+                  "value": "/^$location$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": "7d",
+          "timeShift": null,
+          "title": "Proxmox backup size",
+          "transform": "timeseries_to_columns",
+          "type": "table"
+        }
+      ],
+      "repeat": null,
+      "title": "Proxmox backup size",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 12,
+      "panels": [],
+      "title": "Proxmox backup transfer speed",
+      "type": "row"
+    },
+    {
+      "columns": [],
+      "datasource": "${DS_INFLUX}",
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 13,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Date",
+          "dateFormat": "YYYY-MM-DD",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 1,
+          "pattern": "/.*/",
+          "thresholds": [
+            "50",
+            "75"
+          ],
+          "type": "number",
+          "unit": "MBs"
+        }
+      ],
+      "targets": [
+        {
+          "alias": "$tag_host",
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "host"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "backup_px",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "speed"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "location",
+              "operator": "=~",
+              "value": "/^$location$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "7d",
+      "timeShift": null,
+      "title": "Proxmox backup transfer speed",
+      "transform": "timeseries_to_columns",
+      "type": "table"
+    }
+  ],
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_INFLUX}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Location",
+        "multi": false,
+        "name": "location",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"backup_px\" WITH KEY = \"location\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Proxmox backup",
+  "uid": "000000011",
+  "version": 6,
+  "description": "Some statistics for Proxmox backups."
+}

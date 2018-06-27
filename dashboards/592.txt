@@ -1,0 +1,1195 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_MONITORING_DATASOURCE",
+      "label": "Monitoring datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    },
+    {
+      "name": "DS_HISTORY_DATASOURCE",
+      "label": "History datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.1.4"
+    },
+    {
+      "type": "panel",
+      "id": "savantly-heatmap-panel",
+      "name": "Heatmap",
+      "version": "0.1.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.0.1"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    }
+  ],
+  "id": null,
+  "title": "NAS Storage Monitoring",
+  "tags": [
+    "monitor",
+    "storage",
+    "nas"
+  ],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "sharedCrosshair": false,
+  "hideControls": false,
+  "time": {
+    "from": "now-20m",
+    "to": "now"
+  },
+  "timepicker": {
+    "now": true,
+    "refresh_intervals": [
+      "2m",
+      "5m",
+      "10m",
+      "20m",
+      "30m"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "2m",
+  "schemaVersion": 13,
+  "version": 79,
+  "links": [],
+  "gnetId": 1109,
+  "rows": [
+    {
+      "title": "Row",
+      "panels": [
+        {
+          "columns": [],
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "id": 1,
+          "interval": ">20m",
+          "links": [],
+          "pageSize": 7,
+          "scroll": false,
+          "showHeader": true,
+          "sort": {
+            "col": 4,
+            "desc": false
+          },
+          "span": 6,
+          "styles": [
+            {
+              "dateFormat": "HH:mm",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(73, 118, 71, 0.97)"
+              ],
+              "decimals": 1,
+              "pattern": "free",
+              "thresholds": [
+                "5",
+                "10"
+              ],
+              "type": "number",
+              "unit": "gbytes"
+            },
+            {
+              "colorMode": "cell",
+              "colors": [
+                "rgba(50, 51, 50, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(80, 118, 79, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 1,
+              "pattern": "oscys",
+              "thresholds": [
+                "1",
+                "40"
+              ],
+              "type": "number",
+              "unit": "gbytes"
+            },
+            {
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "pattern": "size",
+              "thresholds": [],
+              "type": "number",
+              "unit": "gbytes"
+            }
+          ],
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servername"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "drive"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "drivestatus",
+              "policy": "default",
+              "query": "SELECT \"size\",\"free\",\"oscys\" FROM \"drivestatus\" WHERE  technology='3PAR' AND $timeFilter GROUP BY \"servername\",\"drive\"",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "table",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "size"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "oscys"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "title": "Drive Status (Servers with Oscys)",
+          "transform": "table",
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "id": 2,
+          "interval": ">20m",
+          "links": [],
+          "pageSize": 6,
+          "scroll": false,
+          "showHeader": true,
+          "sort": {
+            "col": 4,
+            "desc": false
+          },
+          "span": 6,
+          "styles": [
+            {
+              "dateFormat": "HH:mm",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(73, 118, 71, 0.97)"
+              ],
+              "decimals": 1,
+              "pattern": "free",
+              "thresholds": [
+                "30",
+                "50"
+              ],
+              "type": "number",
+              "unit": "gbytes"
+            },
+            {
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 1,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "gbytes"
+            }
+          ],
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servername"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "drive"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "drivestatus",
+              "policy": "default",
+              "query": "SELECT \"size\",\"free\" FROM \"drivestatus\" WHERE  technology='StorSimple' or technology='3PAR-Peer-Persistence' AND $timeFilter GROUP BY \"servername\",\"drive\"",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "table",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "size"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "oscys"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "title": "Drive Status (Servers with Quotas)",
+          "transform": "table",
+          "type": "table"
+        }
+      ],
+      "showTitle": false,
+      "titleSize": "h6",
+      "height": "250px",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    },
+    {
+      "title": "New row",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_HISTORY_DATASOURCE}",
+          "decimals": 1,
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 6,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 4,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_servername",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "15d"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servername"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "quotausage",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "path",
+                  "operator": "=~",
+                  "value": "/OSCYS/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": "90d",
+          "timeShift": null,
+          "title": "oscys evolution",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "value_type": "individual",
+            "sort": 0
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "gbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "thresholds": []
+        },
+        {
+          "columns": [],
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "hideTimeOverride": true,
+          "id": 3,
+          "interval": ">20m",
+          "links": [],
+          "pageSize": 7,
+          "scroll": false,
+          "showHeader": true,
+          "sort": {
+            "col": 3,
+            "desc": false
+          },
+          "span": 6,
+          "styles": [
+            {
+              "dateFormat": "HH:mm",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": "row",
+              "colors": [
+                "rgba(90, 86, 86, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(175, 26, 32, 0.97)"
+              ],
+              "decimals": 0,
+              "pattern": "warning",
+              "thresholds": [
+                "1",
+                "2"
+              ],
+              "type": "number",
+              "unit": "short"
+            },
+            {
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "gbytes"
+            }
+          ],
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "servername"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "drive"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "drivestatus",
+              "policy": "default",
+              "query": "SELECT \"quota\",\"used\",\"free\",\"warning\" FROM \"quotausage\" WHERE  $timeFilter GROUP BY \"servername\",\"path\"",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "table",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "size"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "oscys"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": "10m",
+          "title": "Quotas in Warning",
+          "transform": "table",
+          "type": "table"
+        }
+      ],
+      "showTitle": false,
+      "titleSize": "h6",
+      "height": "250px",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    },
+    {
+      "title": "New row",
+      "panels": [
+        {
+          "aliasColors": {
+            "capacity": "#967302"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "format": "gbytes",
+          "hideTimeOverride": false,
+          "id": 7,
+          "interval": ">20m",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "pieType": "pie",
+          "span": 4,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "20m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "drivestatus",
+              "policy": "default",
+              "query": "SELECT sum(\"size\") AS \"capacity\", sum(\"free\")+sum(oscys) AS \"free\" FROM \"drivestatus\" WHERE \"technology\" = '3PAR' AND $timeFilter GROUP BY time(20m) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "size"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "capacity"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "technology",
+                  "operator": "=",
+                  "value": "3PAR"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "title": "3PAR usage",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "capacity": "#967302"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "format": "gbytes",
+          "hideTimeOverride": false,
+          "id": 8,
+          "interval": ">20m",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "pieType": "pie",
+          "span": 4,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "20m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "drivestatus",
+              "policy": "default",
+              "query": "SELECT sum(\"size\") AS \"capacity\", sum(\"free\") AS \"free\" FROM \"drivestatus\" WHERE \"technology\" = 'StorSimple' AND $timeFilter GROUP BY time(20m) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "size"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "capacity"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "technology",
+                  "operator": "=",
+                  "value": "3PAR"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "title": "StorSimple usage",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "capacity": "#967302"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "format": "gbytes",
+          "hideTimeOverride": false,
+          "id": 9,
+          "interval": ">20m",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "pieType": "pie",
+          "span": 4,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "20m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "drivestatus",
+              "policy": "default",
+              "query": "SELECT sum(\"size\") AS \"capacity\", sum(\"free\") AS \"free\" FROM \"drivestatus\" WHERE \"technology\" = '3PAR-Peer-Persistence' AND $timeFilter GROUP BY time(20m) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "size"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "capacity"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "technology",
+                  "operator": "=",
+                  "value": "3PAR"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "title": "3PAR-Peer-Persistence usage",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        }
+      ],
+      "showTitle": false,
+      "titleSize": "h6",
+      "height": "250px",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    },
+    {
+      "title": "New row",
+      "panels": [
+        {
+          "aliasColors": {
+            "3PAR": "#99440A",
+            "3PAR-Peer-Persistence": "#58140C",
+            "StorSimple": "#0A437C",
+            "capacity": "#967302"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "fontSize": "70%",
+          "format": "gbytes",
+          "height": "",
+          "hideTimeOverride": false,
+          "id": 10,
+          "interval": ">20m",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "percentage": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "pieType": "pie",
+          "span": 6,
+          "strokeWidth": "1",
+          "targets": [
+            {
+              "alias": "$tag_technology",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "20m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "technology"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "drivestatus",
+              "policy": "default",
+              "query": "SELECT sum(\"size\") AS \"3PAR\" FROM \"drivestatus\" WHERE \"technology\" = '3PAR' AND $timeFilter GROUP BY time(20m) fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "size"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "scope",
+                  "operator": "=",
+                  "value": "NAC"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "title": "Capacity per Technology",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "chartId": "chart_11",
+          "colors": [
+            "rgb(71, 125, 161)",
+            "rgb(17, 14, 43)"
+          ],
+          "datasource": "${DS_MONITORING_DATASOURCE}",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "height": "200",
+          "id": 11,
+          "legend": {
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": false,
+            "total": false
+          },
+          "links": [],
+          "mappingType": 1,
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "seriesOverrides": [],
+          "span": 6,
+          "targets": [
+            {
+              "alias": "$tag_path",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "path"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "quotausage",
+              "policy": "default",
+              "query": "SELECT mean(\"warning\") FROM \"quotausage\" WHERE $timeFilter and warning > 0 GROUP BY time($interval), \"path\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "warning"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "0,10",
+          "timeFrom": "8h",
+          "title": "Warnings History",
+          "treeMap": {
+            "colorByFunction": "count",
+            "debug": false,
+            "depth": 0,
+            "enableGrouping": true,
+            "enableTimeBlocks": false,
+            "groups": [
+              {
+                "key": "server",
+                "value": "/^.*./g"
+              }
+            ],
+            "ids": [
+              "alias"
+            ],
+            "mode": "squarify",
+            "nodeSizeProperty": "value",
+            "showLegend": false,
+            "sizeByFunction": "count"
+          },
+          "type": "savantly-heatmap-panel",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ]
+        }
+      ],
+      "showTitle": false,
+      "titleSize": "h6",
+      "height": "250",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    }
+  ],
+  "description": "File Servers Storage Monitoring"
+}

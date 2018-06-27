@@ -1,0 +1,661 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_stats_COLLECTD",
+      "label": "stats_collectd",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    },
+    {
+      "name": "DS_stat_SENSU",
+      "label": "NA",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "3.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    }
+  ],
+  "id": null,
+  "title": "Ntpd",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": true,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_stats_COLLECTD}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 3,
+          "isNew": true,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_type_instance",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "type_instance"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ntpd_value",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "type",
+                  "operator": "=",
+                  "value": "time_offset"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Time Offset",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_stats_COLLECTD}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "isNew": true,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_type_instance",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "type_instance"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ntpd_value",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "type": "field",
+                    "params": [
+                      "value"
+                    ]
+                  },
+                  {
+                    "type": "mean",
+                    "params": []
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "type",
+                  "operator": "=",
+                  "value": "time_dispersion"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Time Dispersion",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_stats_COLLECTD}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "isNew": true,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_type_instance",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "type_instance"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ntpd_value",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "hostname"
+                },
+                {
+                  "condition": "AND",
+                  "key": "type",
+                  "operator": "=",
+                  "value": "frequency_offset"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Frequency Offset",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "title": "Time offset per host",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 4,
+          "targets": [
+            {
+              "policy": "default",
+              "dsType": "influxdb",
+              "resultFormat": "time_series",
+              "tags": [
+                {
+                  "key": "type",
+                  "operator": "=",
+                  "value": "time_offset"
+                },
+                {
+                  "condition": "AND",
+                  "key": "type_instance",
+                  "operator": "=",
+                  "value": "loop"
+                }
+              ],
+              "groupBy": [
+                {
+                  "type": "time",
+                  "params": [
+                    "$interval"
+                  ]
+                },
+                {
+                  "type": "tag",
+                  "params": [
+                    "host"
+                  ]
+                },
+                {
+                  "type": "fill",
+                  "params": [
+                    "null"
+                  ]
+                }
+              ],
+              "select": [
+                [
+                  {
+                    "type": "field",
+                    "params": [
+                      "value"
+                    ]
+                  },
+                  {
+                    "type": "last",
+                    "params": []
+                  }
+                ]
+              ],
+              "refId": "A",
+              "measurement": "ntpd_value",
+              "alias": "$tag_host"
+            }
+          ],
+          "datasource": "${DS_stats_COLLECTD}",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "ms"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "rightSide": false,
+            "alignAsTable": false
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": []
+        }
+      ],
+      "title": "Row"
+    }
+  ],
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": "${DS_stat_SENSU}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Host",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "SHOW TAG VALUES WITH KEY=host",
+        "refresh": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "stats_collectd",
+          "value": "stats_collectd"
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Datasource",
+        "multi": false,
+        "name": "datasource",
+        "options": [
+          {
+            "text": "InfluxDB Internals",
+            "value": "InfluxDB Internals",
+            "selected": false
+          },
+          {
+            "text": "default",
+            "value": "default",
+            "selected": false
+          },
+          {
+            "text": "stat_sensu",
+            "value": "stat_sensu",
+            "selected": false
+          },
+          {
+            "text": "stats_collectd",
+            "value": "stats_collectd",
+            "selected": true
+          }
+        ],
+        "query": "influxdb",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": false,
+  "schemaVersion": 12,
+  "version": 8,
+  "links": [],
+  "gnetId": 1017,
+  "description": "Dashboard for ntpd plugin in CollectD sending data to InfluxDB"
+}

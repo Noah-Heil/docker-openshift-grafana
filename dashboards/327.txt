@@ -1,0 +1,4985 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_TELEGRAF",
+      "label": "telegraf",
+      "description": "Enable input from net, hddtemp, per-cpu and docker",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.1.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "description": "Simple grafana dash for unRaid or any linux host showing data collected with telegraf.",
+  "editable": false,
+  "gnetId": 5357,
+  "graphTooltip": 0,
+  "hideControls": true,
+  "id": null,
+  "links": [],
+  "refresh": "10s",
+  "rows": [
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 43,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(255, 255, 255, 0.09)",
+            "full": false,
+            "lineColor": "rgba(255, 255, 255, 0.49)",
+            "show": true
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "cpu",
+              "policy": "default",
+              "query": "SELECT 100-mean(\"usage_idle\") FROM \"cpu\" WHERE \"cpu\" = 'cpu0' AND $timeFilter GROUP BY time(2m) fill(linear)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_idle"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu0"
+                }
+              ]
+            }
+          ],
+          "thresholds": "70,90",
+          "title": "Core 0",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 52,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(255, 255, 255, 0.09)",
+            "full": false,
+            "lineColor": "rgba(255, 255, 255, 0.49)",
+            "show": true
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "cpu",
+              "policy": "default",
+              "query": "SELECT 100-mean(\"usage_idle\") FROM \"cpu\" WHERE \"cpu\" = 'cpu1' AND $timeFilter GROUP BY time(2m) fill(linear)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_idle"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu1"
+                }
+              ]
+            }
+          ],
+          "thresholds": "70,90",
+          "title": "Core 1",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 44,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(255, 255, 255, 0.08)",
+            "full": false,
+            "lineColor": "rgba(255, 255, 255, 0.5)",
+            "show": true
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "cpu",
+              "policy": "default",
+              "query": "SELECT 100-mean(\"usage_idle\") FROM \"cpu\" WHERE \"cpu\" = 'cpu2' AND $timeFilter GROUP BY time(2m) fill(linear)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_idle"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu0"
+                },
+                {
+                  "condition": "OR",
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu1"
+                }
+              ]
+            }
+          ],
+          "thresholds": "70,90",
+          "title": "Core 2",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 53,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(255, 255, 255, 0.08)",
+            "full": false,
+            "lineColor": "rgba(255, 255, 255, 0.5)",
+            "show": true
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "cpu",
+              "policy": "default",
+              "query": "SELECT 100-mean(\"usage_idle\") FROM \"cpu\" WHERE \"cpu\" = 'cpu3' AND $timeFilter GROUP BY time(2m) fill(linear)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_idle"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu0"
+                },
+                {
+                  "condition": "OR",
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu1"
+                }
+              ]
+            }
+          ],
+          "thresholds": "70,90",
+          "title": "Core 3",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 46,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(255, 255, 255, 0.07)",
+            "full": false,
+            "lineColor": "rgba(255, 255, 255, 0.5)",
+            "show": true
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "cpu",
+              "policy": "default",
+              "query": "SELECT 100-mean(\"usage_idle\") FROM \"cpu\" WHERE \"cpu\" = 'cpu4' AND $timeFilter GROUP BY time(2m) fill(linear)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_idle"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu0"
+                },
+                {
+                  "condition": "OR",
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu1"
+                }
+              ]
+            }
+          ],
+          "thresholds": "70,90",
+          "title": "Core 4",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 54,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(255, 255, 255, 0.07)",
+            "full": false,
+            "lineColor": "rgba(255, 255, 255, 0.5)",
+            "show": true
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "cpu",
+              "policy": "default",
+              "query": "SELECT 100-mean(\"usage_idle\") FROM \"cpu\" WHERE \"cpu\" = 'cpu5' AND $timeFilter GROUP BY time(2m) fill(linear)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_idle"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu0"
+                },
+                {
+                  "condition": "OR",
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu1"
+                }
+              ]
+            }
+          ],
+          "thresholds": "70,90",
+          "title": "Core 5",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 45,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(255, 255, 255, 0.06)",
+            "full": false,
+            "lineColor": "rgba(255, 255, 255, 0.49)",
+            "show": true
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "cpu",
+              "policy": "default",
+              "query": "SELECT 100-mean(\"usage_idle\") FROM \"cpu\" WHERE \"cpu\" = 'cpu6' AND $timeFilter GROUP BY time(2m) fill(linear)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_idle"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu0"
+                },
+                {
+                  "condition": "OR",
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu1"
+                }
+              ]
+            }
+          ],
+          "thresholds": "70,90",
+          "title": "Core 6",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 55,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(255, 255, 255, 0.06)",
+            "full": false,
+            "lineColor": "rgba(255, 255, 255, 0.49)",
+            "show": true
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "cpu",
+              "policy": "default",
+              "query": "SELECT 100-mean(\"usage_idle\") FROM \"cpu\" WHERE \"cpu\" = 'cpu7' AND $timeFilter GROUP BY time(2m) fill(linear)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_idle"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu0"
+                },
+                {
+                  "condition": "OR",
+                  "key": "cpu",
+                  "operator": "=",
+                  "value": "cpu1"
+                }
+              ]
+            }
+          ],
+          "thresholds": "70,90",
+          "title": "Core 7",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Per-Core",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "annotate": {
+            "enable": false
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 1,
+          "fill": 2,
+          "grid": {
+            "max": null,
+            "min": null
+          },
+          "height": "",
+          "id": 4,
+          "interactive": true,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "legend_counts": true,
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "options": false,
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "resolution": 100,
+          "scale": 1,
+          "seriesOverrides": [
+            {
+              "alias": "15 min",
+              "fill": 0
+            },
+            {
+              "alias": "5 min",
+              "fill": 0
+            },
+            {
+              "alias": "15 min",
+              "linewidth": 2
+            },
+            {
+              "alias": "5 min",
+              "linewidth": 2
+            },
+            {
+              "alias": "1 min",
+              "color": "#BA43A9"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "spyable": true,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "30s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "system",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "load1"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1 min"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "load5"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "5 min"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "load15"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "15 min"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "timezone": "browser",
+          "title": "Load",
+          "tooltip": {
+            "query_as_alias": true,
+            "shared": true,
+            "sort": 2,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "watt",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 1,
+          "fill": 0,
+          "id": 51,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "cpu",
+              "yaxis": 2
+            },
+            {
+              "alias": "case 1",
+              "yaxis": 2
+            },
+            {
+              "alias": "cpu",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "case 1",
+              "color": "#705DA0"
+            },
+            {
+              "alias": "case 2",
+              "yaxis": 2
+            },
+            {
+              "alias": "case 2",
+              "color": "#BA43A9"
+            },
+            {
+              "alias": "socket",
+              "color": "#EAB839"
+            },
+            {
+              "alias": "board",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "socket",
+              "linewidth": 2
+            },
+            {
+              "alias": "core",
+              "linewidth": 2
+            },
+            {
+              "alias": "core",
+              "color": "#EF843C"
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "core",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "sensors",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temp_input"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "* 9 / 5 + 32"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "chip",
+                  "operator": "=",
+                  "value": "k10temp-pci-00c3"
+                },
+                {
+                  "condition": "AND",
+                  "key": "feature",
+                  "operator": "=",
+                  "value": "temp1"
+                }
+              ]
+            },
+            {
+              "alias": "socket",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "sensors",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temp_input"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "* 9 / 5 + 32"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "chip",
+                  "operator": "=",
+                  "value": "it8721-isa-0290"
+                },
+                {
+                  "condition": "AND",
+                  "key": "feature",
+                  "operator": "=",
+                  "value": "temp1"
+                }
+              ]
+            },
+            {
+              "alias": "board",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "sensors",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temp_input"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "* 9 / 5 + 32"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "chip",
+                  "operator": "=",
+                  "value": "it8721-isa-0290"
+                },
+                {
+                  "condition": "AND",
+                  "key": "feature",
+                  "operator": "=",
+                  "value": "temp2"
+                }
+              ]
+            },
+            {
+              "alias": "cpu",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "sensors",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "fan_input"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "chip",
+                  "operator": "=",
+                  "value": "it8721-isa-0290"
+                },
+                {
+                  "condition": "AND",
+                  "key": "feature",
+                  "operator": "=",
+                  "value": "fan1"
+                }
+              ]
+            },
+            {
+              "alias": "case 1",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "sensors",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "fan_input"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "chip",
+                  "operator": "=",
+                  "value": "it8721-isa-0290"
+                },
+                {
+                  "condition": "AND",
+                  "key": "feature",
+                  "operator": "=",
+                  "value": "fan2"
+                }
+              ]
+            },
+            {
+              "alias": "case 2",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "sensors",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "fan_input"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "chip",
+                  "operator": "=",
+                  "value": "it8721-isa-0290"
+                },
+                {
+                  "condition": "AND",
+                  "key": "feature",
+                  "operator": "=",
+                  "value": "fan3"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Sensors",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "farenheit",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {},
+          "height": "",
+          "id": 6,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "idle",
+              "color": "#F29191"
+            },
+            {
+              "alias": "user",
+              "color": "#82B5D8"
+            },
+            {
+              "alias": "system",
+              "color": "#E24D42"
+            },
+            {
+              "alias": "io wait",
+              "color": "#EAB839"
+            },
+            {
+              "alias": "idle",
+              "fill": 1
+            },
+            {
+              "alias": "idle",
+              "linewidth": 0
+            },
+            {
+              "alias": "nice",
+              "color": "#BA43A9"
+            },
+            {
+              "alias": "temperature",
+              "yaxis": 2
+            },
+            {
+              "alias": "guest",
+              "color": "#7EB26D"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "2m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "cpu",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_iowait"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "io wait"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "usage_system"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "system"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "usage_user"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "user"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "usage_guest"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "guest"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "usage_nice"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "nice"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "usage_idle"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "idle"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU (%)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": "",
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "farenheit",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "fill": 2,
+          "id": 37,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "plex",
+              "color": "#EAB839"
+            },
+            {
+              "alias": "minecraft",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "handbrake",
+              "color": "#BA43A9"
+            },
+            {
+              "alias": "pihole",
+              "color": "#E24D42"
+            },
+            {
+              "alias": "reporting",
+              "color": "#705DA0"
+            },
+            {
+              "alias": "plex support",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "nextcloud",
+              "color": "#1F78C1"
+            }
+          ],
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "reporting",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_cpu",
+              "policy": "default",
+              "refId": "I",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "/ 8"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "Influx-Grafana"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "glances"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "telegraf"
+                }
+              ]
+            },
+            {
+              "alias": "pihole",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_cpu",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "/ 8"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "pihole"
+                }
+              ]
+            },
+            {
+              "alias": "plex support",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_cpu",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "/ 8"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "deluge"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "tautulli"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "sonarr"
+                }
+              ]
+            },
+            {
+              "alias": "minecraft",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_cpu",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "/ 8"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "minecraft"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "DragonProxy"
+                }
+              ]
+            },
+            {
+              "alias": "nextcloud",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_cpu",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "/ 8"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "nextcloud"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "letsencrypt"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "Collabora"
+                }
+              ]
+            },
+            {
+              "alias": "handbrake",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_cpu",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "/ 8"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "HandBrake"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "mediaJob"
+                }
+              ]
+            },
+            {
+              "alias": "plex",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_cpu",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "/ 8"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "PlexMediaServer"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container CPU (%)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 10,
+              "max": "100",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "Max": "#BF1B00"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 1,
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {},
+          "id": 7,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": true,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "free",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "used",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "cache",
+              "color": "#EAB839"
+            },
+            {
+              "alias": "free",
+              "fill": 1
+            },
+            {
+              "alias": "free",
+              "linewidth": 0
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mem",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "used"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "cached"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "cache"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "free"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "bytes",
+              "logBase": 1,
+              "max": "20000000000",
+              "min": "0",
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 1,
+          "fill": 2,
+          "id": 38,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "plex",
+              "color": "#EAB839"
+            },
+            {
+              "alias": "minecraft",
+              "color": "#7EB26D"
+            },
+            {
+              "alias": "handbrake",
+              "color": "#BA43A9"
+            },
+            {
+              "alias": "pihole",
+              "color": "#E24D42"
+            },
+            {
+              "alias": "reporting",
+              "color": "#705DA0"
+            },
+            {
+              "alias": "plex support",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "nextcloud",
+              "color": "#1F78C1"
+            }
+          ],
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "reporting",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_mem",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "Influx-Grafana"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "glances"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "telegraf"
+                }
+              ]
+            },
+            {
+              "alias": "pihole",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_mem",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "pihole"
+                }
+              ]
+            },
+            {
+              "alias": "plex support",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_mem",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "deluge"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "sonarr"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "tautulli"
+                }
+              ]
+            },
+            {
+              "alias": "minecraft",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_mem",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "minecraft"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "DragonProxy"
+                }
+              ]
+            },
+            {
+              "alias": "nextcloud",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_mem",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "nextcloud"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "letsencrypt"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "Collabora"
+                }
+              ]
+            },
+            {
+              "alias": "handbrake",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_mem",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "HandBrake"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "mediaJob"
+                }
+              ]
+            },
+            {
+              "alias": "plex",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_mem",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "PlexMediaServer"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container Memory",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "System",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {},
+          "id": 9,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Rx",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": true,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "30s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "net",
+              "policy": "default",
+              "query": "SELECT derivative(\"bytes_recv\", 1s) FROM \"net\" WHERE \"interface\" = 'eth0' GROUP BY time($interval) fill(0)",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "bytes_recv"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "Rx"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "bytes_sent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "Tx"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "interface",
+                  "operator": "=",
+                  "value": "eth0"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Net Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "avg"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "Kbits",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "fill": 2,
+          "id": 56,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "plex support",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "plex",
+              "color": "#EAB839"
+            },
+            {
+              "alias": "nextcloud",
+              "color": "#1F78C1"
+            },
+            {
+              "alias": "other",
+              "color": "#E24D42"
+            }
+          ],
+          "span": 6,
+          "stack": true,
+          "steppedLine": true,
+          "targets": [
+            {
+              "alias": "nextcloud",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_net",
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"tx_bytes\"), 1s) +  non_negative_derivative(mean(\"rx_bytes\"), 1s) FROM \"docker_container_net\" WHERE \"container_name\" = 'nextcloud' OR \"container_name\" = 'letsencrypt' OR \"container_name\" = 'Collabora' AND $timeFilter GROUP BY time(30s) fill(none)",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "tx_bytes"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "10s"
+                    ],
+                    "type": "non_negative_derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "nextcloud"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "letsencrypt"
+                }
+              ]
+            },
+            {
+              "alias": "plex",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_net",
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"tx_bytes\"), 1s) + non_negative_derivative(mean(\"rx_bytes\"), 1s) FROM \"docker_container_net\" WHERE \"container_name\" = 'PlexMediaServer' AND $timeFilter GROUP BY time(30s) fill(none)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "tx_bytes"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "10s"
+                    ],
+                    "type": "non_negative_derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "PlexMediaServer"
+                }
+              ]
+            },
+            {
+              "alias": "plex support",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_net",
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"tx_bytes\"), 1s) + non_negative_derivative(mean(\"rx_bytes\"), 1s) FROM \"docker_container_net\" WHERE \"container_name\" = 'deluge' OR \"container_name\" = 'tautulli' OR \"container_name\" = 'sonarr' AND $timeFilter GROUP BY time(30s) fill(none)",
+              "rawQuery": true,
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "rx_bytes"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "10s"
+                    ],
+                    "type": "non_negative_derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "deluge"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "tautulli"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "sonarr"
+                }
+              ]
+            },
+            {
+              "alias": "other",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "docker_container_net",
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"tx_bytes\"), 1s) + non_negative_derivative(mean(\"rx_bytes\"), 1s) FROM \"docker_container_net\" WHERE \"container_name\" = 'minecraft' OR \"container_name\" = 'minecraft' AND $timeFilter GROUP BY time(30s) fill(none)",
+              "rawQuery": true,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "rx_bytes"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "10s"
+                    ],
+                    "type": "non_negative_derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "minecraft"
+                },
+                {
+                  "condition": "OR",
+                  "key": "container_name",
+                  "operator": "=",
+                  "value": "minecraft"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container Net Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "current"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Network",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": true,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "fill": 1,
+          "id": 60,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "W",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "T",
+              "color": "#BA43A9"
+            },
+            {
+              "alias": "T",
+              "yaxis": 2
+            }
+          ],
+          "span": 1,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "T",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "APC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "TIMELEFT"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "W",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "APC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "LOADPCT"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "* 0.01 * 900"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "UPS",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "series",
+            "name": null,
+            "show": true,
+            "values": [
+              "avg"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "watt",
+              "label": "",
+              "logBase": 1,
+              "max": "1000",
+              "min": "0",
+              "show": false
+            },
+            {
+              "format": "m",
+              "label": null,
+              "logBase": 1,
+              "max": "60",
+              "min": "0",
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "fill": 2,
+          "id": 47,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Transcode",
+              "color": "#EF843C"
+            },
+            {
+              "alias": "Direct Play",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "Direct Stream",
+              "color": "#EAB839"
+            }
+          ],
+          "span": 11,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "30s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "get_activity",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "stream_directplay_count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Direct Play"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "stream_directstream_count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Direct Stream"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "stream_transcode_count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "Transcode"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Plex Activity",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Misc",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": true,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "fill": 1,
+          "id": 57,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "USE",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "IO",
+              "color": "#BA43A9"
+            }
+          ],
+          "span": 1,
+          "stack": false,
+          "steppedLine": true,
+          "targets": [
+            {
+              "alias": "IO",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "diskio",
+              "policy": "default",
+              "query": "SELECT derivative(last(\"io_time\"),1ms) * 100 FROM \"diskio\" WHERE \"name\" = 'sdg' AND $timeFilter GROUP BY time(1s) fill(none)",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "weighted_io_time"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "1ms"
+                    ],
+                    "type": "derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sdh"
+                }
+              ]
+            },
+            {
+              "alias": "USE",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "disk",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "used_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "device",
+                  "operator": "=",
+                  "value": "sdg1"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Cache",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "series",
+            "name": null,
+            "show": true,
+            "values": [
+              "current"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": false
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {},
+          "id": 39,
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "write",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "read",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "write",
+              "color": "#BA43A9"
+            },
+            {
+              "alias": "c",
+              "yaxis": 2
+            },
+            {
+              "alias": "c",
+              "fill": 0
+            },
+            {
+              "alias": "c",
+              "color": "#EAB839"
+            },
+            {
+              "alias": "c",
+              "linewidth": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 11,
+          "stack": false,
+          "steppedLine": true,
+          "targets": [
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "30s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "diskio",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read_bytes"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "6s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "write_bytes"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "6s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sdg"
+                }
+              ]
+            },
+            {
+              "alias": "c",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "hddtemp",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temperature"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "* 9 / 5 + 32"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "device",
+                  "operator": "=",
+                  "value": "sdg"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Cache IO",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "farenheit",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "fill": 1,
+          "id": 59,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "USE",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "IO",
+              "color": "#BA43A9"
+            }
+          ],
+          "span": 1,
+          "stack": false,
+          "steppedLine": true,
+          "targets": [
+            {
+              "alias": "IO",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "diskio",
+              "policy": "default",
+              "query": "SELECT derivative(last(\"io_time\"),1ms) * 100 FROM \"diskio\" WHERE \"name\" = 'sdf' OR \"name\" = 'sdc' OR \"name\" = 'sdd' OR \"name\" = 'sde' AND $timeFilter GROUP BY time(1s) fill(none)",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "weighted_io_time"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "1ms"
+                    ],
+                    "type": "derivative"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sdf"
+                },
+                {
+                  "condition": "OR",
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sdc"
+                },
+                {
+                  "condition": "OR",
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sdd"
+                },
+                {
+                  "condition": "OR",
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sde"
+                }
+              ]
+            },
+            {
+              "alias": "USE",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "disk",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "used_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "path",
+                  "operator": "=",
+                  "value": "/mnt/user"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Array",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "series",
+            "name": null,
+            "show": true,
+            "values": [
+              "current"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": false
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_TELEGRAF}",
+          "decimals": 0,
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {},
+          "id": 10,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "write",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "read",
+              "color": "#6ED0E0"
+            },
+            {
+              "alias": "write",
+              "color": "#BA43A9"
+            },
+            {
+              "alias": "p",
+              "yaxis": 2
+            },
+            {
+              "alias": "1",
+              "yaxis": 2
+            },
+            {
+              "alias": "2",
+              "yaxis": 2
+            },
+            {
+              "alias": "3",
+              "yaxis": 2
+            },
+            {
+              "alias": "p",
+              "fill": 0
+            },
+            {
+              "alias": "1",
+              "fill": 0
+            },
+            {
+              "alias": "2",
+              "fill": 0
+            },
+            {
+              "alias": "3",
+              "fill": 0
+            },
+            {
+              "alias": "p",
+              "color": "#F4D598"
+            },
+            {
+              "alias": "1",
+              "color": "#EAB839"
+            },
+            {
+              "alias": "2",
+              "color": "#EF843C"
+            },
+            {
+              "alias": "3",
+              "color": "#E24D42"
+            },
+            {
+              "alias": "p",
+              "linewidth": 2
+            },
+            {
+              "alias": "1",
+              "linewidth": 2
+            },
+            {
+              "alias": "2",
+              "linewidth": 2
+            },
+            {
+              "alias": "3",
+              "linewidth": 2
+            },
+            {
+              "alias": "4",
+              "yaxis": 2
+            },
+            {
+              "alias": "4",
+              "fill": 0
+            },
+            {
+              "alias": "4",
+              "linewidth": 2
+            },
+            {
+              "alias": "4",
+              "color": "#890F02"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 11,
+          "stack": false,
+          "steppedLine": true,
+          "targets": [
+            {
+              "alias": "4",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "hddtemp",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temperature"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "* 9 / 5 + 32"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "device",
+                  "operator": "=",
+                  "value": "sdf"
+                },
+                {
+                  "condition": "AND",
+                  "key": "status",
+                  "operator": "!=",
+                  "value": "SLP"
+                }
+              ]
+            },
+            {
+              "alias": "3",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "hddtemp",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temperature"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "* 9 / 5 + 32"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "device",
+                  "operator": "=",
+                  "value": "sdb"
+                },
+                {
+                  "condition": "AND",
+                  "key": "status",
+                  "operator": "!=",
+                  "value": "SLP"
+                }
+              ]
+            },
+            {
+              "alias": "2",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "hddtemp",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temperature"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "* 9 / 5 + 32"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "device",
+                  "operator": "=",
+                  "value": "sde"
+                },
+                {
+                  "condition": "AND",
+                  "key": "status",
+                  "operator": "!=",
+                  "value": "SLP"
+                }
+              ]
+            },
+            {
+              "alias": "1",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "hddtemp",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temperature"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "* 9 / 5 + 32"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "device",
+                  "operator": "=",
+                  "value": "sdd"
+                },
+                {
+                  "condition": "AND",
+                  "key": "status",
+                  "operator": "!=",
+                  "value": "SLP"
+                }
+              ]
+            },
+            {
+              "alias": "p",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "linear"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "hddtemp",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temperature"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "* 9 / 5 + 32"
+                    ],
+                    "type": "math"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "device",
+                  "operator": "=",
+                  "value": "sdc"
+                },
+                {
+                  "condition": "AND",
+                  "key": "status",
+                  "operator": "!=",
+                  "value": "SLP"
+                }
+              ]
+            },
+            {
+              "alias": "$col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "30s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "diskio",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read_bytes"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "6s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "write_bytes"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "6s"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sdb"
+                },
+                {
+                  "condition": "OR",
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sdc"
+                },
+                {
+                  "condition": "OR",
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sdd"
+                },
+                {
+                  "condition": "OR",
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sde"
+                },
+                {
+                  "condition": "OR",
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sdf"
+                },
+                {
+                  "condition": "OR",
+                  "key": "name",
+                  "operator": "=",
+                  "value": "sdh"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Array IO",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "farenheit",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Disk",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {
+    "collapse": false,
+    "enable": true,
+    "notice": false,
+    "now": true,
+    "refresh_intervals": [
+      "10s",
+      "1m",
+      "5m",
+      "15m"
+    ],
+    "status": "Stable",
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ],
+    "type": "timepicker"
+  },
+  "timezone": "browser",
+  "title": "host (unRaid / linux) telegraf dashboard",
+  "version": 436
+}

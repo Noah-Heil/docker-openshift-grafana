@@ -1,0 +1,3976 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_GRAFANA_TESTDATA",
+      "label": "Grafana TestData",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "grafana-testdata-datasource",
+      "pluginName": "Grafana TestDataDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.3.2"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.1.5"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-testdata-datasource",
+      "name": "Grafana TestDataDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 4092,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "rows": [
+    {
+      "collapse": false,
+      "height": 57,
+      "panels": [
+        {
+          "content": "<Center><h2>ROUTERS</h2></Center>",
+          "height": "40",
+          "id": 89,
+          "links": [],
+          "mode": "html",
+          "span": 3,
+          "title": "",
+          "type": "text"
+        },
+        {
+          "content": "<Center><h2>SWITCHES</h2></Center>",
+          "height": "40",
+          "id": 90,
+          "links": [],
+          "mode": "html",
+          "span": 3,
+          "title": "",
+          "type": "text"
+        },
+        {
+          "content": "<Center><h2>COLECTORES</h2></Center>",
+          "height": "40",
+          "id": 91,
+          "links": [],
+          "mode": "html",
+          "span": 3,
+          "title": "",
+          "type": "text"
+        },
+        {
+          "content": "<Center><h2>OLTs</h2></Center>",
+          "height": "40",
+          "id": 92,
+          "links": [],
+          "mode": "html",
+          "span": 3,
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 181,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgb(51, 196, 0)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "180",
+          "id": 106,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "100",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select \n100 - (ROUND(ALARMAS / CANTIDAD,2)*100)\nfrom \n(\nselect \n(\nSELECT count(1)\nFROM grafana.SPECTRUM_UPDOWN_XML_VW\nwhere COLLECTIONSMODELNAMESTRING like '%0A ROUTER''S%'\n) CANTIDAD  \n,\n(\nselect count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='ROUTERS' and\nTIPO_ALARMA='DOWN'\n) A\n) ALARMAS\n) B",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 100\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "90",
+          "title": "DISPONIBILIDAD",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgb(51, 196, 0)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "180",
+          "id": 175,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "100",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select \n100 - (ROUND(ALARMAS / CANTIDAD,2)*100)\nfrom \n(\nselect \n(\nSELECT count(1)\nFROM grafana.SPECTRUM_UPDOWN_XML_VW\nwhere COLLECTIONSMODELNAMESTRING like '%0A ROUTER''S%'\n) CANTIDAD  \n,\n(\nselect count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='ROUTERS' and\nTIPO_ALARMA='DOWN'\n) A\n) ALARMAS\n) B",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 100\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "90",
+          "title": "DISPONIBILIDAD",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgb(51, 196, 0)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "180",
+          "id": 176,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "100",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select \n100 - (ROUND(ALARMAS / CANTIDAD,2)*100)\nfrom \n(\nselect \n(\nSELECT count(1)\nFROM grafana.SPECTRUM_UPDOWN_XML_VW\nwhere COLLECTIONSMODELNAMESTRING like '%0A ROUTER''S%'\n) CANTIDAD  \n,\n(\nselect count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='ROUTERS' and\nTIPO_ALARMA='DOWN'\n) A\n) ALARMAS\n) B",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 100\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "90",
+          "title": "DISPONIBILIDAD",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgb(51, 196, 0)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "180",
+          "id": 177,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "100",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select \n100 - (ROUND(ALARMAS / CANTIDAD,2)*100)\nfrom \n(\nselect \n(\nSELECT count(1)\nFROM grafana.SPECTRUM_UPDOWN_XML_VW\nwhere COLLECTIONSMODELNAMESTRING like '%0A ROUTER''S%'\n) CANTIDAD  \n,\n(\nselect count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='ROUTERS' and\nTIPO_ALARMA='DOWN'\n) A\n) ALARMAS\n) B",
+              "refId": "A"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 100\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "90",
+          "title": "DISPONIBILIDAD",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 55,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(51, 196, 0, 0.97)",
+            "rgb(126, 178, 109)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 1,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "175",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "SELECT count(1)\nFROM grafana.SPECTRUM_UPDOWN_XML_VW\nwhere COLLECTIONSMODELNAMESTRING like '%0A ROUTER''S%'\n;\n\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "120,120"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 175",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "TOTAL EQUIPOS",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(51, 196, 0, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 81,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='DOWN'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "120,10"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "1",
+          "title": "DOWN",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(51, 196, 0, 0.97)",
+            "rgb(126, 178, 109)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 93,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "326",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "SELECT count(1)\nFROM grafana.SPECTRUM_UPDOWN_XML_VW\nwhere COLLECTIONSMODELNAMESTRING like '%0A SWITCH''S%'\n;",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "120,120,90"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 326",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "TOTAL EQUIPOS",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(51, 196, 0, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 102,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect \n    SAGCV.*,\n    `TIPO_EQUIPO`,\n    `TIPO_ALARMA`,\n    `CAUSE_CODE`,\n    `DESCRIPCION`,\n    CCA.`CAUSE_CODE_DEC` as CAUSE_CODE_DEC_CATALOGO\nfrom\n    SPECTRUM_ALARMAS_GC SAGCV\n        inner join\n    CAS_CAT_ALARMAS CCA ON SAGCV.CAUSE_CODE_DEC = CCA.CAUSE_CODE_DEC\n        and SAGCV.GC = CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-SWITCHS' \nand\nTIPO_ALARMA='DOWN'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "120,10,20"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "1",
+          "title": "DOWN",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(51, 196, 0, 0.97)",
+            "rgb(126, 178, 109)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 96,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "492",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "SELECT count(1)\nFROM grafana.SPECTRUM_UPDOWN_XML_VW\nwhere COLLECTIONSMODELNAMESTRING like '%0A COLECTORES%'\n;",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "120,120,200"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 492",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "TOTAL EQUIPOS",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(51, 196, 0, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 103,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "16",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-COLECTORES' and\nTIPO_ALARMA='DOWN'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "120,10,20,15"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 16",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "1",
+          "title": "DOWN",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(51, 196, 0, 0.97)",
+            "rgb(126, 178, 109)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 99,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "366",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "SELECT count(1)\nFROM grafana.SPECTRUM_UPDOWN_XML_VW\nwhere COLLECTIONSMODELNAMESTRING like '%0A OLT''S%'\n;",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "120,120,400"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 366",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "TOTAL EQUIPOS",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(51, 196, 0, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 104,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-OLTS' and\nTIPO_ALARMA='DOWN'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "120,10,20,15,70"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "1",
+          "title": "DOWN",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": -487,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "100",
+          "hideTimeOverride": true,
+          "id": 119,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(222, 98, 0, 0.18)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "\nselect \nround(UNIX_TIMESTAMP(fecha) ,0)as time_sec,\nvalor value\nfrom \n(\n-- VALOR MINIMO\n\tselect \n\tfrom_unixtime(LEFT(replace('$__timeFilter(fecha_corte)','fecha_corte > FROM_UNIXTIME(',''),10)) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect min(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-ROUTERS' and\n\tTIPO_ALARMA='GESTION' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\nunion\n-- VALORES INTERMEDIOS\n\tselect \n\tfecha_corte as fecha,\n\tcount(1) as valor\n\tfrom SPECTRUM_ALARMAS_GC_HST SAGCV\n\tleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC and SAGCV.GC=CCA.TIPO_EQUIPO\n\twhere \n\tTIPO_EQUIPO='0A-ROUTERS' and\n\tTIPO_ALARMA='GESTION' and \n\t$__timeFilter(fecha_corte)\n\tgroup by fecha_corte\nunion\n-- VALOR MAXIMO\n\tselect \n\tfrom_unixtime(replace(RIGHT('$__timeFilter(fecha_corte)',11),')','')) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect max(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-ROUTERS' and\n\tTIPO_ALARMA='GESTION' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\n) A\n\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            }
+          ],
+          "thresholds": "999",
+          "timeShift": "5m",
+          "title": "FALLA GESTION",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "100",
+          "id": 127,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "time_sec",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "\nselect \nround(UNIX_TIMESTAMP(fecha) ,0)as time_sec,\nvalor value\nfrom \n(\n-- VALOR MINIMO\n\tselect \n\tfrom_unixtime(LEFT(replace('$__timeFilter(fecha_corte)','fecha_corte > FROM_UNIXTIME(',''),10)) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect min(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-ROUTERS' and\n\tTIPO_ALARMA='OPTICOS' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\nunion\n-- VALORES INTERMEDIOS\n\tselect \n\tfecha_corte as fecha,\n\tcount(1) as valor\n\tfrom SPECTRUM_ALARMAS_GC_HST SAGCV\n\tleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC and SAGCV.GC=CCA.TIPO_EQUIPO\n\twhere \n\tTIPO_EQUIPO='0A-ROUTERS' and\n\tTIPO_ALARMA='OPTICOS' and \n\t$__timeFilter(fecha_corte)\n\tgroup by fecha_corte\nunion\n-- VALOR MAXIMO\n\tselect \n\tfrom_unixtime(replace(RIGHT('$__timeFilter(fecha_corte)',11),')','')) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect max(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-ROUTERS' and\n\tTIPO_ALARMA='OPTICOS' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\n) A\n\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            }
+          ],
+          "thresholds": "999",
+          "title": "FALLA OPTICA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "100",
+          "id": 153,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(222, 98, 0, 0.18)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "time_sec",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "\nselect \nround(UNIX_TIMESTAMP(fecha) ,0)as time_sec,\nvalor value\nfrom \n(\n-- VALOR MINIMO\n\tselect \n\tfrom_unixtime(LEFT(replace('$__timeFilter(fecha_corte)','fecha_corte > FROM_UNIXTIME(',''),10)) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect min(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-SWITCHS' and\n\tTIPO_ALARMA='GESTION' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\nunion\n-- VALORES INTERMEDIOS\n\tselect \n\tfecha_corte as fecha,\n\tcount(1) as valor\n\tfrom SPECTRUM_ALARMAS_GC_HST SAGCV\n\tleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC and SAGCV.GC=CCA.TIPO_EQUIPO\n\twhere \n\tTIPO_EQUIPO='0A-SWITCHS' and\n\tTIPO_ALARMA='GESTION' and \n\t$__timeFilter(fecha_corte)\n\tgroup by fecha_corte\nunion\n-- VALOR MAXIMO\n\tselect \n\tfrom_unixtime(replace(RIGHT('$__timeFilter(fecha_corte)',11),')','')) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect max(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-SWITCHS' and\n\tTIPO_ALARMA='GESTION' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\n) A\n\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            }
+          ],
+          "thresholds": "999",
+          "title": "FALLA GESTION",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "100",
+          "id": 154,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "time_sec",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "\nselect \nround(UNIX_TIMESTAMP(fecha) ,0)as time_sec,\nvalor value\nfrom \n(\n-- VALOR MINIMO\n\tselect \n\tfrom_unixtime(LEFT(replace('$__timeFilter(fecha_corte)','fecha_corte > FROM_UNIXTIME(',''),10)) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect min(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-SWITCHS' and\n\tTIPO_ALARMA='OPTICOS' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\nunion\n-- VALORES INTERMEDIOS\n\tselect \n\tfecha_corte as fecha,\n\tcount(1) as valor\n\tfrom SPECTRUM_ALARMAS_GC_HST SAGCV\n\tleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC and SAGCV.GC=CCA.TIPO_EQUIPO\n\twhere \n\tTIPO_EQUIPO='0A-SWITCHS' and\n\tTIPO_ALARMA='OPTICOS' and \n\t$__timeFilter(fecha_corte)\n\tgroup by fecha_corte\nunion\n-- VALOR MAXIMO\n\tselect \n\tfrom_unixtime(replace(RIGHT('$__timeFilter(fecha_corte)',11),')','')) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect max(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-SWITCHS' and\n\tTIPO_ALARMA='OPTICOS' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\n) A\n\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            }
+          ],
+          "thresholds": "999",
+          "title": "FALLA OPTICA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "100",
+          "id": 155,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(222, 98, 0, 0.18)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "time_sec",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "\nselect \nround(UNIX_TIMESTAMP(fecha) ,0)as time_sec,\nvalor value\nfrom \n(\n-- VALOR MINIMO\n\tselect \n\tfrom_unixtime(LEFT(replace('$__timeFilter(fecha_corte)','fecha_corte > FROM_UNIXTIME(',''),10)) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect min(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-COLECTORES' and\n\tTIPO_ALARMA='GESTION' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\nunion\n-- VALORES INTERMEDIOS\n\tselect \n\tfecha_corte as fecha,\n\tcount(1) as valor\n\tfrom SPECTRUM_ALARMAS_GC_HST SAGCV\n\tleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC and SAGCV.GC=CCA.TIPO_EQUIPO\n\twhere \n\tTIPO_EQUIPO='0A-COLECTORES' and\n\tTIPO_ALARMA='GESTION' and \n\t$__timeFilter(fecha_corte)\n\tgroup by fecha_corte\nunion\n-- VALOR MAXIMO\n\tselect \n\tfrom_unixtime(replace(RIGHT('$__timeFilter(fecha_corte)',11),')','')) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect max(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-COLECTORES' and\n\tTIPO_ALARMA='GESTION' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\n) A\n\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            }
+          ],
+          "thresholds": "999",
+          "title": "FALLA GESTION",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "100",
+          "id": 156,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "time_sec",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "\nselect \nround(UNIX_TIMESTAMP(fecha) ,0)as time_sec,\nvalor value\nfrom \n(\n-- VALOR MINIMO\n\tselect \n\tfrom_unixtime(LEFT(replace('$__timeFilter(fecha_corte)','fecha_corte > FROM_UNIXTIME(',''),10)) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect min(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-COLECTORES' and\n\tTIPO_ALARMA='OPTICOS' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\nunion\n-- VALORES INTERMEDIOS\n\tselect \n\tfecha_corte as fecha,\n\tcount(1) as valor\n\tfrom SPECTRUM_ALARMAS_GC_HST SAGCV\n\tleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC and SAGCV.GC=CCA.TIPO_EQUIPO\n\twhere \n\tTIPO_EQUIPO='0A-COLECTORES' and\n\tTIPO_ALARMA='OPTICOS' and \n\t$__timeFilter(fecha_corte)\n\tgroup by fecha_corte\nunion\n-- VALOR MAXIMO\n\tselect \n\tfrom_unixtime(replace(RIGHT('$__timeFilter(fecha_corte)',11),')','')) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect max(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-COLECTORES' and\n\tTIPO_ALARMA='OPTICOS' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\n) A\n\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            }
+          ],
+          "thresholds": "999",
+          "title": "FALLA OPTICA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "100",
+          "id": 157,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(222, 98, 0, 0.18)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "time_sec",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "\nselect \nround(UNIX_TIMESTAMP(fecha) ,0)as time_sec,\nvalor value\nfrom \n(\n-- VALOR MINIMO\n\tselect \n\tfrom_unixtime(LEFT(replace('$__timeFilter(fecha_corte)','fecha_corte > FROM_UNIXTIME(',''),10)) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect min(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-OLTS' and\n\tTIPO_ALARMA='GESTION' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\nunion\n-- VALORES INTERMEDIOS\n\tselect \n\tfecha_corte as fecha,\n\tcount(1) as valor\n\tfrom SPECTRUM_ALARMAS_GC_HST SAGCV\n\tleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC and SAGCV.GC=CCA.TIPO_EQUIPO\n\twhere \n\tTIPO_EQUIPO='0A-OLTS' and\n\tTIPO_ALARMA='GESTION' and \n\t$__timeFilter(fecha_corte)\n\tgroup by fecha_corte\nunion\n-- VALOR MAXIMO\n\tselect \n\tfrom_unixtime(replace(RIGHT('$__timeFilter(fecha_corte)',11),')','')) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect max(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-OLTS' and\n\tTIPO_ALARMA='GESTION' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\n) A\n\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            }
+          ],
+          "thresholds": "999",
+          "title": "FALLA GESTION",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "100",
+          "id": 158,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "time_sec",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "\nselect \nround(UNIX_TIMESTAMP(fecha) ,0)as time_sec,\nvalor value\nfrom \n(\n-- VALOR MINIMO\n\tselect \n\tfrom_unixtime(LEFT(replace('$__timeFilter(fecha_corte)','fecha_corte > FROM_UNIXTIME(',''),10)) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect min(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-OLTS' and\n\tTIPO_ALARMA='OPTICOS' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\nunion\n-- VALORES INTERMEDIOS\n\tselect \n\tfecha_corte as fecha,\n\tcount(1) as valor\n\tfrom SPECTRUM_ALARMAS_GC_HST SAGCV\n\tleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC and SAGCV.GC=CCA.TIPO_EQUIPO\n\twhere \n\tTIPO_EQUIPO='0A-OLTS' and\n\tTIPO_ALARMA='OPTICOS' and \n\t$__timeFilter(fecha_corte)\n\tgroup by fecha_corte\nunion\n-- VALOR MAXIMO\n\tselect \n\tfrom_unixtime(replace(RIGHT('$__timeFilter(fecha_corte)',11),')','')) fecha,\n\t(\n\tselect count(1) from \n\tSPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CA on SA.GC=CA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CA.CAUSE_CODE_DEC\n\tinner join\n\t(\n\tselect max(fecha_corte) min_fecha_corte,TIPO_EQUIPO,TIPO_ALARMA\n\tfrom SPECTRUM_ALARMAS_GC_HST SA\n\tinner join CAS_CAT_ALARMAS CCA on SA.GC=CCA.TIPO_EQUIPO and SA.CAUSE_CODE_DEC=CCA.CAUSE_CODE_DEC\n\twhere \n\tTIPO_EQUIPO='0A-OLTS' and\n\tTIPO_ALARMA='OPTICOS' and  \n\t$__timeFilter(fecha_corte)\n\t) FM\n\ton CA.TIPO_EQUIPO=FM.TIPO_EQUIPO and CA.TIPO_ALARMA=FM.TIPO_ALARMA and SA.fecha_CORTE=FM.min_fecha_corte\n\t) valor\n) A\n\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            }
+          ],
+          "thresholds": "999",
+          "title": "FALLA OPTICA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 102,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 2,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='VOLTAJE'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "1,1"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "1",
+          "title": "VOLTAJE",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 8,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='TEMPERATURA'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "1,20,90,30,5,0"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "TEMPERATURA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 9,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='FANS'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "VENTILADOR",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 178,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='VOLTAJE'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "1,1"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "1",
+          "title": "VOLTAJE",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 179,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='TEMPERATURA'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "1,20,90,30,5,0"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "TEMPERATURA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 180,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='FANS'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "VENTILADOR",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 181,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='VOLTAJE'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "1,1"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "1",
+          "title": "VOLTAJE",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 182,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='TEMPERATURA'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "1,20,90,30,5,0"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "TEMPERATURA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 183,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='FANS'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "VENTILADOR",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 184,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='VOLTAJE'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "1,1"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "1",
+          "title": "VOLTAJE",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 185,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='TEMPERATURA'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "1,20,90,30,5,0"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "TEMPERATURA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 186,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": true
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='FANS'\n) A",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "0,0"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "999",
+          "title": "VENTILADOR",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 148,
+      "panels": [
+        {
+          "aliasColors": {
+            "alarmados": "#c1111c",
+            "ok": "#33c400"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "fontSize": "80%",
+          "format": "short",
+          "id": 3,
+          "interval": null,
+          "legend": {
+            "show": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 1.5,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n147 as value,\n $__time(time),\n'ok' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "147,147"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n28 as value,\n $__time(time),\n'alarmados' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "B",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "28,28"
+            }
+          ],
+          "title": "CPU",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "alarmados": "#c1111c",
+            "ok": "#33c400"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "fontSize": "80%",
+          "format": "short",
+          "id": 168,
+          "interval": null,
+          "legend": {
+            "show": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 1.5,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n175 as value,\n $__time(time),\n'ok' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n0 as value,\n $__time(time),\n'alarmados' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "B",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            }
+          ],
+          "title": "MEMORIA",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "alarmados": "#c1111c",
+            "ok": "#33c400"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "fontSize": "80%",
+          "format": "short",
+          "id": 187,
+          "interval": null,
+          "legend": {
+            "show": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 1.5,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n326 as value,\n $__time(time),\n'ok' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "147,147"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n0 as value,\n $__time(time),\n'alarmados' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "B",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "28,28"
+            }
+          ],
+          "title": "CPU",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "alarmados": "#c1111c",
+            "ok": "#33c400"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "fontSize": "80%",
+          "format": "short",
+          "id": 188,
+          "interval": null,
+          "legend": {
+            "show": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 1.5,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n326 as value,\n $__time(time),\n'ok' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n0 as value,\n $__time(time),\n'alarmados' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "B",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            }
+          ],
+          "title": "MEMORIA",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "alarmados": "#c1111c",
+            "ok": "#33c400"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "fontSize": "80%",
+          "format": "short",
+          "id": 189,
+          "interval": null,
+          "legend": {
+            "show": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 1.5,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n492 as value,\n $__time(time),\n'ok' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "147,147"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n0 as value,\n $__time(time),\n'alarmados' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "B",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "28,28"
+            }
+          ],
+          "title": "CPU",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "alarmados": "#c1111c",
+            "ok": "#33c400"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "fontSize": "80%",
+          "format": "short",
+          "id": 190,
+          "interval": null,
+          "legend": {
+            "show": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 1.5,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n486 as value,\n $__time(time),\n'ok' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n6 as value,\n $__time(time),\n'alarmados' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "B",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            }
+          ],
+          "title": "MEMORIA",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "alarmados": "#c1111c",
+            "ok": "#33c400"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "fontSize": "80%",
+          "format": "short",
+          "id": 191,
+          "interval": null,
+          "legend": {
+            "show": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 1.5,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n366 as value,\n $__time(time),\n'ok' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "147,147"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n0 as value,\n $__time(time),\n'alarmados' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "B",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "28,28"
+            }
+          ],
+          "title": "CPU",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {
+            "alarmados": "#c1111c",
+            "ok": "#33c400"
+          },
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "fontSize": "80%",
+          "format": "short",
+          "id": 192,
+          "interval": null,
+          "legend": {
+            "show": false,
+            "values": true
+          },
+          "legendType": "Under graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 1.5,
+          "strokeWidth": "0",
+          "targets": [
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n366 as value,\n $__time(time),\n'ok' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            },
+            {
+              "alias": "",
+              "format": "time_series",
+              "hide": false,
+              "rawSql": "select \n0 as value,\n $__time(time),\n'alarmados' as metric\n\tfrom \n\t(\n\tSELECT \nnow() as time\n\t)  B",
+              "refId": "B",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            }
+          ],
+          "title": "MEMORIA",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": -487,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "1",
+          "id": 20,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "28",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='CPU'\n) A\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 28",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "9999",
+          "title": "FUERA DE RANGO  DE CPU",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(51, 196, 0)",
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "1",
+          "id": 58,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-ROUTERS' and\nTIPO_ALARMA='MEMORIA'\n) A\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "15,15"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "1",
+          "title": "FUERA DE RANGO DE  RAM",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "1",
+          "id": 147,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-SWITCHES' and\nTIPO_ALARMA='CPU'\n) A\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "1",
+          "title": "FUERA DE RANGO DE PROCESADOR",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "1",
+          "id": 148,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-SWITCHES' and\nTIPO_ALARMA='MEMORIA'\n) A\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "15,15"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "",
+          "title": "FUERA DE RANGO DE MEMORIA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "1",
+          "id": 149,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-COLECTORES' and\nTIPO_ALARMA='CPU'\n) A\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "9999",
+          "title": "FUERA DE RANGO DE CPU",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "1",
+          "id": 150,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "6+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-COLECTORES' and\nTIPO_ALARMA='MEMORIA'\n) A\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "15,15"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 6+0.000001\n\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "",
+          "title": "FUERA DE RANGO DE MEMORIA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "1",
+          "id": 151,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-OLTS' and\nTIPO_ALARMA='CPU'\n) A\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "10,10"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "9999",
+          "title": "FUERA DE RANGO DE CPU",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgb(193, 17, 28)",
+            "rgb(193, 17, 28)",
+            "rgb(51, 196, 0)"
+          ],
+          "datasource": "${DS_GRAFANA_TESTDATA}",
+          "decimals": 0,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "1",
+          "id": 152,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.5,
+          "sparkline": {
+            "fillColor": "rgba(171, 91, 19, 0.24)",
+            "full": false,
+            "lineColor": "rgb(232, 0, 0)",
+            "show": false
+          },
+          "tableColumn": "0+0.000001",
+          "targets": [
+            {
+              "alias": "",
+              "format": "table",
+              "hide": true,
+              "rawSql": "select count(1) +0.000001\nfrom \n(\nselect distinct model_handle\nfrom SPECTRUM_ALARMAS_GC SAGCV\nleft join CAS_CAT_ALARMAS CCA on SAGCV.CAUSE_CODE_DEC=CONV(replace(CCA.CAUSE_CODE,'0x',''),16,10)+0 and SAGCV.GC=CCA.TIPO_EQUIPO\nwhere \nTIPO_EQUIPO='0A-OLTS' and\nTIPO_ALARMA='MEMORIA'\n) A\n",
+              "refId": "A",
+              "scenarioId": "csv_metric_values",
+              "stringInput": "15,15"
+            },
+            {
+              "alias": "",
+              "format": "table",
+              "rawSql": "SELECT 0+0.000001\n",
+              "refId": "B"
+            }
+          ],
+          "thresholds": "",
+          "title": "FUERA DE RANGO DE MEMORIA",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Maqueta_NOC_Healt_v7.1_datosdummy",
+  "version": 2,
+  "description": "maqueta"
+}

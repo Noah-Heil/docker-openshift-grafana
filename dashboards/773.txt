@@ -1,0 +1,975 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.0.4"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": "5.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "RabbitMQ metrics from a single Telegraf instance",
+  "editable": true,
+  "gnetId": 6444,
+  "graphTooltip": 1,
+  "id": null,
+  "iteration": 1529690115676,
+  "links": [],
+  "panels": [
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#d44a3a",
+        "rgba(237, 129, 40, 0.89)",
+        "#299c46"
+      ],
+      "datasource": "${DS_PROMETHEUS}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      },
+      "hideTimeOverride": true,
+      "id": 14,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "minSpan": null,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "repeat": "node",
+      "repeatDirection": "h",
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "rabbitmq_node_running{instance=\"$instance\", node=~\"$node\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "node",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "1,1",
+      "timeFrom": "30s",
+      "title": "$node",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "UP",
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "DOWN",
+          "value": "0"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
+      "fill": 4,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 8,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/Ready/",
+          "color": "#cca300"
+        },
+        {
+          "alias": "/Unacked/",
+          "color": "#64b0c8"
+        },
+        {
+          "alias": "/Total/",
+          "color": "#890f02"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rabbitmq_queue_messages_ready{instance=\"$instance\", node=~\"$node\"})",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "Ready",
+          "metric": "rabbitmq_queue_messages_ready",
+          "refId": "A",
+          "step": 2
+        },
+        {
+          "expr": "sum(rabbitmq_queue_messages_unack{instance=\"$instance\", node=~\"$node\"})",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "Unacked",
+          "metric": "ack",
+          "refId": "D",
+          "step": 2
+        },
+        {
+          "expr": "sum(rabbitmq_queue_messages{instance=\"$instance\", node=~\"$node\"})",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "Total",
+          "metric": "rabbitmq_queue_messages_ready",
+          "refId": "E",
+          "step": 2
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Queued Messages",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
+      "fill": 5,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 2
+      },
+      "hideTimeOverride": true,
+      "id": 12,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rabbitmq_node_running{instance=\"$instance\", node=~\"$node\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{node}}",
+          "metric": "rabbitmq_running",
+          "refId": "A",
+          "step": 2
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30s",
+      "timeShift": null,
+      "title": "Nodes Running",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": false
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
+      "fill": 4,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 5
+      },
+      "id": 20,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/Ready/",
+          "color": "#cca300"
+        },
+        {
+          "alias": "/Unacked/",
+          "color": "#64b0c8"
+        },
+        {
+          "alias": "/Total/",
+          "color": "#890f02"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(rabbitmq_overview_messages_published{instance=\"$instance\"}[5m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Publish",
+          "metric": "rabbitmq_queue_messages_ready",
+          "refId": "A",
+          "step": 2
+        },
+        {
+          "expr": "rate(rabbitmq_overview_messages_acked{instance=\"$instance\"}[5m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Acked",
+          "metric": "rabbitmq_queue_messages_ready",
+          "refId": "B",
+          "step": 2
+        },
+        {
+          "expr": "rate(rabbitmq_overview_messages_delivered{instance=\"$instance\"}[5m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Delivered",
+          "metric": "rabbitmq_queue_messages_ready",
+          "refId": "C",
+          "step": 2
+        },
+        {
+          "expr": "rate(rabbitmq_overview_messages_delivered_get{instance=\"$instance\"}[5m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Delivered_Get",
+          "metric": "rabbitmq_queue_messages_ready",
+          "refId": "D",
+          "step": 2
+        },
+        {
+          "expr": "rate(rabbitmq_overview_messages_ready{instance=\"$instance\"}[5m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Ready",
+          "metric": "rabbitmq_queue_messages_ready",
+          "refId": "E",
+          "step": 2
+        },
+        {
+          "expr": "rate(rabbitmq_overview_messages_unacked{instance=\"$instance\"}[1m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Unacked",
+          "metric": "rabbitmq_queue_messages_ready",
+          "refId": "F",
+          "step": 2
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Message Rates",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
+      "fill": 4,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 7
+      },
+      "id": 5,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rabbitmq_overview_connections{instance=\"$instance\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "Connections",
+          "metric": "rabbitmq_connectionsTotal",
+          "refId": "A",
+          "step": 2
+        },
+        {
+          "expr": "rabbitmq_overview_channels{instance=\"$instance\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "Channels",
+          "refId": "B"
+        },
+        {
+          "expr": "rabbitmq_overview_exchanges{instance=\"$instance\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "Exchanges",
+          "refId": "D"
+        },
+        {
+          "expr": "rabbitmq_overview_queues{instance=\"$instance\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "Queues",
+          "refId": "C"
+        },
+        {
+          "expr": "rabbitmq_overview_exchanges{instance=\"$instance\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "Consumers",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Global Counts",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
+      "fill": 4,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 2,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "topk(10, rabbitmq_queue_messages{instance=\"$instance\", node=~\"$node\"})",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{node}}: {{queue}}",
+          "metric": "rabbitmq_queue_messages",
+          "refId": "A",
+          "step": 2
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Top 10 Messages per Queue",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": false,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 20
+      },
+      "id": 9,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rabbitmq_node_mem_limit{instance=\"$instance\", node=~\"$node\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{node}}:limit",
+          "metric": "node_mem",
+          "refId": "B",
+          "step": 2
+        },
+        {
+          "expr": "rabbitmq_node_mem_used{instance=\"$instance\", node=~\"$node\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{node}}:used",
+          "metric": "rabbitmq_node_mem_used",
+          "refId": "A",
+          "step": 2
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Used memory",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 20
+      },
+      "id": 17,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rabbitmq_node_disk_free_limit{instance=\"$instance\", node=~\"$node\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{node}}:limit",
+          "metric": "node_mem",
+          "refId": "B",
+          "step": 2
+        },
+        {
+          "expr": "rabbitmq_node_disk_free{instance=\"$instance\", node=~\"$node\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{node}}:free",
+          "metric": "rabbitmq_node_mem_used",
+          "refId": "A",
+          "step": 2
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Free disk space",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    }
+  ],
+  "refresh": "5m",
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [
+    "rabbitmq",
+    "prometheus",
+    "telegraf"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "instance",
+        "options": [],
+        "query": "label_values(rabbitmq_node_running, instance)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": false,
+        "name": "node",
+        "options": [],
+        "query": "label_values(rabbitmq_node_running{instance=\"$instance\"}, node)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "RabbitMQ Metrics - Single",
+  "uid": "sQ6KBaSiz",
+  "version": 3
+}

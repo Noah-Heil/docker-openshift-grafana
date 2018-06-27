@@ -1,0 +1,1029 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_TSDB_ZABBIX",
+      "label": "TSDB_Zabbix",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "opentsdb",
+      "pluginName": "OpenTSDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "dashlist",
+      "name": "Dashboard list",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.0.2"
+    },
+    {
+      "type": "datasource",
+      "id": "opentsdb",
+      "name": "OpenTSDB",
+      "version": "1.0.0"
+    }
+  ],
+  "id": null,
+  "title": "WEBSEAL",
+  "tags": [
+    "TBHI"
+  ],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "sharedCrosshair": false,
+  "hideControls": false,
+  "time": {
+    "from": "2017-01-22T23:00:00.000Z",
+    "to": "2017-01-28T22:59:59.000Z"
+  },
+  "timepicker": {
+    "now": true,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "allFormat": "pipe",
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": "SLMUPS4TWS01|SLMUPS4TWS02|SLMUPS4TWS03|SLMUPS4TWS04|SLMUPS4TWS05|SLMUPS4TWS06|SLMUPS4TWS07|SLMUPS4TWS08|SLMUPS4TWS09|SLMUPS4TWS10|SLMUPS4TWS11|SLMUPS4TWS12|SLMUPS4TWS13|SLMUPS4TWS14|SLMUPS4TWS15|SLMUPS4TWS16|SLMUPS4TWS17|SLMUPS4TWS18|SLMUPS4TWS19|SLMUPS4TWS20|SLMUPS4TWS21|SLMUPS4TWS22|SLMUPS4TWS23|SLMUPS4TWS24|SLMUPS4TWS25|SLMUPS4TWS26|SLMUPS4TWS27|SLMUPS4TWS28|SLMUPS4TWS29|SLMUPS4TWS30|SLMUPS4TWS31|SLMUPS4TWS32"
+        },
+        "datasource": "TSDB_Zabbix",
+        "hide": 0,
+        "hideLabel": false,
+        "includeAll": true,
+        "label": "",
+        "multi": true,
+        "multiFormat": "pipe",
+        "name": "Hosts",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "SLMUPS4TWS01|SLMUPS4TWS02|SLMUPS4TWS03|SLMUPS4TWS04|SLMUPS4TWS05|SLMUPS4TWS06|SLMUPS4TWS07|SLMUPS4TWS08|SLMUPS4TWS09|SLMUPS4TWS10|SLMUPS4TWS11|SLMUPS4TWS12|SLMUPS4TWS13|SLMUPS4TWS14|SLMUPS4TWS15|SLMUPS4TWS16|SLMUPS4TWS17|SLMUPS4TWS18|SLMUPS4TWS19|SLMUPS4TWS20|SLMUPS4TWS21|SLMUPS4TWS22|SLMUPS4TWS23|SLMUPS4TWS24|SLMUPS4TWS25|SLMUPS4TWS26|SLMUPS4TWS27|SLMUPS4TWS28|SLMUPS4TWS29|SLMUPS4TWS30|SLMUPS4TWS31|SLMUPS4TWS32"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS01",
+            "value": "SLMUPS4TWS01"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS02",
+            "value": "SLMUPS4TWS02"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS03",
+            "value": "SLMUPS4TWS03"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS04",
+            "value": "SLMUPS4TWS04"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS05",
+            "value": "SLMUPS4TWS05"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS06",
+            "value": "SLMUPS4TWS06"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS07",
+            "value": "SLMUPS4TWS07"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS08",
+            "value": "SLMUPS4TWS08"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS09",
+            "value": "SLMUPS4TWS09"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS10",
+            "value": "SLMUPS4TWS10"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS11",
+            "value": "SLMUPS4TWS11"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS12",
+            "value": "SLMUPS4TWS12"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS13",
+            "value": "SLMUPS4TWS13"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS14",
+            "value": "SLMUPS4TWS14"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS15",
+            "value": "SLMUPS4TWS15"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS16",
+            "value": "SLMUPS4TWS16"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS17",
+            "value": "SLMUPS4TWS17"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS18",
+            "value": "SLMUPS4TWS18"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS19",
+            "value": "SLMUPS4TWS19"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS20",
+            "value": "SLMUPS4TWS20"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS21",
+            "value": "SLMUPS4TWS21"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS22",
+            "value": "SLMUPS4TWS22"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS23",
+            "value": "SLMUPS4TWS23"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS24",
+            "value": "SLMUPS4TWS24"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS25",
+            "value": "SLMUPS4TWS25"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS26",
+            "value": "SLMUPS4TWS26"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS27",
+            "value": "SLMUPS4TWS27"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS28",
+            "value": "SLMUPS4TWS28"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS29",
+            "value": "SLMUPS4TWS29"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS30",
+            "value": "SLMUPS4TWS30"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS31",
+            "value": "SLMUPS4TWS31"
+          },
+          {
+            "selected": false,
+            "text": "SLMUPS4TWS32",
+            "value": "SLMUPS4TWS32"
+          }
+        ],
+        "query": "SLMUPS4TWS01, SLMUPS4TWS02, SLMUPS4TWS03, SLMUPS4TWS04, SLMUPS4TWS05, SLMUPS4TWS06, SLMUPS4TWS07, SLMUPS4TWS08,SLMUPS4TWS09,SLMUPS4TWS10,SLMUPS4TWS11,SLMUPS4TWS12,SLMUPS4TWS13,SLMUPS4TWS14,SLMUPS4TWS15,SLMUPS4TWS16,SLMUPS4TWS17,SLMUPS4TWS18,SLMUPS4TWS19,SLMUPS4TWS20,SLMUPS4TWS21,SLMUPS4TWS22,SLMUPS4TWS23,SLMUPS4TWS24,SLMUPS4TWS25,SLMUPS4TWS26,SLMUPS4TWS27,SLMUPS4TWS28,SLMUPS4TWS29,SLMUPS4TWS30,SLMUPS4TWS31,SLMUPS4TWS32",
+        "refresh": 0,
+        "regex": "/^(SLMUPS4TFM(01|02|03|04|05|06|07|08|09|10))$/",
+        "type": "custom",
+        "useTags": false
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "15m",
+  "schemaVersion": 13,
+  "version": 0,
+  "links": [],
+  "gnetId": 2981,
+  "rows": [
+    {
+      "title": "New row",
+      "panels": [
+        {
+          "content": "",
+          "editable": true,
+          "error": false,
+          "id": 19,
+          "links": [],
+          "mode": "markdown",
+          "span": 6,
+          "style": {},
+          "targets": [],
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "editable": true,
+          "error": false,
+          "headings": false,
+          "id": 20,
+          "limit": 10,
+          "links": [],
+          "query": "MENU_TBHEBDO",
+          "recent": false,
+          "search": true,
+          "span": 6,
+          "starred": false,
+          "tags": [],
+          "targets": [],
+          "title": "Cliquer ci-dessous pour retour menu",
+          "type": "dashlist"
+        }
+      ],
+      "showTitle": false,
+      "titleSize": "h6",
+      "height": "25px",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    },
+    {
+      "title": "Infra Linux",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TSDB_ZABBIX}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "hideTimeOverride": false,
+          "id": 1,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {}
+          ],
+          "span": 5,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "aggregator": "sum",
+              "alias": "$tag_host",
+              "currentTagKey": "",
+              "currentTagValue": "",
+              "disableDownsampling": false,
+              "downsampleAggregator": "avg",
+              "downsampleInterval": "1h",
+              "errors": {},
+              "isCounter": true,
+              "marker": "A",
+              "metric": "LINUX.CPU-percent-libre-sur-5mn",
+              "refId": "A",
+              "shouldComputeRate": false,
+              "tags": {
+                "host": "$Hosts"
+              }
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "custom",
+              "line": true,
+              "lineColor": "rgba(12, 11, 2, 0.96)",
+              "op": "lt",
+              "value": 50
+            },
+            {
+              "colorMode": "custom",
+              "line": true,
+              "lineColor": "rgba(204, 2, 44, 0.98)",
+              "op": "lt",
+              "value": 20
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "% CPU Disponible : Moyenne  par heure",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": "CPU",
+              "logBase": 1,
+              "max": 100,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TSDB_ZABBIX}",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "hideTimeOverride": false,
+          "id": 17,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {}
+          ],
+          "span": 5,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "aggregator": "sum",
+              "alias": "$tag_host",
+              "currentTagKey": "",
+              "currentTagValue": "",
+              "disableDownsampling": false,
+              "downsampleAggregator": "avg",
+              "downsampleInterval": "1h",
+              "errors": {},
+              "isCounter": true,
+              "marker": "A",
+              "metric": "LINUX.CPU-Processus-queue-/-Nbre-CPUs",
+              "refId": "B",
+              "shouldComputeRate": false,
+              "tags": {
+                "host": "$Hosts"
+              }
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "custom",
+              "line": true,
+              "lineColor": "rgba(12, 11, 2, 0.96)",
+              "op": "gt",
+              "value": 1
+            },
+            {
+              "colorMode": "custom",
+              "line": true,
+              "lineColor": "rgba(204, 2, 44, 0.98)",
+              "op": "gt",
+              "value": 2
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Process Q/ Nbre CPU : Moyenne par heure",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "process Q",
+              "logBase": 2,
+              "max": 32,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TSDB_ZABBIX}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 3,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 5,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "aggregator": "sum",
+              "alias": "$tag_host",
+              "currentTagKey": "",
+              "currentTagValue": "",
+              "downsampleAggregator": "avg",
+              "downsampleInterval": "1h",
+              "errors": {},
+              "marker": "A",
+              "metric": "LINUX.MEM-percent-libre",
+              "refId": "A",
+              "tags": {
+                "host": "$Hosts"
+              },
+              "downsampleFillPolicy": "none"
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "custom",
+              "line": true,
+              "lineColor": "rgba(12, 12, 12, 0.97)",
+              "op": "lt",
+              "value": 50
+            },
+            {
+              "colorMode": "custom",
+              "line": true,
+              "lineColor": "rgba(251, 11, 11, 0.97)",
+              "op": "lt",
+              "value": 20
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "% MEM Libre  : Moyenne par heure",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": "MEM",
+              "logBase": 1,
+              "max": 100,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TSDB_ZABBIX}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 18,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 5,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "aggregator": "sum",
+              "alias": "$tag_host",
+              "currentTagKey": "",
+              "currentTagValue": "",
+              "downsampleAggregator": "avg",
+              "downsampleInterval": "1h",
+              "errors": {},
+              "marker": "A",
+              "metric": "LINUX.SWAP-percent-libre",
+              "refId": "A",
+              "tags": {
+                "host": "$Hosts"
+              }
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "custom",
+              "line": true,
+              "lineColor": "rgba(11, 11, 10, 0.97)",
+              "op": "lt",
+              "value": 90
+            },
+            {
+              "colorMode": "custom",
+              "line": true,
+              "lineColor": "rgba(250, 13, 13, 0.99)",
+              "op": "lt",
+              "value": 80
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "% SWAP Libre : Moyenne par heure",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": "SWAP",
+              "logBase": 1,
+              "max": 100,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "showTitle": true,
+      "titleSize": "h6",
+      "height": "200px",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    },
+    {
+      "title": "IO  Disques",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TSDB_ZABBIX}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 7,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {}
+          ],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "aggregator": "sum",
+              "alias": "$tag_host",
+              "currentTagKey": "",
+              "currentTagValue": "",
+              "downsampleAggregator": "avg",
+              "downsampleInterval": "1h",
+              "errors": {},
+              "isCounter": true,
+              "marker": "A",
+              "metric": "LINUX_METROLOGIE.DISK-IO-Ecritures-disques",
+              "refId": "B",
+              "shouldComputeRate": false,
+              "tags": {
+                "host": "$Hosts"
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Ecritures Disques : Moyenne  par heure",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative",
+            "sort": 0,
+            "msResolution": false
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TSDB_ZABBIX}",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 6,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "sortDesc": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {}
+          ],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "aggregator": "sum",
+              "alias": "$tag_host",
+              "currentTagKey": "",
+              "currentTagValue": "",
+              "downsampleAggregator": "avg",
+              "downsampleInterval": "1h",
+              "errors": {},
+              "isCounter": true,
+              "marker": "A",
+              "metric": "LINUX_METROLOGIE.DISK-IO-Lectures-disques",
+              "refId": "A",
+              "shouldComputeRate": false,
+              "tags": {
+                "host": "$Hosts"
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Lectures Disques : Moyenne par heure",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative",
+            "sort": 0,
+            "msResolution": false
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_TSDB_ZABBIX}",
+          "decimals": null,
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {},
+          "id": 5,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "aggregator": "sum",
+              "alias": "$tag_host",
+              "currentTagKey": "",
+              "currentTagValue": "",
+              "downsampleAggregator": "avg",
+              "downsampleInterval": "1h",
+              "errors": {},
+              "marker": "A",
+              "metric": "LINUX_METROLOGIE.DISK-CPU-I/O-wait",
+              "refId": "A",
+              "tags": {
+                "host": "$Hosts"
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU % I/O Wait : Moyenne  par heure",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative",
+            "sort": 0,
+            "msResolution": false
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "showTitle": true,
+      "titleSize": "h6",
+      "height": 316,
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": true
+    }
+  ],
+  "description": "32 Webseal metrics"
+}

@@ -1,0 +1,4702 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_DML-PROM0",
+      "label": "prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.4.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "description": "All ZFS metrics",
+  "editable": true,
+  "gnetId": 3161,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": "10s",
+  "rows": [
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 5,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_anon_evictable_data{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "evictable_data",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_anon_evictable_metadata{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "evictable_metadata",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_anon_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "size",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_anon",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 6,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_arc_loaned_bytes{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "loaned_bytes",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_arc_meta_limit{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "meta_limit",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_arc_meta_max{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "meta_max",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_arc_meta_min{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "meta_min",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_arc_meta_used{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "meta_used",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_arc_need_free{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "need_free",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_arc_no_grow{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "no_grow",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_arc_prune{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "prune",
+              "refId": "G",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_arc_sys_free{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "sys_free",
+              "refId": "H",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_arc_tempreserve{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "tempreserve",
+              "refId": "J",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_arc",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 7,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_c{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "c",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_c_max{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "c_max",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_c_min{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "c_min",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_c",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 8,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_data_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "arc_data_size",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_data_size",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 9,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_deleted{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "arc_deleted",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_deleted",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_arc_demand_data_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "data_hits",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_arc_demand_data_misses{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "data_misses",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_arc_demand_metadata_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "metadata_hits",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_arc_demand_metadata_misses{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "metadata_misses",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_demand",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 11,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_duplicate_buffers{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "buffers",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_duplicate_buffers_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "buffers_size",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_duplicate_reads{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "reads",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_duplicate",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 12,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_evict_l2_cached{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "l2_cached",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_evict_l2_eligible{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "l2_eligible",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_evict_l2_ineligible{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "l2_ineligible",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_evict_l2_skip{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "l2_skip",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_evict_not_enough{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "not_enough",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_evict_skip{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "skip",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_evict",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 14,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_hash_chain_max{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "chain_max",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_hash_chains{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "chains",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_hash_elements{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "elements",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_hash_elements_max{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "elements_max",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_hash",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 13,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_arc_hash_collisions{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "collisions",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_hash_collisions",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 15,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_hdr_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "hdr_size",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_hdr_size",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 16,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_arc_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "arc_hits",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_hits",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 17,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_l2_abort_lowmem{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "abort_lowmem",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_asize{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "asize",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_cdata_free_on_write{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "cdata_free_on_write",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_cksum_bad{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "cksum_bad",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_compress_failure{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "compress_failure",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_compress_successes{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "compress_successes",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_compress_zeros{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "compress_zeros",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_l2 - 1",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 18,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_l2_evict_l1cached{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "evict_l1cached",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_evict_lock_retry{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "evict_lock_retry",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_evict_reading{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "evict_reading",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_feeds{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "feeds",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_free_on_write{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "free_on_write",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_hdr_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "hdr_size",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_hits{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "hits",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_io_error{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "io_error",
+              "refId": "G",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_misses{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "misses",
+              "refId": "H",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_l2 - 2",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 19,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_l2_read_bytes{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "read_bytes",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_rw_clash{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "rw_clash",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "size",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_write_bytes{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "write_bytes",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_writes_done{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "writes_done",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_writes_error{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "writes_error",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_writes_lock_retry{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "writes_lock_retry",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_l2_writes_sent{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "writes_sent",
+              "refId": "G",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_l2 - 3",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 20,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_memory_direct_count{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "direct_count",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_memory_indirect_count{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "indirect_count",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_memory_throttle_count{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "throttle_count",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_memory",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 21,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_metadata_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "arc_metadata_size",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_metadata_size",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 22,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_mfu_evictable_data{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "evictable_data",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_mfu_evictable_metadata{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "evictable_metadata",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_mfu_ghost_evictable_data{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "ghost_evictable_data",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_mfu_ghost_evictable_metadata{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "ghost_evictable_metadata",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_mfu_ghost_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "ghost_size",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_mfu_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "size",
+              "refId": "G",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_mfu",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 23,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_arc_mfu_ghost_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "ghost_hits",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_arc_mfu_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "hits",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_mfu -2",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 24,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_arc_missesv{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "ghost_hits",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_misses",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 25,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_mru_evictable_data{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "evictable_data",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_mru_evictable_metadata{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "evictable_metadata",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_mru_ghost_evictable_data{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "ghost_evictable_data",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_mru_ghost_evictable_metadata{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "ghost_evictable_metadata",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_mru_ghost_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "ghost_size",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_arc_mru_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "size",
+              "refId": "G",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_mru - 1",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "decimals": 0,
+          "fill": 1,
+          "id": 26,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_arc_mru_ghost_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "ghost_hits",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_arc_mru_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "hits",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_mru -2",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 27,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_arc_mutex_miss{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "arc_mutex_miss",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_mutex_miss",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 28,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_other_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "arc_other_size",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_other_size",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 29,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_p{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "p",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_p",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 30,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_arc_prefetch_data_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "data_hits",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_arc_prefetch_data_misses{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "data_misses",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_arc_prefetch_metadata_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "metadata_hits",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_arc_prefetch_metadata_misses{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "metadata_misses",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_prefetch",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 31,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_arc_size{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "arc_size",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "arc_size",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 32,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_dmu_tx_dmu_tx_delay{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "delay",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_dmu_tx_dmu_tx_dirty_delay{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "dirty_delay",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_dmu_tx_dmu_tx_dirty_over_max{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "dirty_over_max",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_dmu_tx_dmu_tx_dirty_throttle{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "dirty_throttle",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_dmu_tx_dmu_tx_error{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "error",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_dmu_tx_dmu_tx_group{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "group",
+              "refId": "G",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_dmu_tx_dmu_tx_memory_reclaim{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "memory_reclaim",
+              "refId": "H",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_dmu_tx_dmu_tx_memory_reserve{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "memory_reserve",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_dmu_tx_dmu_tx_quota{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "quota",
+              "refId": "J",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_dmu_tx_dmu_tx_suspended{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "suspended",
+              "refId": "K",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "dmu_tx_dmu_tx - 1",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 33,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_dmu_tx_dmu_tx_assigned{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "assigned",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "dmu_tx_dmu_tx - 2",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 34,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_fm_erpt_dropped{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "erpt_dropped",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_fm_erpt_set_failed{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "erpt_set_failed",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_fm_fmri_set_failed{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "fmri_set_failed",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_fm_payload_set_failed{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "payload_set_failed",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "fm",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 35,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_vdev_cache_delegations{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "cache_delegations",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_vdev_cache_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "cache_hits",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_vdev_cache_misses{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "cache_misses",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "vdev",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 37,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_zfs_xuio_onloan_read_buf{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "onloan_read_buf",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_xuio_onloan_write_buf{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "onloan_write_buf",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_xuio_read_buf_copied{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "read_buf_copied",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_xuio_read_buf_nocopy{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "read_buf_nocopy",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_xuio_write_buf_copied{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "write_buf_copied",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "node_zfs_xuio_write_buf_nocopy{job=\"node\",instance=~\"$node:$port\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "write_buf_nocopy",
+              "refId": "G",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "xuio",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 38,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_zfetch_bogus_streams{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "bogus_streams",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zfetch_colinear_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "colinear_hits",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zfetch_colinear_misses{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "colinear_misses",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zfetch_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "hits",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zfetch_misses{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "misses",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zfetch_reclaim_failures{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "reclaim_failures",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zfetch_reclaim_successes{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "reclaim_successes",
+              "refId": "G",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zfetch_streams_noresets{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "streams_noresets",
+              "refId": "H",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zfetch_streams_resets{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "streams_resets",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zfetch_stride_hits{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "stride_hits",
+              "refId": "J",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zfetch_stride_misses{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "stride_misses",
+              "refId": "K",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "zfetch",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 39,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_copied_bytes{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_copied_bytes",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_indirect_bytes{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_indirect_bytes",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_metaslab_normal_bytes{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_metaslab_normal_bytes",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_metaslab_slog_bytes{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_metaslab_slog_bytes",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_needcopy_bytes{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_needcopy_bytes",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "zil - bytes",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 40,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_zil_zil_commit_count{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "commit_count",
+              "refId": "A",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_commit_writer_count{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "commit_writer_count",
+              "refId": "C",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_copied_count{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_copied_count",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_count{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_count",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_indirect_count{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_indirect_count",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_metaslab_normal_count{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_metaslab_normal_count",
+              "refId": "B",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_metaslab_slog_count{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_metaslab_slog_count",
+              "refId": "G",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zil_zil_itx_needcopy_count{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "itx_needcopy_count",
+              "refId": "H",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "zil - count",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 41,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_zpool_rcnt{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{zpool}} - rcnt",
+              "refId": "D",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zpool_reads{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{zpool}} - reads",
+              "refId": "E",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zpool_wcnt{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{zpool}} - wcnt",
+              "refId": "H",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zpool_writes{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{zpool}} - writes",
+              "refId": "J",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "ZPOOL",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DML-PROM0}",
+          "fill": 1,
+          "id": 42,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": 350,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_zfs_zpool_rlentime{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{zpool}} - rlentime",
+              "refId": "F",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zpool_rupdate{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{zpool}} - rupdate",
+              "refId": "G",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zpool_wlentime{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{zpool}} - wlentime",
+              "refId": "I",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zpool_wtime{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{zpool}} - wtime",
+              "refId": "K",
+              "step": 2,
+              "target": ""
+            },
+            {
+              "expr": "irate(node_zfs_zpool_wupdate{job=\"node\",instance=~\"$node:$port\"}[5m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{zpool}} - wupdate",
+              "refId": "L",
+              "step": 2,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "ZPOOL - Time",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ns",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_DML-PROM0}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "node",
+        "options": [],
+        "query": "label_values(node_boot_time{job=\"node\"}, instance)",
+        "refresh": 1,
+        "regex": "/([^:]+):.*/",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_DML-PROM0}",
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "port",
+        "options": [],
+        "query": "label_values(node_boot_time, instance)",
+        "refresh": 1,
+        "regex": "/[^:]+:(.*)/",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Node - ZFS - all",
+  "version": 15
+}

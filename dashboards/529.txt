@@ -1,0 +1,772 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.5.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 5672,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "rows": [
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_ipvs_backend_connections_active{instance=\"$host\",remote_address='10.0.5.182'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL182-ActiveConn",
+              "refId": "E",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_connections_active{instance=\"$host\",remote_address='10.0.5.183'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL183-ActiveConn",
+              "refId": "A",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_connections_active{instance=\"$host\",remote_address='10.0.5.184'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL184-ActiveConn",
+              "refId": "B",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_connections_active{instance=\"$host\",remote_address='10.0.5.185'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL185-ActiveConn",
+              "refId": "C",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_connections_active{instance=\"$host\",remote_address='10.0.5.186'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL186-ActiveConn",
+              "refId": "D",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_connections_active{instance=\"$host\",remote_address='10.0.5.187'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL187-ActiveConn",
+              "refId": "F",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "LVS ActiveConn",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_ipvs_backend_connections_inactive{instance=\"$host\",remote_address='10.0.5.182'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL182-InActConn",
+              "refId": "A",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_connections_inactive{instance=\"$host\",remote_address='10.0.5.183'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL183-InActConn",
+              "refId": "B",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_connections_inactive{instance=\"$host\",remote_address='10.0.5.184'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL184-InActConn",
+              "refId": "C",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_connections_inactive{instance=\"$host\",remote_address='10.0.5.185'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL185-InActConn",
+              "refId": "D",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_connections_inactive{instance=\"$host\",remote_address='10.0.5.186'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL186-InActConn",
+              "refId": "E",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_connections_inactive{instance=\"$host\",remote_address='10.0.5.187'}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL187-InActConn",
+              "refId": "F",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "LVS InActConn",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "increase(node_ipvs_incoming_bytes_total{instance=\"$host\"}[$interval])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "LVS InBytes",
+              "refId": "A",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "LVS InBytes",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "id": 6,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "increase(node_ipvs_incoming_packets_total{instance=\"$host\"}[$interval]) ",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "LVS InPkts",
+              "refId": "A",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "LVS InPkts",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "id": 7,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "increase(node_ipvs_connections_total{instance=\"$host\"}[$interval])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Connections",
+              "refId": "A",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "LVS Receive Total Connection",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "id": 8,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_ipvs_backend_weight{instance=\"$host\",remote_address=\"10.0.5.182\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL182-Weight",
+              "refId": "A",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_weight{instance=\"$host\",remote_address=\"10.0.5.183\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL183-Weight",
+              "refId": "B",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_weight{instance=\"$host\",remote_address=\"10.0.5.184\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL184-Weight",
+              "refId": "C",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_weight{instance=\"$host\",remote_address=\"10.0.5.185\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL185-Weight",
+              "refId": "D",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_weight{instance=\"$host\",remote_address=\"10.0.5.186\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL186-Weight",
+              "refId": "E",
+              "step": 240
+            },
+            {
+              "expr": "node_ipvs_backend_weight{instance=\"$host\",remote_address=\"10.0.5.187\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "PGXL187-Weight",
+              "refId": "F",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "LVS Weight",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "PGXL",
+    "LVS"
+  ],
+  "templating": {
+    "list": [
+      {
+        "auto": false,
+        "auto_count": 30,
+        "auto_min": "10s",
+        "current": {
+          "text": "1m",
+          "value": "1m"
+        },
+        "hide": 0,
+        "label": "Interval",
+        "name": "interval",
+        "options": [
+          {
+            "selected": false,
+            "text": "1s",
+            "value": "1s"
+          },
+          {
+            "selected": false,
+            "text": "5s",
+            "value": "5s"
+          },
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          }
+        ],
+        "query": "1s,5s,1m,5m,1h,6h,1d",
+        "refresh": 2,
+        "type": "interval"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Host",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "label_values(instance)",
+        "refresh": 1,
+        "regex": "/LVS/",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "LVS-Statistics",
+  "version": 19,
+  "description": "LVS monitor"
+}

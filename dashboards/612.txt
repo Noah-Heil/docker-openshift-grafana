@@ -1,0 +1,714 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PRUEBA4",
+      "label": "Prueba4",
+      "description": "estos son datos aleatorios para una prueba ",
+      "type": "datasource",
+      "pluginId": "crate-datasource",
+      "pluginName": "Crate"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "crate-datasource",
+      "name": "Crate",
+      "version": "0.5.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": 2065,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {
+            "avg(valor2)": "#890F02",
+            "max(valor2)": "#806EB7"
+          },
+          "bars": false,
+          "datasource": "${DS_PRUEBA4}",
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 4,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "hide": false,
+              "metricAggs": [
+                {
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "query": "SELECT fecha as time, max(valor) FROM \"doc\".\"prueba4\"   GROUP BY time ORDER BY time ASC",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": []
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "hide": false,
+              "metricAggs": [
+                {
+                  "column": "valor",
+                  "type": "max"
+                }
+              ],
+              "refId": "B",
+              "resultFormat": "time_series",
+              "timeInterval": "auto",
+              "whereClauses": []
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "column": "valor2",
+                  "type": "avg"
+                }
+              ],
+              "refId": "C",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Panel Title",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "total"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 460,
+      "panels": [
+        {
+          "columns": [],
+          "datasource": "${DS_PRUEBA4}",
+          "filterNull": false,
+          "fontSize": "100%",
+          "id": 2,
+          "links": [],
+          "pageSize": 100,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "span": 6,
+          "styles": [
+            {
+              "dateFormat": "MM/DD/YY h:mm:ss a",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": "value",
+              "colors": [
+                "rgba(237, 245, 54, 0.9)",
+                "rgba(239, 117, 16, 0.89)",
+                "rgba(0, 79, 243, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "sanitize": false,
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "column": "value",
+                  "type": "avg"
+                }
+              ],
+              "query": "SELECT fecha as time, avg(valor2) FROM \"doc\".\"prueba4\"  GROUP BY time ORDER BY time ASC",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": []
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "query": "SELECT fecha as time, avg(valor) FROM \"doc\".\"prueba4\"  GROUP BY time ORDER BY time ASC",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": []
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "column": "valor2",
+                  "type": "avg"
+                }
+              ],
+              "refId": "C",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": [
+                {
+                  "column": "id",
+                  "condition": "",
+                  "operator": ">=",
+                  "value": "0"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Fechas registradas",
+          "transform": "timeseries_to_columns",
+          "type": "table"
+        },
+        {
+          "aliasColors": {
+            "avg(valor)": "#629E51",
+            "avg(valor2)": "#F9E2D2"
+          },
+          "bars": false,
+          "datasource": "${DS_PRUEBA4}",
+          "fill": 1,
+          "id": 3,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "avg(valor2)",
+              "yaxis": 1
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "column": "valor2",
+                  "type": "avg"
+                }
+              ],
+              "refId": "A",
+              "resultFormat": "time_series",
+              "timeInterval": "auto",
+              "whereClauses": []
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "refId": "B",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": []
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "refId": "C",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": []
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "column": "valor2",
+                  "type": "avg"
+                }
+              ],
+              "refId": "D",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": [
+                {
+                  "column": "id",
+                  "condition": "",
+                  "operator": "=",
+                  "value": "4"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Panel Title",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_PRUEBA4}",
+          "fill": 1,
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "alias": "id_0",
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "refId": "A",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": [
+                {
+                  "column": "id",
+                  "condition": "",
+                  "operator": "=",
+                  "value": "0"
+                }
+              ]
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "alias": "id_1",
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "refId": "B",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": [
+                {
+                  "column": "id",
+                  "condition": "",
+                  "operator": "=",
+                  "value": "1"
+                }
+              ]
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "alias": "id_3",
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "refId": "C",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": [
+                {
+                  "column": "id",
+                  "condition": "",
+                  "operator": "=",
+                  "value": "3"
+                }
+              ]
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "alias": "id_4",
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "refId": "D",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": [
+                {
+                  "column": "id",
+                  "condition": "",
+                  "operator": "=",
+                  "value": "4"
+                }
+              ]
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "alias": "id_5",
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "refId": "E",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": [
+                {
+                  "column": "id",
+                  "condition": "",
+                  "operator": "=",
+                  "value": "5"
+                }
+              ]
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "alias": "id_6",
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "refId": "F",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": [
+                {
+                  "column": "id",
+                  "condition": "",
+                  "operator": "=",
+                  "value": "6"
+                }
+              ]
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "alias": "id_7",
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "refId": "G",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": [
+                {
+                  "column": "id",
+                  "condition": "",
+                  "operator": "=",
+                  "value": "7"
+                }
+              ]
+            },
+            {
+              "groupByAliases": [],
+              "groupByColumns": [],
+              "metricAggs": [
+                {
+                  "alias": "id_8",
+                  "column": "valor",
+                  "type": "avg"
+                }
+              ],
+              "refId": "H",
+              "resultFormat": "time_series",
+              "timeInterval": "second",
+              "whereClauses": [
+                {
+                  "column": "id",
+                  "condition": "",
+                  "operator": "=",
+                  "value": "8"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Panel Title",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now/d",
+    "to": "now/d"
+  },
+  "timepicker": {
+    "nowDelay": "1m",
+    "refresh_intervals": [
+      "2s",
+      "5s",
+      "10s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "New dashboard Copy",
+  "version": 31,
+  "description": "Dhasboard con datos aleatorios obtenidos de CrateDB"
+}

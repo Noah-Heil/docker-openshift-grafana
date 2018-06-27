@@ -1,0 +1,877 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_ALL-ELASTICSEARCH",
+      "label": "filebeat-Elasticsearch",
+      "description": "filebeat index from elasticsearch ",
+      "type": "datasource",
+      "pluginId": "elasticsearch",
+      "pluginName": "Elasticsearch"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "version": "5.6.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.0.4"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.3.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": "5.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Log file ingested through filebeat",
+  "editable": true,
+  "gnetId": 5569,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1523676138928,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "$Datasource",
+      "fontSize": "100%",
+      "format": "short",
+      "gridPos": {
+        "h": 14,
+        "w": 5,
+        "x": 0,
+        "y": 0
+      },
+      "id": 6,
+      "interval": null,
+      "legend": {
+        "percentage": true,
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "DEBUG",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*DEBUG* AND beat.hostname:$hostname",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "ERROR",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*ERROR* AND beat.hostname:$hostname",
+          "refId": "B",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "FATAL",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*FATAL* AND beat.hostname:$hostname",
+          "refId": "C",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "INFO",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*INFO* AND beat.hostname:$hostname",
+          "refId": "D",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "TRACE",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*TRACE* AND beat.hostname:$hostname",
+          "refId": "E",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "WARN",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*WARN* AND beat.hostname:$hostname",
+          "refId": "F",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Log Events (by Log Level)",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "$Datasource",
+      "fontSize": "100%",
+      "format": "short",
+      "gridPos": {
+        "h": 14,
+        "w": 6,
+        "x": 5,
+        "y": 0
+      },
+      "id": 12,
+      "interval": null,
+      "legend": {
+        "percentage": true,
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "GET",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*GET* AND beat.hostname:$hostname",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "HEAD",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*HEAD* AND beat.hostname:$hostname",
+          "refId": "B",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "DELETE",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*DELETE* AND beat.hostname:$hostname",
+          "refId": "C",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "OPTION",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*OPTION* AND beat.hostname:$hostname",
+          "refId": "D",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "POST",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*POST* AND beat.hostname:$hostname",
+          "refId": "E",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "PUT",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:*PUT* AND beat.hostname:$hostname",
+          "refId": "F",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Log Events (by HTTP VERB)",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "$Datasource",
+      "fontSize": "100%",
+      "format": "short",
+      "gridPos": {
+        "h": 14,
+        "w": 6,
+        "x": 11,
+        "y": 0
+      },
+      "id": 9,
+      "interval": null,
+      "legend": {
+        "percentage": true,
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "tags",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "tags:openstack AND beat.hostname:$hostname",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Top Log Service Events",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "$Datasource",
+      "fontSize": "100%",
+      "format": "short",
+      "gridPos": {
+        "h": 14,
+        "w": 7,
+        "x": 17,
+        "y": 0
+      },
+      "id": 11,
+      "interval": null,
+      "legend": {
+        "percentage": true,
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "beat.hostname",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "tags:openstack AND beat.hostname:$hostname",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Top Log Service Events (by Hostname)",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$Datasource",
+      "fill": 1,
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 2,
+      "interval": ">10s",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "tags",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "logstash.slowlog.took_in_nanos",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "count"
+            }
+          ],
+          "query": "tags:* AND beat.hostname:$hostname",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Log Events",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "columns": [
+        {
+          "text": "Avg",
+          "value": "avg"
+        }
+      ],
+      "datasource": "$Datasource",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 19,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 8,
+      "links": [],
+      "pageSize": null,
+      "scroll": false,
+      "showHeader": true,
+      "sort": {
+        "col": 2,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "pattern": "",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "beat.hostname",
+              "id": "4",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "message:* AND beat.hostname:$hostname",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Average Log Events (by Hostname)",
+      "transform": "timeseries_aggregations",
+      "type": "table"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "DS_ELASTICSEARCH",
+          "value": "${DS_ELASTICSEARCH}"
+        },
+        "hide": 0,
+        "label": null,
+        "name": "Datasource",
+        "options": [],
+        "query": "elasticsearch",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$Datasource",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Hostname",
+        "multi": true,
+        "name": "hostname",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"beat.hostname\"}",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Log File Events",
+  "uid": "Gn9D1ZWmk",
+  "version": 9
+}

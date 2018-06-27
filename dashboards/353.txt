@@ -1,0 +1,435 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_ICINGADB",
+      "label": "IcingaDB",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mysql",
+      "pluginName": "MySQL"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.0.1"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "mysql",
+      "name": "MySQL",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": "5.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": 5084,
+  "graphTooltip": 2,
+  "id": null,
+  "iteration": 1520950249216,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {
+        "CRITICAL": "#bf1b00",
+        "OK": "#629e51",
+        "UNKNOWN": "#ba43a9",
+        "WARNING": "#e5ac0e"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_ICINGADB}",
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 2,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "expr": "",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(icinga_servicechecks.start_time) as time_sec,\n  icinga_servicechecks.state as value,\n  statusmap.statstring as metric\nFROM icinga_servicechecks INNER JOIN statusmap ON icinga_servicechecks.state=statusmap.state\nWHERE $__timeFilter(start_time) AND service_object_id in (SELECT object_id FROM icinga_objects WHERE name2='$Service')\nORDER BY start_time ASC\n",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "$Service status",
+      "tooltip": {
+        "shared": false,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Service State",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "s",
+          "label": "Execution Time",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ]
+    },
+    {
+      "aliasColors": {
+        "Execution Time": "#c15c17"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_ICINGADB}",
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 5,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "expr": "SELECT UNIX_TIMESTAMP(icinga_servicechecks.start_time) as time_sec,\n  icinga_servicechecks.execution_time as value,\n  'Execution Time' as metric\nFROM icinga_servicechecks\nWHERE $__timeFilter(start_time) AND service_object_id in (SELECT object_id FROM icinga_objects WHERE name2='$Service')\nORDER BY start_time ASC",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(icinga_servicechecks.start_time) as time_sec,\n  icinga_servicechecks.execution_time as value,\n  'Execution Time' as metric\nFROM icinga_servicechecks\nWHERE $__timeFilter(start_time) AND service_object_id in (SELECT object_id FROM icinga_objects WHERE name2='$Service')\nORDER BY start_time ASC\n\n",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Service Check Execution Time",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 3,
+          "format": "s",
+          "label": "Execution Time",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "aliasColors": {
+        "CRITICAL": "#bf1b00",
+        "OK": "#629e51",
+        "UNKNOWN": "#ba43a9",
+        "WARNING": "#eab839"
+      },
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "${DS_ICINGADB}",
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "id": 2,
+      "interval": null,
+      "legend": {
+        "percentage": true,
+        "show": true,
+        "values": false
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "",
+          "expr": "SELECT\n  UNIX_TIMESTAMP(icinga_servicechecks.start_time) as time_sec,\n  icinga_servicechecks.state as value,\n  statusmap.statstring as metric\nFROM icinga_servicechecks INNER JOIN statusmap ON icinga_servicechecks.state=statusmap.state\nWHERE $__timeFilter(start_time) AND service_object_id in (SELECT object_id FROM icinga_objects WHERE name2=$Service)\nORDER BY start_time ASC",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(icinga_servicechecks.start_time) as time_sec,\n  count(icinga_servicechecks.state) as value,\n  statusmap.statstring as metric\nFROM icinga_servicechecks INNER JOIN statusmap ON icinga_servicechecks.state=statusmap.state\nWHERE $__timeFilter(start_time) AND service_object_id in (SELECT object_id FROM icinga_objects WHERE name2='$Service')\nGROUP BY icinga_servicechecks.state\nORDER BY start_time ASC\n",
+          "refId": "A"
+        }
+      ],
+      "title": "$Service state as percentage",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "columns": [],
+      "datasource": "${DS_ICINGADB}",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 3,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "Exec",
+          "thresholds": [],
+          "type": "number",
+          "unit": "s"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "alias": "",
+          "expr": "",
+          "format": "table",
+          "intervalFactor": 2,
+          "rawSql": "SELECT\n  icinga_servicechecks.start_time as Time,\n  statusmap.statstring as State,\n  icinga_servicechecks.execution_time as Exec,\n  icinga_servicechecks.output as Output\n  FROM icinga_servicechecks INNER JOIN statusmap ON icinga_servicechecks.state=statusmap.state\nWHERE $__timeFilter(start_time) AND service_object_id in (SELECT object_id FROM icinga_objects WHERE name2='$Service')\nORDER BY start_time ASC",
+          "refId": "A"
+        }
+      ],
+      "title": "Check Command Output",
+      "transform": "table",
+      "type": "table"
+    }
+  ],
+  "refresh": "15m",
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ICINGADB}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "Host",
+        "options": [],
+        "query": "SELECT DISTINCT name1 FROM icinga_objects WHERE objecttype_id=2 AND is_active=1",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ICINGADB}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "Service",
+        "options": [],
+        "query": "SELECT name2 FROM icinga_objects WHERE name1='$Host' AND objecttype_id=2 AND is_active=1",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Icinga Service Availability",
+  "uid": "000000025",
+  "version": 23,
+  "description": "Historic Service Status for each of your Icinga2 monitored Services."
+}

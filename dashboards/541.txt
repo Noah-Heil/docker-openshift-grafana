@@ -1,0 +1,940 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_ELK_MESOS LOG",
+      "label": "ELK Mesos Log",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "elasticsearch",
+      "pluginName": "Elasticsearch"
+    },
+    {
+      "name": "DS_ELK_MESOS METRICS",
+      "label": "ELK Mesos Metrics",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "elasticsearch",
+      "pluginName": "Elasticsearch"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.0.0-pre1"
+    },
+    {
+      "type": "datasource",
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "version": "3.0.0"
+    }
+  ],
+  "id": null,
+  "title": "Mesos",
+  "tags": [
+    "mesos"
+  ],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ELK_MESOS LOG}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 1,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Have",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "instances_count",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "min"
+                }
+              ],
+              "query": "_type: metrics",
+              "refId": "A",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "Required",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "required_instances",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "max"
+                }
+              ],
+              "query": "_type: metrics",
+              "refId": "B",
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Required Instances",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ELK_MESOS LOG}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 2,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "slaves.attributes.role.raw",
+                  "id": "3",
+                  "settings": {
+                    "order": "asc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "slaves.free_resources.cpus",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                }
+              ],
+              "query": "type: metrics",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Free CPU",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ELK_MESOS LOG}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 3,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "slaves.attributes.role.raw",
+                  "id": "3",
+                  "settings": {
+                    "order": "asc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "slaves.free_resources.mem",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                }
+              ],
+              "query": "type: metrics",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Free Mem",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "mbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "showTitle": true,
+      "title": "AutoScaling"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ELK_MESOS METRICS}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 4,
+          "interval": ">1m",
+          "isNew": true,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeatIteration": 1462205033393,
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "task_name.raw",
+                  "id": "5",
+                  "settings": {
+                    "order": "desc",
+                    "orderBy": "4",
+                    "size": "20"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "fake": true,
+                  "field": "timestamp",
+                  "id": "3",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "docker_cpu_percent",
+                  "id": "4",
+                  "inlineScript": null,
+                  "meta": {},
+                  "settings": {
+                    "missing": null
+                  },
+                  "type": "max"
+                }
+              ],
+              "query": "framework_name:$Framework AND task_name.raw:$Tasks",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ELK_MESOS METRICS}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 5,
+          "interval": ">1m",
+          "isNew": true,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeatIteration": 1462205033393,
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "task_name.raw",
+                  "id": "5",
+                  "settings": {
+                    "order": "desc",
+                    "orderBy": "4",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "fake": true,
+                  "field": "timestamp",
+                  "id": "3",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "docker_memory_usage",
+                  "id": "4",
+                  "inlineScript": null,
+                  "meta": {},
+                  "settings": {
+                    "missing": null
+                  },
+                  "type": "max"
+                }
+              ],
+              "query": "framework_name:\"$Framework\" AND task_name:$Tasks",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mem",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ELK_MESOS METRICS}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 6,
+          "interval": ">1m",
+          "isNew": true,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeatIteration": 1462205033393,
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "task_name.raw",
+                  "id": "5",
+                  "settings": {
+                    "order": "desc",
+                    "orderBy": "4",
+                    "size": "20"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "fake": true,
+                  "field": "timestamp",
+                  "id": "3",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "cpus_limit",
+                  "id": "4",
+                  "inlineScript": null,
+                  "meta": {},
+                  "settings": {
+                    "missing": null
+                  },
+                  "type": "max"
+                }
+              ],
+              "query": "framework_name:$Framework AND task_name.raw:$Tasks",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Limit",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ELK_MESOS METRICS}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 7,
+          "interval": ">1min",
+          "isNew": true,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeatIteration": 1462205033393,
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "task_name.raw",
+                  "id": "5",
+                  "settings": {
+                    "order": "desc",
+                    "orderBy": "4",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "fake": true,
+                  "field": "timestamp",
+                  "id": "3",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "docker_memory_limit",
+                  "id": "4",
+                  "inlineScript": null,
+                  "meta": {},
+                  "settings": {
+                    "missing": null
+                  },
+                  "type": "max"
+                }
+              ],
+              "query": "framework_name:\"$Framework\" AND task_name:$Tasks",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mem Limit",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "Framework",
+      "scopedVars": {
+        "Framework": {
+          "selected": true,
+          "text": "marathon",
+          "value": "marathon"
+        }
+      },
+      "showTitle": true,
+      "title": "$Framework Metrics"
+    }
+  ],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ELK_MESOS METRICS}",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "Framework",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"framework_name.raw\"}",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": null,
+        "tagsQuery": null,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ELK_MESOS METRICS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "",
+        "multi": true,
+        "name": "Tasks",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"task_name.raw\", \"query\": \"framework_name:$Framework\"}",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": null,
+        "tagsQuery": null,
+        "type": "query"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "5m",
+  "schemaVersion": 13,
+  "version": 33,
+  "links": [],
+  "gnetId": 533,
+  "description": "Charts to show free and used resources."
+}

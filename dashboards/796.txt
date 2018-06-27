@@ -1,0 +1,1149 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_DLT_SECURITY",
+      "label": "dlt_security",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "elasticsearch",
+      "pluginName": "Elasticsearch"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "digrich-bubblechart-panel",
+      "name": "Bubble Chart",
+      "version": "1.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "version": "3.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.6.3"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.1.6"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": 3099,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": 626,
+      "panels": [
+        {
+          "columns": [
+            {
+              "text": "event_timestamp",
+              "value": "event_timestamp"
+            },
+            {
+              "text": "classification",
+              "value": "classification"
+            },
+            {
+              "text": "protocol",
+              "value": "protocol"
+            },
+            {
+              "text": "alert_description",
+              "value": "alert_description"
+            },
+            {
+              "text": "severity",
+              "value": "severity"
+            },
+            {
+              "text": "SrcIp",
+              "value": "SrcIp"
+            },
+            {
+              "text": "SrcPort",
+              "value": "SrcPort"
+            },
+            {
+              "text": "DstIp",
+              "value": "DstIp"
+            },
+            {
+              "text": "DstPort",
+              "value": "DstPort"
+            },
+            {
+              "text": "ET_Signature_Info",
+              "value": "ET_Signature_Info"
+            },
+            {
+              "text": "sensor_name",
+              "value": "sensor_name"
+            }
+          ],
+          "datasource": "${DS_DLT_SECURITY}",
+          "fontSize": "80%",
+          "id": 1,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "span": 12,
+          "styles": [
+            {
+              "alias": "",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "@timestamp",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "pattern": "SrcPort",
+              "thresholds": [],
+              "type": "string",
+              "unit": "none"
+            },
+            {
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "pattern": "DstPort",
+              "sanitize": false,
+              "thresholds": [],
+              "type": "string",
+              "unit": "short"
+            },
+            {
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "Alert_description",
+              "bucketAggs": [],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {
+                    "size": 500
+                  },
+                  "type": "raw_document"
+                }
+              ],
+              "query": "($sensor_name) AND *",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Security Events list",
+          "transform": "json",
+          "type": "table"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 202,
+      "panels": [
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_DLT_SECURITY}",
+          "fontSize": "80%",
+          "format": "short",
+          "id": 2,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "sortDesc": true,
+            "values": true
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 6,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "alias": "Tel-Aviv,IL",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": 1000,
+                    "min_doc_count": 1
+                  },
+                  "type": "histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sntlv_lan_ips",
+              "refId": "A",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "BeerSheba,IL",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn-bsh-il_lan_ips",
+              "refId": "B",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "Brescia,IT",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn-brs-it_lan_ips",
+              "refId": "C",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "Paris,FR",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn-par-fr_lan_ips",
+              "refId": "D",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "Basingstock,UK",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn_bas-uk_lan_ips",
+              "refId": "E",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "Singapore",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn_sing_sing_lan_ips",
+              "refId": "F",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "AWS",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn_eastus_aws_lan_ips",
+              "refId": "G",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Total Event by sensor",
+          "type": "grafana-piechart-panel",
+          "valueName": "total"
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "${DS_DLT_SECURITY}",
+          "fontSize": "80%",
+          "format": "short",
+          "id": 3,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": true
+          },
+          "legendType": "Right side",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "donut",
+          "span": 6,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "alias": "sntlv_lan_ips",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sntlv_lan_ips",
+              "refId": "A",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "sn-bsh-il_lan_ips",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn-bsh-il_lan_ips",
+              "refId": "B",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "sn-brs-it_lan_ips",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn-brs-it_lan_ips",
+              "refId": "C",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "sn-par-fr_lan_ips",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn-par-fr_lan_ips",
+              "refId": "D",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "Basingstock,UK",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn_bas-uk_lan_ips",
+              "refId": "E",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "AWS",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn_eastus_aws_lan_ips",
+              "refId": "F",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "Singapore",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn_sing_sing_lan_ips",
+              "refId": "G",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Current Event by sensor",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "bgColor": null,
+          "colorScheme": "Unique",
+          "datasource": "${DS_DLT_SECURITY}",
+          "decimal": 2,
+          "displayLabel": true,
+          "format": "short",
+          "gradientColors": [
+            "red",
+            "green"
+          ],
+          "gradientThresholds": "50,80",
+          "groupDepthColors": [
+            "hsl(152,80%,80%)",
+            "hsl(228,30%,40%)"
+          ],
+          "groupSeperator": ",",
+          "height": "300",
+          "id": 4,
+          "links": [],
+          "mode": "time",
+          "nullPointMode": "connected",
+          "span": 12,
+          "svgBubbleId": "svg_4",
+          "svgContainer": {},
+          "targets": [
+            {
+              "alias": "IL,TLV",
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "alert_description.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sntlv_lan_ips",
+              "refId": "A",
+              "timeField": "@timestamp"
+            },
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "alert_description.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn-bsh-il_lan_ips",
+              "refId": "B",
+              "timeField": "@timestamp"
+            },
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "alert_description.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn-brs-it_lan_ips",
+              "refId": "C",
+              "timeField": "@timestamp"
+            },
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "alert_description.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn-par-fr_lan_ips",
+              "refId": "D",
+              "timeField": "@timestamp"
+            },
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "alert_description.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn_bas-uk_lan_ips",
+              "refId": "E",
+              "timeField": "@timestamp"
+            },
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "alert_description.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn_sing_sing_lan_ips",
+              "refId": "F",
+              "timeField": "@timestamp"
+            },
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "alert_description.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "sensor_name.keyword:sn_eastus_aws_lan_ips",
+              "refId": "G",
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholdColors": [
+            "green",
+            "yellow",
+            "red"
+          ],
+          "thresholds": "50,80",
+          "title": "Panel Title",
+          "transparent": false,
+          "type": "digrich-bubblechart-panel",
+          "valueName": "max"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {
+            "Count": "#962d82",
+            "Events": "#1f78c1"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_DLT_SECURITY}",
+          "fill": 1,
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Events",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "($sensor_name) AND *",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Panel Title",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_DLT_SECURITY}",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "sensor_name",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"sensor_name.keyword\"} ",
+        "refresh": 2,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "datasource": "dlt_security",
+        "filters": [],
+        "hide": 0,
+        "label": "Evevt Query",
+        "name": "evevt_query",
+        "type": "adhoc"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Security center",
+  "version": 48,
+  "description": "Security feed from Pfsense snort Barnyard2 output "
+}

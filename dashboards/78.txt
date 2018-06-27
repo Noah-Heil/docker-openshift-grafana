@@ -1,0 +1,3174 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_OPENNMS_PERFORMANCE",
+      "label": "OpenNMS Performance",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "opennms-helm-performance-datasource",
+      "pluginName": "OpenNMS Performance"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.6.0"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "opennms-helm-performance-datasource",
+      "name": "OpenNMS Performance",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Display basic SNMP data collected on Linux hosts with OpenNMS 21.0.x for use in OpenNMS Helm 1.0.1 with Grafana 4.6.0 with R. To use the Trend lines you should choose \"now+3h\" using the time chooser.",
+  "editable": true,
+  "gnetId": 5148,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [
+    {
+      "icon": "external link",
+      "tags": [],
+      "title": "netsnmp MIBs",
+      "tooltip": "",
+      "type": "link",
+      "url": "http://www.net-snmp.org/docs/mibs/"
+    }
+  ],
+  "refresh": "5m",
+  "rows": [
+    {
+      "collapse": false,
+      "height": -21,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "$datasource",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 91,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "attribute": "loadavg5",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "expression": "loadavg5 / 100",
+              "label": "Load",
+              "refId": "B",
+              "type": "expression"
+            }
+          ],
+          "thresholds": "",
+          "title": "Load (5min)",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "$datasource",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 90,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "attribute": "hrSystemProcesses",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": "",
+          "title": "Processes",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "$datasource",
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 89,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "attribute": "hrSystemNumUsers",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": "",
+          "title": "Users",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "$datasource",
+          "format": "dtdurations",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 92,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "attribute": "hrSystemUptime",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "expression": "hrSystemUptime / 100",
+              "label": "Uptime",
+              "refId": "B",
+              "type": "expression"
+            }
+          ],
+          "thresholds": "",
+          "title": "Uptime",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "ssCpuRawUser: The number of 'ticks' (typically 1/100s) spent processing user-level code.\n\nssCpuRawNice: The number of 'ticks' (typically 1/100s) spent processing reduced-priority code. This object will not be implemented on hosts where the underlying operating system does not measure this particular CPU metric.\n\nssCpuRawSystem: The number of 'ticks' (typically 1/100s) spent processing system-level code.\n\nThis object may sometimes be implemented as the combination of the 'ssCpuRawWait(54)' and 'ssCpuRawKernel(55)' counters, so care must be taken when summing the overall raw counters.\n\nssCpuRawIdle: The number of 'ticks' (typically 1/100s) spent idle.\n\nssCpuRawWait: The number of 'ticks' (typically 1/100s) spent waiting for IO.\n\nThis object will not be implemented on hosts where the underlying operating system does not measure this particular CPU metric.  This time may also be included within the 'ssCpuRawSystem(52)' counter.\n\nssCpuRawKernel: The number of 'ticks' (typically 1/100s) spent processing kernel-level code.\n\nThis object will not be implemented on hosts where the underlying operating system does not measure this particular CPU metric.  This time may also be included within the 'ssCpuRawSystem(52)' counter.\n\nssCpuRawInterrupt: The number of 'ticks' (typically 1/100s) spent processing hardware interrupts.\n\nThis object will not be implemented on hosts where the underlying operating system does not measure this particular CPU metric.\n\n\nOn a multi-processor system, the 'ssCpuRaw*' counters are cumulative over all CPUs, so their sum will typically be N*100 (for N processors).",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 1,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "avg",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "CpuRawIdle",
+              "zindex": 3
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "CpuRawIdle",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawInterrupt",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawKernel",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawNice",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawSoftIRQ",
+              "nodeId": "$node",
+              "refId": "E",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawSystem",
+              "nodeId": "$node",
+              "refId": "F",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawUser",
+              "nodeId": "$node",
+              "refId": "G",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "CpuRawWait",
+              "nodeId": "$node",
+              "refId": "H",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU usage ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "CPU usage",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {
+            "Number of CPUs": "#bf1b00"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "decimals": 2,
+          "description": "laLoadFloat: The 1,5 and 15 minute load averages as an opaquely wrapped floating point number.\n\nlaLoadInt: The 1,5 and 15 minute load averages as an integer. This is computed by taking the floating point loadaverage value and multiplying by 100, then converting the value to an integer.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 4,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sideWidth": null,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "UCD SNMP MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Number of CPUs",
+              "fill": 0,
+              "legend": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": true,
+          "targets": [
+            {
+              "alias": "",
+              "attribute": "loadavg1",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "alias": "",
+              "attribute": "loadavg5",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "B",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "alias": "",
+              "attribute": "loadavg15",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "C",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "expression": "loadavg1 / 100",
+              "label": "1min avg.",
+              "refId": "D",
+              "type": "expression"
+            },
+            {
+              "expression": "loadavg5 / 100",
+              "label": "5min avg.",
+              "refId": "E",
+              "type": "expression"
+            },
+            {
+              "expression": "loadavg15 / 100",
+              "label": "15min avg.",
+              "refId": "F",
+              "type": "expression"
+            },
+            {
+              "alias": "",
+              "attribute": "CpuRawIdle",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "G",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "alias": "",
+              "attribute": "CpuRawInterrupt",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "H",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "alias": "",
+              "attribute": "CpuRawKernel",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "I",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "alias": "",
+              "attribute": "CpuRawNice",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "J",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "alias": "",
+              "attribute": "CpuRawSoftIRQ",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "K",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "alias": "",
+              "attribute": "CpuRawSystem",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "L",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "alias": "",
+              "attribute": "CpuRawUser",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "M",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "alias": "",
+              "attribute": "CpuRawWait",
+              "format": "time_series",
+              "hide": true,
+              "nodeId": "$node",
+              "rawSql": "SELECT\n  $__time(time_column),\n  value1\nFROM\n  metric_table\nWHERE\n  $__timeFilter(time_column)\n",
+              "refId": "N",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "expression": "(CpuRawIdle + CpuRawInterrupt + CpuRawKernel + CpuRawNice + CpuRawSoftIRQ + CpuRawSystem + CpuRawUser + CpuRawWait) / 100.0",
+              "label": "Number of CPUs",
+              "refId": "O",
+              "type": "expression"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Load averages ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 2,
+              "format": "short",
+              "label": "Load",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": null,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Load Averages",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "ssRawInterrupts: Number of interrupts processed\n\nssRawContexts: Number of context switches",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 7,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "UCD SNMP MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/Context/",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "SysContext",
+              "label": "SysContext",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SysInterrupts",
+              "label": "SysInterrupts",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SysRawContext",
+              "label": "SysRawContext",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SysRawInterrupts",
+              "label": "SysRawInterrupts",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Context Switches and Interrupts ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": 5,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Context Switches and Interrupts",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 417,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "The total number of octets transmitted out of the interface, including framing characters. These objects are a 64-bit versions of if{Out,In}Octets.\n\nDiscontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 14,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/Out/",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "ifHCInOctets",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCOutOctets",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Octets transmitted",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "The total number of packets that higher-level protocols requested be transmitted, which were either unicast, multicast, or broadcast packets, including those that were discarded or not sent. These objects are 64-bit versions of if{Out,In}{U,Multi}castPkts. \n\nDiscontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 15,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/Out/",
+              "stack": "A",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "/In/",
+              "stack": "B"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 5,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "ifHCInBroadcastPkts",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCInMulticastPkts",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCInUcastPkts",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCOutBroadcastPkt",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCOutMulticastPkt",
+              "nodeId": "$node",
+              "refId": "E",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifHCOutUcastPkts",
+              "nodeId": "$node",
+              "refId": "F",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Packets transmitted",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "ifInDiscards: The number of inbound packets which were chosen to be discarded even though no errors had been detected to prevent their being deliverable to a higher-layer protocol. One possible reason for discarding such a packet could be to free up buffer space. \n\nIfInErrors: For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol. For character- oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol.\n\nifOutDiscards: The number of outbound packets which were chosen to be discarded even though no errors had been detected to prevent their being transmitted. One possible reason for discarding such a packet could be to free up buffer space.\n\nIfOutErrors: For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.\n\nDiscontinuities in the value of these counters can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 17,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/Out/",
+              "stack": "A",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "/In/",
+              "stack": "B"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "ifInErrors",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifOutErrors",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifInDiscards",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ifOutDiscards",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "interfaceSnmp[$interface]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Errors and discards",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "interface",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "$interface ($node)",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "ssIORawSent: Number of blocks sent to a block device\n\nssIORawReceived: Number of blocks received from a block device",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 2,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "UCD SNMP MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "IORawReceived",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "IORawReceived",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "IORawSent",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Raw IO ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "iops",
+              "label": "Blocks per second",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Raw IO",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 121,
+      "panels": [
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "combine": {
+            "label": "Others",
+            "threshold": 0
+          },
+          "datasource": "$datasource",
+          "description": "dskAvail: Available space on the disk. For large lightly-used disks (>2Tb), this value will latch at INT32_MAX (2147483647).\n\ndskUsed: Used space on the disk. For large heavily-used disks (>2Tb), this value will latch at INT32_MAX (2147483647).",
+          "fontSize": "80%",
+          "format": "deckbytes",
+          "hideTimeOverride": false,
+          "id": 18,
+          "interval": null,
+          "legend": {
+            "percentage": true,
+            "show": true,
+            "values": true
+          },
+          "legendType": "Right side",
+          "links": [
+            {
+              "title": "UCD SNMP MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt"
+            }
+          ],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "repeat": "partition",
+          "span": 6,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "attribute": "ns-dskAvail",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "dskIndex[$partition]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "ns-dskUsed",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "dskIndex[$partition]",
+              "type": "attribute"
+            }
+          ],
+          "timeShift": null,
+          "title": "Disk usage ($partition)",
+          "type": "grafana-piechart-panel",
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Disk usage",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "diskIOLA1: The 1 minute average load of disk (%).\n\ndiskIOLA5: The 5 minute average load of disk (%).\n\ndiskIOLA15: The 15 minute average load of disk (%).",
+          "fill": 1,
+          "id": 63,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "UCD-DISKIO-MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/UCD-DISKIO-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "diskIOLA1",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "diskIOIndex[$disk]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "diskIOLA5",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "diskIOIndex[$disk]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "diskIOLA15",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "diskIOIndex[$disk]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Disk load ($disk)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": "Disk usage",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "diskIOReads: The number of read accesses to this device since boot.\n\ndiskIOWrites: The number of write accesses to this device since boot.",
+          "fill": 1,
+          "id": 65,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "UCD-DISKIO-MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/UCD-DISKIO-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "diskIOWrites",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "diskIOReads",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "diskIOIndex[$disk]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "diskIOWrites",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "diskIOIndex[$disk]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Disk I/O accesses ($disk)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "diskIOReadX: The number of bytes read from this device since boot.\n\ndiskIOWrittenX: The number of bytes written from this device since boot.",
+          "fill": 1,
+          "id": 74,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "UCD-DISKIO-MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/UCD-DISKIO-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "diskIOWrites",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "diskIONReadX",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "diskIOIndex[$disk]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "diskIONWrittenX",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "diskIOIndex[$disk]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Disk I/O bytes ($disk)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "disk",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Disk utilization ($disk)",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "ssSwapIn: The average amount of memory swapped in from disk, calculated over the last minute.\n\nssSwapOut: The average amount of memory swapped out to disk, calculated over the last minute.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 3,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "UCD SNMP MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Swap Out",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "SwapIn",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "SwapOut",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "expression": "SwapIn * 1024 / 60",
+              "label": "Swap in",
+              "refId": "C",
+              "type": "expression"
+            },
+            {
+              "expression": "SwapOut * 1024 / 60",
+              "label": "Swap Out",
+              "refId": "D",
+              "type": "expression"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Swap usage ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "Bps",
+              "label": "Data rate",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "hrStorageAllocationUnits: The size, in bytes, of the data objects allocated from this pool.  If this entry is monitoring sectors, blocks, buffers, or packets, for example, this number will commonly be greater than one.  Otherwise this number will typically be one.\n\nhrStorageSize: The size of the storage represented by this entry, in units of hrStorageAllocationUnits. This object is writable to allow remote configuration of the size of the storage area in those cases where such an operation makes sense and is possible on the underlying system. For example, the amount of main memory allocated to a buffer pool might be modified or\nthe amount of disk space allocated to virtual memory might be modified.\n\nhrStorageUsed: The amount of the storage represented by this entry that is allocated, in units of hrStorageAllocationUnits.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 84,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "HOST RESOURCES MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/HOST-RESOURCES-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Swap Out",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "hrStorageAllocUnits",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "hrStorageIndex[Swapspace]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "hrStorageSize",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "hrStorageIndex[Swapspace]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "hrStorageUsed",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "E",
+              "resourceId": "hrStorageIndex[Swapspace]",
+              "type": "attribute"
+            },
+            {
+              "expression": "hrStorageAllocUnits * hrStorageUsed",
+              "label": "Used",
+              "refId": "B",
+              "type": "expression"
+            },
+            {
+              "filter": {
+                "backend": "R",
+                "canonicalName": "org.opennms.netmgt.measurements.filters.impl.TrendLine",
+                "description": "Fits a trend line or polynomial to a given column.",
+                "name": "Trend",
+                "parameter": [
+                  {
+                    "default": null,
+                    "description": "Input column.",
+                    "displayName": "Input",
+                    "key": "inputColumn",
+                    "required": true,
+                    "type": "string"
+                  },
+                  {
+                    "default": null,
+                    "description": "Output column.",
+                    "displayName": "Output",
+                    "key": "outputColumn",
+                    "required": true,
+                    "type": "string"
+                  },
+                  {
+                    "default": "0",
+                    "description": "Number seconds ahead the of the column for which we want to include the trend line.",
+                    "displayName": "Forecast",
+                    "key": "secondsAhead",
+                    "required": false,
+                    "type": "long"
+                  },
+                  {
+                    "default": "1",
+                    "description": "Polynomial order of the trend line/curve. Set this to 1 for a line.",
+                    "displayName": "Order",
+                    "key": "polynomialOrder",
+                    "required": false,
+                    "type": "int"
+                  }
+                ]
+              },
+              "filterParameters": {
+                "inputColumn": "Used",
+                "outputColumn": "Trend",
+                "polynomialOrder": "1",
+                "secondsAhead": "7200"
+              },
+              "refId": "F",
+              "type": "filter"
+            },
+            {
+              "expression": "hrStorageAllocUnits * hrStorageSize",
+              "label": "Size",
+              "refId": "A",
+              "type": "expression"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Swap space ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "bytes",
+              "label": "Size",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Swap statistics",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 281,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "tcpActiveOpens: The number of times that TCP connections have made a direct transition to the SYN-SENT state from the CLOSED state. \n\ntcpPassiveOpens: The number of times TCP connections have made a direct transition to the SYN-RCVD state from the LISTEN state.\n\nDiscontinuities in the value of these counters are indicated via discontinuities in the value of sysUpTime.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 6,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "TCP MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/TCP-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "tcpOutRsts",
+              "transform": "negative-Y"
+            },
+            {
+              "alias": "tcpEstabResets",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "tcpActiveOpens",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "tcpPassiveOpens",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "tcpEstabResets",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "tcpOutRsts",
+              "nodeId": "$node",
+              "refId": "D",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "TCP connections ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "tcpOutSegs: The total number of segments sent, including those on current connections but excluding those containing only retransmitted octets.\n\ntcpInSegs: The total number of segments received, including those received in error. This count includes segments received on currently established connections.\n\nDiscontinuities in the value of these counters are indicated via discontinuities in the value of sysUpTime.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 82,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "TCP MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/TCP-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "tcpOutSegs",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "tcpInSegs",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "tcpOutSegs",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "TCP Segments ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": "Packets per seconds",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "Discontinuities in the value of these counters are indicated via discontinuities in the value of sysUpTime.",
+          "fill": 1,
+          "hideTimeOverride": false,
+          "id": 83,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "TCP MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/TCP-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "tcpAttemptFails",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "tcpInErrors",
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "tcpRetransSegs",
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "TCP errors ($node)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": "Packets per seconds",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "TCP statistics",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "hrStorageAllocationUnits: The size, in bytes, of the data objects allocated from this pool.  If this entry is monitoring sectors, blocks, buffers, or packets, for example, this number will commonly be greater than one.  Otherwise this number will typically be one.\n\nhrStorageSize: The size of the storage represented by this entry, in units of hrStorageAllocationUnits. This object is writable to allow remote configuration of the size of the storage area in those cases where such an operation makes sense and is possible on the underlying system. For example, the amount of main memory allocated to a buffer pool might be modified or\nthe amount of disk space allocated to virtual memory might be modified.\n\nhrStorageUsed: The amount of the storage represented by this entry that is allocated, in units of hrStorageAllocationUnits.",
+          "fill": 1,
+          "id": 13,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "HOST RESOURCES MIB",
+              "type": "absolute",
+              "url": "http://www.net-snmp.org/docs/mibs/HOST-RESOURCES-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "hrStorageSize",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "hrStorageIndex[$hrStorage]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "hrStorageUsed",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "B",
+              "resourceId": "hrStorageIndex[$hrStorage]",
+              "type": "attribute"
+            },
+            {
+              "attribute": "hrStorageAllocUnits",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "C",
+              "resourceId": "hrStorageIndex[$hrStorage]",
+              "type": "attribute"
+            },
+            {
+              "expression": "hrStorageSize * hrStorageAllocUnits",
+              "label": "Size",
+              "refId": "D",
+              "type": "expression"
+            },
+            {
+              "expression": "hrStorageUsed * hrStorageAllocUnits",
+              "label": "Used",
+              "refId": "E",
+              "type": "expression"
+            },
+            {
+              "filter": {
+                "backend": "R",
+                "canonicalName": "org.opennms.netmgt.measurements.filters.impl.TrendLine",
+                "description": "Fits a trend line or polynomial to a given column.",
+                "name": "Trend",
+                "parameter": [
+                  {
+                    "default": null,
+                    "description": "Input column.",
+                    "displayName": "Input",
+                    "key": "inputColumn",
+                    "required": true,
+                    "type": "string"
+                  },
+                  {
+                    "default": null,
+                    "description": "Output column.",
+                    "displayName": "Output",
+                    "key": "outputColumn",
+                    "required": true,
+                    "type": "string"
+                  },
+                  {
+                    "default": "0",
+                    "description": "Number seconds ahead the of the column for which we want to include the trend line.",
+                    "displayName": "Forecast",
+                    "key": "secondsAhead",
+                    "required": false,
+                    "type": "long"
+                  },
+                  {
+                    "default": "1",
+                    "description": "Polynomial order of the trend line/curve. Set this to 1 for a line.",
+                    "displayName": "Order",
+                    "key": "polynomialOrder",
+                    "required": false,
+                    "type": "int"
+                  }
+                ]
+              },
+              "filterParameters": {
+                "inputColumn": "Used",
+                "outputColumn": "Trend",
+                "secondsAhead": "7200"
+              },
+              "refId": "F",
+              "type": "filter"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "hrStorage[$hrStorage]",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": "Size",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "hrStorage",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "$hrStorage",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "lmTempSensorsValue: The temperature of this sensor in mC.",
+          "fill": 1,
+          "id": 41,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "LM-SENSORS-MIB",
+              "type": "absolute",
+              "url": "https://github.com/haad/net-snmp/blob/master/mibs/LM-SENSORS-MIB.txt"
+            }
+          ],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "lmTempIndex",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "lms-temp",
+              "hide": true,
+              "label": "temp",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "lmTempIndex[$lmTempIndex]",
+              "type": "attribute"
+            },
+            {
+              "expression": "temp / 1000.0",
+              "label": "Temperature $lmTempIndex",
+              "refId": "B",
+              "type": "expression"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Temperature lmTempIndex[$lmTempIndex]",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 1,
+              "format": "celsius",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Linux monitoring sensors",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "fill": 1,
+          "id": 50,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "hrSystemNumUsers",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of users",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Number of users",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "fill": 1,
+          "id": 51,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "hrSystemProcesses",
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of processes",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Number of processes",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "fill": 1,
+          "id": 52,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "attribute": "hrSystemUptime",
+              "hide": true,
+              "nodeId": "$node",
+              "refId": "A",
+              "resourceId": "nodeSnmp[]",
+              "type": "attribute"
+            },
+            {
+              "expression": "hrSystemUptime / 100",
+              "label": "Uptime",
+              "refId": "B",
+              "type": "expression"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "System uptime",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "dtdurations",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "System uptime",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "opennms",
+    "SNMP",
+    "Linux"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "OpenNMS Performance",
+          "value": "OpenNMS Performance"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "datasource",
+        "options": [],
+        "query": "opennms-helm-performance-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_OPENNMS_PERFORMANCE}",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": true,
+        "name": "node",
+        "options": [],
+        "query": "nodeFilter(isSNMP)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$datasource",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "disk",
+        "options": [],
+        "query": "nodeResources($node)",
+        "refresh": 1,
+        "regex": "/^diskIOIndex\\[([a-z]*)\\]/",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_OPENNMS_PERFORMANCE}",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "partition",
+        "options": [],
+        "query": "nodeResources($node)",
+        "refresh": 1,
+        "regex": "/dskIndex\\[((?!run|dev|sys).*)\\]/",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_OPENNMS_PERFORMANCE}",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "interface",
+        "options": [],
+        "query": "nodeResources($node)",
+        "refresh": 1,
+        "regex": "/^interfaceSnmp\\[(.*-[0-9a-f]{12})\\]$/",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "hrStorage",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "Memorybuffers",
+            "value": "Memorybuffers"
+          },
+          {
+            "selected": false,
+            "text": "Virtualmemory",
+            "value": "Virtualmemory"
+          },
+          {
+            "selected": false,
+            "text": "Sharedmemory",
+            "value": "Sharedmemory"
+          },
+          {
+            "selected": false,
+            "text": "Physicalmemory",
+            "value": "Physicalmemory"
+          },
+          {
+            "selected": false,
+            "text": "Cachedmemory",
+            "value": "Cachedmemory"
+          },
+          {
+            "selected": false,
+            "text": "volume1",
+            "value": "volume1"
+          }
+        ],
+        "query": "Memorybuffers,Virtualmemory,Sharedmemory,Physicalmemory,Cachedmemory,volume1",
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "1 + 2 + 3 + 4",
+          "value": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "lmTempIndex",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": true,
+            "text": "1",
+            "value": "1"
+          },
+          {
+            "selected": true,
+            "text": "2",
+            "value": "2"
+          },
+          {
+            "selected": true,
+            "text": "3",
+            "value": "3"
+          },
+          {
+            "selected": true,
+            "text": "4",
+            "value": "4"
+          },
+          {
+            "selected": false,
+            "text": "5",
+            "value": "5"
+          },
+          {
+            "selected": false,
+            "text": "6",
+            "value": "6"
+          },
+          {
+            "selected": false,
+            "text": "7",
+            "value": "7"
+          },
+          {
+            "selected": false,
+            "text": "8",
+            "value": "8"
+          },
+          {
+            "selected": false,
+            "text": "9",
+            "value": "9"
+          },
+          {
+            "selected": false,
+            "text": "10",
+            "value": "10"
+          }
+        ],
+        "query": "1,2,3,4,5,6,7,8,9,10",
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now-5m"
+  },
+  "timepicker": {
+    "nowDelay": "5m",
+    "refresh_intervals": [
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Basic SNMP data",
+  "version": 70
+}
