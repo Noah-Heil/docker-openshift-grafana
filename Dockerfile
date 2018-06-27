@@ -13,7 +13,7 @@ LABEL name="Grafana" \
 
 # User grafana gets added by RPM
 ENV \
-    GF_PLUGIN_DIR=/var/lib/grafana \
+    GF_PLUGIN_DIR=/var/lib/grafana/plugins \
     USERNAME=grafana
 
 
@@ -29,12 +29,15 @@ RUN yum -y update && yum -y upgrade && \
 RUN for plugin in $(curl -s https://grafana.net/api/plugins?orderBy=name | jq '.items[] | select(.internal=='false') | .slug' | tr -d '"'); do grafana-cli --pluginsDir "${GF_PLUGIN_DIR}" plugins install $plugin; done
 
 COPY ./root /
+COPY ./dashboards /var/lib/grafana/dashboards
+
 RUN /usr/bin/fix-permissions /var/log/grafana && \
     /usr/bin/fix-permissions /etc/grafana && \
     /usr/bin/fix-permissions /usr/share/grafana && \
     /usr/bin/fix-permissions /usr/sbin/grafana-server
 
-VOLUME ["/var/lib/grafana", "/var/log/grafana", "/etc/grafana"]
+VOLUME ["/var/log/grafana", "/etc/grafana"]
+# VOLUME ["/var/lib/grafana", "/var/log/grafana", "/etc/grafana"]
 
 EXPOSE 3000
 
