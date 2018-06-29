@@ -18,6 +18,8 @@ grep -v ^grafana /etc/passwd > "${HOME}/passwd"
 # UID and GID
 echo "grafana:x:${USER_ID}:${GROUP_ID}:grafana user:${HOME}:/sbin/nologin" >> "${HOME}/passwd"
 
+for plugin in $(curl -s https://grafana.net/api/plugins?orderBy=name | jq '.items[] | select(.internal=='false') | .slug' | tr -d '"'); do grafana-cli --pluginsDir "${GF_PLUGIN_DIR}" plugins install $plugin; done
+
 # Point CentOS to this new passwd file instead of the system
 # passwd file to make sure the grafana user is correctly assigned
 export LD_PRELOAD=libnss_wrapper.so

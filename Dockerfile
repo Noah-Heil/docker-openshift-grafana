@@ -26,18 +26,18 @@ RUN yum -y update && yum -y upgrade && \
     rm -rf /var/cache/yum \
     rm /tmp/grafana.rpm
 
-RUN for plugin in $(curl -s https://grafana.net/api/plugins?orderBy=name | jq '.items[] | select(.internal=='false') | .slug' | tr -d '"'); do grafana-cli --pluginsDir "${GF_PLUGIN_DIR}" plugins install $plugin; done
+# RUN for plugin in $(curl -s https://grafana.net/api/plugins?orderBy=name | jq '.items[] | select(.internal=='false') | .slug' | tr -d '"'); do grafana-cli --pluginsDir "${GF_PLUGIN_DIR}" plugins install $plugin; done
 
 COPY ./root /
-COPY ./dashboards /var/lib/grafana/dashboards
+# COPY ./dashboards /var/lib/grafana/dashboards
 
 RUN /usr/bin/fix-permissions /var/log/grafana && \
     /usr/bin/fix-permissions /etc/grafana && \
     /usr/bin/fix-permissions /usr/share/grafana && \
     /usr/bin/fix-permissions /usr/sbin/grafana-server
 
-VOLUME ["/var/log/grafana", "/etc/grafana"]
-# VOLUME ["/var/lib/grafana", "/var/log/grafana", "/etc/grafana"]
+# VOLUME ["/var/log/grafana", "/etc/grafana"]
+VOLUME ["/var/lib/grafana", "/var/log/grafana", "/etc/grafana"]
 
 EXPOSE 3000
 

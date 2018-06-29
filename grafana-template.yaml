@@ -92,6 +92,10 @@ objects:
             name: grafana-datasources-volume
           - mountPath: /usr/share/grafana/provisioning/dashboards
             name: grafana-dashboard-config-volume
+          - mountPath: /var/lib/grafana-dashboards
+            name: grafana-dashboards
+          - mountPath: /var/lib/grafana
+            name: grafana-lib-volume
           - mountPath: /var/log/grafana
             name: grafana-log-volume
         restartPolicy: Always
@@ -107,6 +111,10 @@ objects:
         - name: grafana-dashboard-config-volume
           configMap:
             name: grafana-dashboard-config
+            defaultMode: 420
+        - name: grafana-dashboards
+          configMap:
+            name: grafana-dashboards
             defaultMode: 420
         - name: grafana-lib-volume
           emptyDir: {}
